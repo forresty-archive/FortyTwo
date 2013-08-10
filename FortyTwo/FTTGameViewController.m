@@ -159,12 +159,12 @@ static const CGFloat FTTObjectHeight = 5;
 
 
 - (NSUInteger)deviceWidth {
-  return 320;
+  return [UIScreen mainScreen].bounds.size.width;
 }
 
 
 - (NSUInteger)deviceHeight {
-  return 480;
+  return [UIScreen mainScreen].bounds.size.height;
 }
 
 
