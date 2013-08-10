@@ -23,6 +23,8 @@
 
 @property (nonatomic) NSMutableArray *enemies;
 
+@property (nonatomic) BOOL gamePlaying;
+
 @end
 
 
@@ -86,9 +88,13 @@ static const CGFloat FTTObjectHeight = 5;
   @synchronized(self) {
     [self.motionMannager stopAccelerometerUpdates];
 
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You are dead.", nil) message:nil delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: nil];
+    if (self.gamePlaying) {
+      self.gamePlaying = NO;
 
-    [alert show];
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You are dead.", nil) message:nil delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: nil];
+
+      [alert show];
+    }
   }
 }
 
@@ -146,7 +152,7 @@ static const CGFloat FTTObjectHeight = 5;
 
   enemy.center = center;
 
-  CGFloat speed = rand() % 10 + 15; // between 15 ~ 25
+  CGFloat speed = rand() % 10 + 20;
   enemy.speedX = (self.planeView.center.x - enemy.center.x) / speed;
   enemy.speedY = (self.planeView.center.y - enemy.center.y) / speed;
 }
@@ -172,23 +178,36 @@ static const CGFloat FTTObjectHeight = 5;
   }
 
 
+  self.gamePlaying = YES;
+
   __weak FTTGameViewController *weakSelf = self;
 
   [self.motionMannager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
 
     //    NSLog(@"acc %@", accelerometerData);
 
-    [UIView animateWithDuration:0.09 animations:^{
+    CGFloat newX = weakSelf.planeView.center.x + accelerometerData.acceleration.x * 15;
+    CGFloat newY = weakSelf.planeView.center.y - accelerometerData.acceleration.y * 15;
 
-      CGFloat newX = weakSelf.planeView.center.x + accelerometerData.acceleration.x * 10;
-      CGFloat newY = weakSelf.planeView.center.y - accelerometerData.acceleration.y * 10;
+    newX = MAX(0, newX);
+    newX = MIN(self.deviceWidth, newX);
+    newY = MAX(0, newY);
+    newY = MIN(self.deviceHeight, newY);
+    CGPoint newCenterForPlane = CGPointMake(newX, newY);
 
-      newX = MAX(0, newX);
-      newX = MIN(320, newX);
-      newY = MAX(0, newY);
-      newY = MIN(480, newY);
+    for (int i = 0; i < 42; i++) {
+      FTTEnemyView *enemy = weakSelf.enemies[i];
 
-      weakSelf.planeView.center = CGPointMake(newX, newY);
+      CGFloat newX = enemy.center.x + enemy.speedX;
+      CGFloat newY = enemy.center.y + enemy.speedY;
+
+      if (newX <= 0 || newX >= self.deviceWidth || newY <= 0 || newY >= self.deviceHeight) {
+        [self resetEnemy:enemy];
+      }
+    }
+
+    [UIView animateWithDuration:0.07 animations:^{
+      weakSelf.planeView.center = newCenterForPlane;
 
       for (int i = 0; i < 42; i++) {
         FTTEnemyView *enemy = weakSelf.enemies[i];
@@ -200,10 +219,8 @@ static const CGFloat FTTObjectHeight = 5;
 
         if (CGRectIntersectsRect(enemy.frame, weakSelf.planeView.frame)) {
           [weakSelf youAreDead];
-        }
 
-        if (newX <= 0 || newX >= 320 || newY <= 0 || newY >= 480) {
-          [self resetEnemy:enemy];
+          break;
         }
       }
     }];
