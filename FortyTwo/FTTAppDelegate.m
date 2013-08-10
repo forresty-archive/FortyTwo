@@ -15,6 +15,7 @@
 
 @implementation FTTAppDelegate
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [Flurry startSession:@"7K3SWS7SVPTPMFDGVWZC"];
 
@@ -24,11 +25,12 @@
 
   self.window.rootViewController = self.gameViewController;
 
-  self.window.backgroundColor = [UIColor whiteColor];
+  self.window.backgroundColor = [UIColor blackColor];
 
   [self.window makeKeyAndVisible];
 
   return YES;
 }
+
 
 @end
