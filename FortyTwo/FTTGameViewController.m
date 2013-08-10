@@ -38,8 +38,13 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
   FTTEnemySpawnLocationRight,
 };
 
-static const CGFloat FTTObjectWidth = 5;
-static const CGFloat FTTObjectHeight = 5;
+static inline CGFloat FTTObjectWidth() {
+  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    return 8;
+  }
+
+  return 5;
+}
 
 
 @implementation FTTGameViewController
@@ -100,7 +105,7 @@ static const CGFloat FTTObjectHeight = 5;
 
 
 - (void)setupPlane {
-  self.planeView = [[UIView alloc] initWithFrame:CGRectMake(self.deviceWidth / 2, self.deviceHeight / 2, FTTObjectWidth, FTTObjectWidth)];
+  self.planeView = [[UIView alloc] initWithFrame:CGRectMake(self.deviceWidth / 2, self.deviceHeight / 2, FTTObjectWidth(), FTTObjectWidth())];
   self.planeView.backgroundColor = [UIColor whiteColor];
 
   [self.view addSubview:self.planeView];
@@ -111,7 +116,7 @@ static const CGFloat FTTObjectHeight = 5;
   self.enemies = [NSMutableArray arrayWithCapacity:42];
 
   for (int i = 0; i < 42; i++) {
-    CGRect frame = CGRectMake(0, 0, FTTObjectWidth, FTTObjectWidth);
+    CGRect frame = CGRectMake(0, 0, FTTObjectWidth(), FTTObjectWidth());
 
     FTTEnemyView *enemy = [[FTTEnemyView alloc] initWithFrame:frame];
 
@@ -186,8 +191,14 @@ static const CGFloat FTTObjectHeight = 5;
 
     //    NSLog(@"acc %@", accelerometerData);
 
-    CGFloat newX = weakSelf.planeView.center.x + accelerometerData.acceleration.x * 15;
-    CGFloat newY = weakSelf.planeView.center.y - accelerometerData.acceleration.y * 15;
+    CGFloat speed = 15;
+
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+      speed = 25;
+    }
+
+    CGFloat newX = weakSelf.planeView.center.x + accelerometerData.acceleration.x * speed;
+    CGFloat newY = weakSelf.planeView.center.y - accelerometerData.acceleration.y * speed;
 
     newX = MAX(0, newX);
     newX = MIN(self.deviceWidth, newX);
