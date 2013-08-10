@@ -1,5 +1,5 @@
 //
-//  FTTGameViewController.h
+//  FTTEnemyView.h
 //  FortyTwo
 //
 //  Created by Forrest Ye on 8/10/13.
@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
-@interface FTTGameViewController : UIViewController <UIAlertViewDelegate>
+@interface FTTEnemyView : UIView
 
-
-+ (instancetype)sharedInstance;
-
+@property (nonatomic) CGFloat speedX;
+@property (nonatomic) CGFloat speedY;
 
 @end

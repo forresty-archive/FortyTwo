@@ -24,6 +24,7 @@
 		68E12D6417B604B400CCCA01 /* FortyTwoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E12D6317B604B400CCCA01 /* FortyTwoTests.m */; };
 		68E12D6F17B6167C00CCCA01 /* FTTGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E12D6E17B6167C00CCCA01 /* FTTGameViewController.m */; };
 		68E12D7117B618B600CCCA01 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D7017B618B600CCCA01 /* CoreMotion.framework */; };
+		68E12D7417B6242200CCCA01 /* FTTEnemyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E12D7317B6242200CCCA01 /* FTTEnemyView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		68E12D6D17B6167C00CCCA01 /* FTTGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTGameViewController.h; sourceTree = "<group>"; };
 		68E12D6E17B6167C00CCCA01 /* FTTGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTGameViewController.m; sourceTree = "<group>"; };
 		68E12D7017B618B600CCCA01 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		68E12D7217B6242200CCCA01 /* FTTEnemyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTEnemyView.h; sourceTree = "<group>"; };
+		68E12D7317B6242200CCCA01 /* FTTEnemyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTEnemyView.m; sourceTree = "<group>"; };
 		B7A1CE0C22884CB4A8A417B4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E506E5CB430742129E078A47 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,6 +133,8 @@
 				68E12D3F17B604B400CCCA01 /* Supporting Files */,
 				68E12D6D17B6167C00CCCA01 /* FTTGameViewController.h */,
 				68E12D6E17B6167C00CCCA01 /* FTTGameViewController.m */,
+				68E12D7217B6242200CCCA01 /* FTTEnemyView.h */,
+				68E12D7317B6242200CCCA01 /* FTTEnemyView.m */,
 			);
 			path = FortyTwo;
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 				68E12D4517B604B400CCCA01 /* main.m in Sources */,
 				68E12D4917B604B400CCCA01 /* FTTAppDelegate.m in Sources */,
 				68E12D6F17B6167C00CCCA01 /* FTTGameViewController.m in Sources */,
+				68E12D7417B6242200CCCA01 /* FTTEnemyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
