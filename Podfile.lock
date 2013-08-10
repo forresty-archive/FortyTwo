@@ -1,12 +1,19 @@
 PODS:
+  - FFToolkit (0.0.1)
   - FlurrySDK (4.2.2)
   - TestFlightSDK (1.3.0-beta.7)
 
 DEPENDENCIES:
+  - FFToolkit (from `../FFToolkit`)
   - FlurrySDK
   - TestFlightSDK
 
+EXTERNAL SOURCES:
+  FFToolkit:
+    :path: ../FFToolkit
+
 SPEC CHECKSUMS:
+  FFToolkit: f7750802e60d4e78a3d5aacfe0c6a3b41e8e4902
   FlurrySDK: a3f369251a1f46eb6d53fbd817cb41ce4bd9b513
   TestFlightSDK: 3af0a385405725e36452a35ef63ba8b3f2ef3ffc
 

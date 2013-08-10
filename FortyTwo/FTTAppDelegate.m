@@ -10,10 +10,14 @@
 
 #import "FTTGameViewController.h"
 
+#import "Flurry.h"
+
 
 @implementation FTTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [Flurry startSession:@"7K3SWS7SVPTPMFDGVWZC"];
+
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
   self.gameViewController = [[FTTGameViewController alloc] init];
