@@ -80,6 +80,22 @@ static inline CGFloat FTTObjectWidth() {
 }
 
 
+# pragma mark - game control
+
+
+- (void)restartGame {
+  NSParameterAssert(self.motionMannager.accelerometerActive == NO);
+
+  self.planeView.center = CGPointMake(self.deviceWidth / 2, self.deviceHeight / 2);
+
+  [self resetEnemies];
+
+  self.gamePlaying = YES;
+
+  [self startReceivingAccelerationData];
+}
+
+
 - (void)youAreDead {
   @synchronized(self) {
     [self.motionMannager stopAccelerometerUpdates];
@@ -102,6 +118,8 @@ static inline CGFloat FTTObjectWidth() {
 - (void)pauseGame {
   @synchronized(self) {
     if (self.gamePlaying) {
+      NSParameterAssert(self.motionMannager.accelerometerActive);
+
       [self.motionMannager stopAccelerometerUpdates];
 
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Game Paused", nil)
@@ -149,6 +167,9 @@ static inline CGFloat FTTObjectWidth() {
     [self resetEnemy:enemy];
   }
 }
+
+
+# pragma mark - position update
 
 
 - (void)resetEnemy:(FTTEnemyView *)enemy {
@@ -226,18 +247,9 @@ static inline CGFloat FTTObjectWidth() {
 }
 
 
-- (void)restartGame {
-  self.planeView.center = CGPointMake(self.deviceWidth / 2, self.deviceHeight / 2);
-
-  [self resetEnemies];
-
-  self.gamePlaying = YES;
-
-  [self startReceivingAccelerationData];
-}
-
-
 - (void)startReceivingAccelerationData {
+  NSParameterAssert(self.motionMannager.accelerometerActive == NO);
+
   __weak FTTGameViewController *weakSelf = self;
 
   [self.motionMannager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
@@ -269,7 +281,6 @@ static inline CGFloat FTTObjectWidth() {
 }
 
 
-# pragma mark
 # pragma mark - UIAlertViewDelegate
 
 
