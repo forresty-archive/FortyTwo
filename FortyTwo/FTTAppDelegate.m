@@ -36,4 +36,9 @@
 }
 
 
+- (void)applicationWillResignActive:(UIApplication *)application {
+  [self.gameViewController pauseGame];
+}
+
+
 @end

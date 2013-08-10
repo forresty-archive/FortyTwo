@@ -14,5 +14,7 @@
 
 + (instancetype)sharedInstance;
 
+- (void)pauseGame;
+
 
 @end

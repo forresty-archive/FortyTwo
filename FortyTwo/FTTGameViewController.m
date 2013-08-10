@@ -16,13 +16,8 @@
 @interface FTTGameViewController ()
 
 @property (nonatomic) CMMotionManager *motionMannager;
-
-@property (nonatomic) NSOperationQueue *motionHandlingQueue;
-
 @property (nonatomic) UIView *planeView;
-
 @property (nonatomic) NSMutableArray *enemies;
-
 @property (nonatomic) BOOL gamePlaying;
 
 @end
@@ -30,13 +25,11 @@
 
 typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
   FTTEnemySpawnLocationTop,
-
   FTTEnemySpawnLocationLeft,
-
   FTTEnemySpawnLocationBottom,
-
   FTTEnemySpawnLocationRight,
 };
+
 
 static inline CGFloat FTTObjectWidth() {
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -68,8 +61,6 @@ static inline CGFloat FTTObjectWidth() {
   if (self) {
     self.wantsFullScreenLayout = YES;
 
-    self.motionHandlingQueue = [[NSOperationQueue alloc] init];
-
     self.motionMannager = [[CMMotionManager alloc] init];
     self.motionMannager.accelerometerUpdateInterval = 0.1;
   }
@@ -96,12 +87,39 @@ static inline CGFloat FTTObjectWidth() {
     if (self.gamePlaying) {
       self.gamePlaying = NO;
 
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You are dead.", nil) message:nil delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: nil];
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You are dead.", nil)
+                                                      message:nil
+                                                     delegate:self
+                                            cancelButtonTitle:NSLocalizedString(@"Retry", nil)
+                                            otherButtonTitles: nil];
 
       [alert show];
     }
   }
 }
+
+
+- (void)pauseGame {
+  @synchronized(self) {
+    [self.motionMannager stopAccelerometerUpdates];
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Game Paused", nil)
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"Resume", nil)
+                                          otherButtonTitles:nil];
+
+    [alert show];
+  }
+}
+
+
+- (void)resumeGame {
+  [self startReceivingAccelerationData];
+}
+
+
+# pragma mark - UI setup
 
 
 - (void)setupPlane {
@@ -163,70 +181,80 @@ static inline CGFloat FTTObjectWidth() {
 }
 
 
-- (NSUInteger)deviceWidth {
-  return [UIScreen mainScreen].bounds.size.width;
+- (void)resetEnemies {
+  for (int i = 0; i < 42; i++) {
+    FTTEnemyView *enemy = self.enemies[i];
+
+    [self resetEnemy:enemy];
+  }
 }
 
 
-- (NSUInteger)deviceHeight {
-  return [UIScreen mainScreen].bounds.size.height;
+- (CGPoint)updatedPlanePositionWithAccelerometerData:(CMAccelerometerData *)accelerometerData {
+  CGFloat speed = 15;
+
+  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    speed = 25;
+  }
+
+  CGFloat newX = self.planeView.center.x + accelerometerData.acceleration.x * speed;
+  CGFloat newY = self.planeView.center.y - accelerometerData.acceleration.y * speed;
+
+  newX = MAX(0, newX);
+  newX = MIN(self.deviceWidth, newX);
+  newY = MAX(0, newY);
+  newY = MIN(self.deviceHeight, newY);
+  CGPoint newCenterForPlane = CGPointMake(newX, newY);
+
+  return newCenterForPlane;
+}
+
+
+- (void)detectEnemyPositionsAndResetIfNeeded {
+  for (int i = 0; i < 42; i++) {
+    FTTEnemyView *enemy = self.enemies[i];
+
+    CGFloat newX = enemy.center.x + enemy.speedX;
+    CGFloat newY = enemy.center.y + enemy.speedY;
+
+    if (newX <= 0 || newX >= self.deviceWidth || newY <= 0 || newY >= self.deviceHeight) {
+      [self resetEnemy:enemy];
+    }
+  }
 }
 
 
 - (void)restartGame {
   self.planeView.center = CGPointMake(self.deviceWidth / 2, self.deviceHeight / 2);
 
-  for (int i = 0; i < 42; i++) {
-    FTTEnemyView *enemy = self.enemies[i];
-
-    [self resetEnemy:enemy];
-  }
-
+  [self resetEnemies];
 
   self.gamePlaying = YES;
 
+  [self startReceivingAccelerationData];
+}
+
+
+- (void)startReceivingAccelerationData {
   __weak FTTGameViewController *weakSelf = self;
 
   [self.motionMannager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
 
     //    NSLog(@"acc %@", accelerometerData);
 
-    CGFloat speed = 15;
-
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-      speed = 25;
-    }
-
-    CGFloat newX = weakSelf.planeView.center.x + accelerometerData.acceleration.x * speed;
-    CGFloat newY = weakSelf.planeView.center.y - accelerometerData.acceleration.y * speed;
-
-    newX = MAX(0, newX);
-    newX = MIN(self.deviceWidth, newX);
-    newY = MAX(0, newY);
-    newY = MIN(self.deviceHeight, newY);
-    CGPoint newCenterForPlane = CGPointMake(newX, newY);
-
-    for (int i = 0; i < 42; i++) {
-      FTTEnemyView *enemy = weakSelf.enemies[i];
-
-      CGFloat newX = enemy.center.x + enemy.speedX;
-      CGFloat newY = enemy.center.y + enemy.speedY;
-
-      if (newX <= 0 || newX >= self.deviceWidth || newY <= 0 || newY >= self.deviceHeight) {
-        [self resetEnemy:enemy];
-      }
-    }
+    [weakSelf detectEnemyPositionsAndResetIfNeeded];
 
     [UIView animateWithDuration:0.07 animations:^{
-      weakSelf.planeView.center = newCenterForPlane;
 
+      // move plane
+      weakSelf.planeView.center = [weakSelf updatedPlanePositionWithAccelerometerData:accelerometerData];
+
+      // move enemies and detect collision
       for (int i = 0; i < 42; i++) {
         FTTEnemyView *enemy = weakSelf.enemies[i];
 
-        CGFloat newX = enemy.center.x + enemy.speedX;
-        CGFloat newY = enemy.center.y + enemy.speedY;
-
-        enemy.center = CGPointMake(newX, newY);
+        enemy.center = CGPointMake(enemy.center.x + enemy.speedX,
+                                   enemy.center.y + enemy.speedY);
 
         if (CGRectIntersectsRect(enemy.frame, weakSelf.planeView.frame)) {
           [weakSelf youAreDead];
@@ -244,7 +272,24 @@ static inline CGFloat FTTObjectWidth() {
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  [self restartGame];
+  if (self.gamePlaying) {
+    [self resumeGame];
+  } else {
+    [self restartGame];
+  }
+}
+
+
+# pragma mark - private
+
+
+- (NSUInteger)deviceWidth {
+  return [UIScreen mainScreen].bounds.size.width;
+}
+
+
+- (NSUInteger)deviceHeight {
+  return [UIScreen mainScreen].bounds.size.height;
 }
 
 

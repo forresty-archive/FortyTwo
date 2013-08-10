@@ -14,7 +14,7 @@
 @class FTTGameViewController;
 
 
-@interface FTTAppDelegate : FFAppDelegate
+@interface FTTAppDelegate : FFAppDelegate <UIApplicationDelegate>
 
 @property (strong, nonatomic) FTTGameViewController *gameViewController;
 
