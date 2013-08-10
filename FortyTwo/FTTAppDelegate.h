@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class FTTGameViewController;
+
+
 @interface FTTAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) FTTGameViewController *gameViewController;
 
 @end
