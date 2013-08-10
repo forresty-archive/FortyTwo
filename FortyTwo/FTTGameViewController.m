@@ -101,15 +101,17 @@ static inline CGFloat FTTObjectWidth() {
 
 - (void)pauseGame {
   @synchronized(self) {
-    [self.motionMannager stopAccelerometerUpdates];
+    if (self.gamePlaying) {
+      [self.motionMannager stopAccelerometerUpdates];
 
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Game Paused", nil)
-                                                    message:nil
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"Resume", nil)
-                                          otherButtonTitles:nil];
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Game Paused", nil)
+                                                      message:nil
+                                                     delegate:self
+                                            cancelButtonTitle:NSLocalizedString(@"Resume", nil)
+                                            otherButtonTitles:nil];
 
-    [alert show];
+      [alert show];
+    }
   }
 }
 
