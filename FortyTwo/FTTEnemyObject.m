@@ -60,10 +60,10 @@ static inline CGFloat FTTObjectWidth() {
 
 
 - (void)resetSpeedWithUserObject:(FTTUserObject *)userObject {
-  CGFloat speed = rand() % 10 + 20;
+  CGFloat timeToUser = rand() % 90 + 90; // fps is 42, so this better be 90 ~ 180?
 
-  self.speedX = (userObject.position.x - self.position.x) / speed;
-  self.speedY = (userObject.position.y - self.position.y) / speed;
+  self.speedX = (userObject.position.x - self.position.x) / timeToUser;
+  self.speedY = (userObject.position.y - self.position.y) / timeToUser;
 }
 
 

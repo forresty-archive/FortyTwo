@@ -69,7 +69,7 @@ static inline CGFloat FTTObjectWidth() {
     self.wantsFullScreenLayout = YES;
 
     self.motionMannager = [[CMMotionManager alloc] init];
-    self.motionMannager.accelerometerUpdateInterval = 0.1;
+    self.motionMannager.accelerometerUpdateInterval = 1.0 / 42; // 42 fps baby
   }
 
   return self;
@@ -165,12 +165,6 @@ static inline CGFloat FTTObjectWidth() {
   self.enemies = [NSMutableArray arrayWithCapacity:42];
 
   for (int i = 0; i < 42; i++) {
-    //    CGRect frame = CGRectMake(0, 0, FTTObjectWidth(), FTTObjectWidth());
-    //    FTTEnemyView *enemy = [[FTTEnemyView alloc] initWithFrame:frame];
-    //    enemy.backgroundColor = [UIColor redColor];
-    //    [self.view addSubview:enemy];
-    //    [self resetEnemy:enemy];
-
     FTTEnemyObject *enemy = [[FTTEnemyObject alloc] init];
 
     [self.enemies addObject:enemy];
@@ -214,10 +208,10 @@ static inline CGFloat FTTObjectWidth() {
 
 
 - (CGPoint)updatedPlanePositionWithAccelerometerData:(CMAccelerometerData *)accelerometerData {
-  CGFloat speed = 15;
+  CGFloat speed = 4;
 
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    speed = 25;
+    speed = 8;
   }
 
   CGFloat newX = self.userObject.position.x + accelerometerData.acceleration.x * speed;
