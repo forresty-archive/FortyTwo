@@ -19,10 +19,12 @@
 #import "FTTUserObject.h"
 #import "FTTEnemyObject.h"
 
+
 @interface FTTGameViewController ()
 
 // motion control
 @property (nonatomic) CMMotionManager *motionMannager;
+@property (nonatomic) NSOperationQueue *backgroundQueue;
 
 @property (nonatomic) BOOL gamePlaying;
 @property (nonatomic) BOOL gameStarted;
@@ -70,6 +72,9 @@ static inline CGFloat FTTObjectWidth() {
 
     self.motionMannager = [[CMMotionManager alloc] init];
     self.motionMannager.accelerometerUpdateInterval = 1.0 / 42; // 42 fps baby
+
+    self.backgroundQueue = [[NSOperationQueue alloc] init];
+    self.backgroundQueue.maxConcurrentOperationCount = 1;
   }
 
   return self;
@@ -232,7 +237,7 @@ static inline CGFloat FTTObjectWidth() {
 
   __weak FTTGameViewController *weakSelf = self;
 
-  [self.motionMannager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+  [self.motionMannager startAccelerometerUpdatesToQueue:self.backgroundQueue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
 
     // move plane
     weakSelf.userObject.position = [weakSelf updatedPlanePositionWithAccelerometerData:accelerometerData];
@@ -245,14 +250,18 @@ static inline CGFloat FTTObjectWidth() {
     }
 
     // draw universe
-    [self.universeView setNeedsDisplay];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+      [self.universeView setNeedsDisplay];
+    }];
 
     // detect collision
     for (int i = 0; i < 42; i++) {
       FTTEnemyObject *enemy = weakSelf.enemies[i];
 
       if ([enemy hitUserObject:weakSelf.userObject]) {
-        [weakSelf youAreDead];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+          [weakSelf youAreDead];
+        }];
 
         break;
       }
