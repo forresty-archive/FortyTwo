@@ -12,15 +12,6 @@
 #import "FTTEnemyObject.h"
 
 
-static inline CGFloat FTTObjectWidth() {
-  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    return 8;
-  }
-
-  return 5;
-}
-
-
 @implementation FTTUniverseView
 
 

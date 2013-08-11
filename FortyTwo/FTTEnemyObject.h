@@ -13,6 +13,14 @@
 
 @class FTTUserObject;
 
+static inline CGFloat FTTObjectWidth() {
+  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    return 8;
+  }
+
+  return 5;
+}
+
 
 @interface FTTEnemyObject : FTTObject
 
