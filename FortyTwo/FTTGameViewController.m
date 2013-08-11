@@ -149,7 +149,8 @@ static inline CGFloat FTTObjectWidth() {
 
 
 - (void)setupPlane {
-  self.planeView = [[UIView alloc] initWithFrame:CGRectMake(self.deviceWidth / 2, self.deviceHeight / 2, FTTObjectWidth(), FTTObjectWidth())];
+  self.planeView = [[UIView alloc] initWithFrame:CGRectMake(self.deviceWidth / 2, self.deviceHeight / 2,
+                                                            FTTObjectWidth(), FTTObjectWidth())];
   self.planeView.backgroundColor = [UIColor whiteColor];
 
   [self.view addSubview:self.planeView];
