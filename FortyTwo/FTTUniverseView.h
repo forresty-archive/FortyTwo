@@ -16,5 +16,6 @@
 
 @property (nonatomic) NSArray *enemies;
 @property (nonatomic) FTTUserObject *userObject;
+@property (nonatomic) NSTimeInterval timePlayed;
 
 @end

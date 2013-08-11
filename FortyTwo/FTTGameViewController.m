@@ -39,7 +39,6 @@
 @property (nonatomic) BOOL gameCenterEnabled;
 @property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
-@property (nonatomic) NSTimeInterval lastRecordedTimestamp;
 
 @end
 
@@ -123,7 +122,6 @@ static inline CGFloat FTTObjectWidth() {
 
 - (void)youAreDead {
   @synchronized(self) {
-    self.cumulatedCurrentGamePlayTime += self.lastRecordedTimestamp - self.resumedTimestamp;
     [self.motionMannager stopAccelerometerUpdates];
 
     if (self.gamePlaying) {
@@ -146,7 +144,6 @@ static inline CGFloat FTTObjectWidth() {
 - (void)pauseGame {
   @synchronized(self) {
     if (self.gamePlaying && self.motionMannager.accelerometerActive) {
-      self.cumulatedCurrentGamePlayTime += self.lastRecordedTimestamp - self.resumedTimestamp;
       self.resumedTimestamp = 0;
 
       [self.motionMannager stopAccelerometerUpdates];
@@ -253,7 +250,7 @@ static inline CGFloat FTTObjectWidth() {
     if (weakSelf.resumedTimestamp == 0) {
       weakSelf.resumedTimestamp = accelerometerData.timestamp;
     }
-    weakSelf.lastRecordedTimestamp = accelerometerData.timestamp;
+    weakSelf.cumulatedCurrentGamePlayTime = accelerometerData.timestamp - weakSelf.resumedTimestamp;
 
     // move plane
     weakSelf.userObject.position = [weakSelf updatedPlanePositionWithAccelerometerData:accelerometerData];
@@ -267,6 +264,7 @@ static inline CGFloat FTTObjectWidth() {
 
     // draw universe
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+      self.universeView.timePlayed = weakSelf.cumulatedCurrentGamePlayTime;
       [self.universeView setNeedsDisplay];
     }];
 

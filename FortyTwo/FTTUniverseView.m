@@ -38,15 +38,22 @@ static inline CGFloat FTTObjectWidth() {
 - (void)drawRect:(CGRect)rect {
   // draw user object
   [[UIColor whiteColor] setFill];
-  UIBezierPath *userObjectView = [UIBezierPath bezierPathWithRect:[self rectForObjectPosition:self.userObject.position]];
-  [userObjectView fill];
+  [[UIBezierPath bezierPathWithRect:[self rectForObjectPosition:self.userObject.position]] fill];
 
   // draw enemies
   [[UIColor redColor] setFill];
   for (FTTEnemyObject *enemy in self.enemies) {
-    UIBezierPath *enemyObjectPath = [UIBezierPath bezierPathWithRect:[self rectForObjectPosition:enemy.position]];
-    [enemyObjectPath fill];
+    [[UIBezierPath bezierPathWithRect:[self rectForObjectPosition:enemy.position]] fill];
   }
+
+  // draw time
+  [[UIColor whiteColor] setStroke];
+  CGRect timeBorderRect = CGRectMake(CGRectGetMaxX(self.bounds) - 100, 20, 80, 8);
+  [[UIBezierPath bezierPathWithRect:timeBorderRect] stroke];
+
+  [[UIColor whiteColor] setFill];
+  CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 100, 20, MIN(80, 80 * self.timePlayed / 42), 8);
+  [[UIBezierPath bezierPathWithRect:timePlayedRect] fill];
 }
 
 
@@ -54,7 +61,8 @@ static inline CGFloat FTTObjectWidth() {
 
 
 - (CGRect)rectForObjectPosition:(CGPoint)position {
-  CGRect rect = CGRectMake(position.x - FTTObjectWidth() / 2, position.y - FTTObjectWidth() / 2, FTTObjectWidth(), FTTObjectWidth());
+  CGRect rect = CGRectMake(position.x - FTTObjectWidth() / 2, position.y - FTTObjectWidth() / 2,
+                           FTTObjectWidth(), FTTObjectWidth());
 
   return rect;
 }
