@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 
 
+static NSUInteger DeviceWidth() {
+  return [UIScreen mainScreen].bounds.size.width;
+}
+
+
+static NSUInteger DeviceHeight() {
+  return [UIScreen mainScreen].bounds.size.height;
+}
+
 @interface FTTObject : NSObject
 
 @property (nonatomic) CGPoint position;

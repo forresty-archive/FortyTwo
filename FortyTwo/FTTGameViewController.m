@@ -221,9 +221,9 @@
   CGFloat newY = self.userObject.position.y - accelerometerData.acceleration.y * speed;
 
   newX = MAX(0, newX);
-  newX = MIN(self.deviceWidth, newX);
+  newX = MIN(DeviceWidth(), newX);
   newY = MAX(0, newY);
-  newY = MIN(self.deviceHeight, newY);
+  newY = MIN(DeviceHeight(), newY);
   CGPoint newCenterForPlane = CGPointMake(newX, newY);
 
   return newCenterForPlane;
@@ -284,19 +284,6 @@
   } else {
     [self restartGame];
   }
-}
-
-
-# pragma mark - private
-
-
-- (NSUInteger)deviceWidth {
-  return [UIScreen mainScreen].bounds.size.width;
-}
-
-
-- (NSUInteger)deviceHeight {
-  return [UIScreen mainScreen].bounds.size.height;
 }
 
 

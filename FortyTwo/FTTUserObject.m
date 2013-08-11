@@ -13,21 +13,7 @@
 
 
 - (void)resetPosition {
-  self.position = CGPointMake(self.deviceWidth / 2, self.deviceHeight / 2);
+  self.position = CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2);
 }
-
-
-# pragma mark - private
-
-
-- (NSUInteger)deviceWidth {
-  return [UIScreen mainScreen].bounds.size.width;
-}
-
-
-- (NSUInteger)deviceHeight {
-  return [UIScreen mainScreen].bounds.size.height;
-}
-
 
 @end

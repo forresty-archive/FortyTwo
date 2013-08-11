@@ -29,19 +29,19 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
 
   switch (location) {
     case FTTEnemySpawnLocationTop: {
-      center = CGPointMake(rand() % self.deviceWidth, 0);
+      center = CGPointMake(rand() % DeviceWidth(), 0);
       break;
     }
     case FTTEnemySpawnLocationLeft: {
-      center = CGPointMake(0, rand() % self.deviceHeight);
+      center = CGPointMake(0, rand() % DeviceHeight());
       break;
     }
     case FTTEnemySpawnLocationBottom: {
-      center = CGPointMake(rand() % self.deviceWidth, self.deviceHeight);
+      center = CGPointMake(rand() % DeviceWidth(), DeviceHeight());
       break;
     }
     case FTTEnemySpawnLocationRight: {
-      center = CGPointMake(self.deviceWidth, rand() % self.deviceHeight);
+      center = CGPointMake(DeviceWidth(), rand() % DeviceHeight());
       break;
     }
   }
@@ -62,7 +62,7 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
   CGFloat newX = self.position.x + self.speedX;
   CGFloat newY = self.position.y + self.speedY;
 
-  if (newX <= 0 || newX >= self.deviceWidth || newY <= 0 || newY >= self.deviceHeight) {
+  if (newX <= 0 || newX >= DeviceWidth() || newY <= 0 || newY >= DeviceHeight()) {
     [self resetPosition];
     [self resetSpeedWithUserObject:userObject];
   } else {
@@ -78,19 +78,6 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
   }
 
   return NO;
-}
-
-
-# pragma mark - private
-
-
-- (NSUInteger)deviceWidth {
-  return [UIScreen mainScreen].bounds.size.width;
-}
-
-
-- (NSUInteger)deviceHeight {
-  return [UIScreen mainScreen].bounds.size.height;
 }
 
 
