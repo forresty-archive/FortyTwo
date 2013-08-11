@@ -8,31 +8,36 @@
 
 #import "FTTGameViewController.h"
 
+// frameworks
 #import <CoreMotion/CoreMotion.h>
-
-#import "FTTEnemyView.h"
-
 #import <GameKit/GameKit.h>
+
+// views
+#import "FTTUniverseView.h"
+
+// models
+#import "FTTUserObject.h"
+#import "FTTEnemyObject.h"
 
 
 @interface FTTGameViewController ()
 
+// motion control
 @property (nonatomic) CMMotionManager *motionMannager;
-@property (nonatomic) UIView *planeView;
-@property (nonatomic) NSMutableArray *enemies;
+@property (nonatomic) NSOperationQueue *backgroundQueue;
+
 @property (nonatomic) BOOL gamePlaying;
 @property (nonatomic) BOOL gameStarted;
 @property (nonatomic) BOOL gameCenterEnabled;
 
+// views
+@property (nonatomic) FTTUniverseView *universeView;
+
+// models
+@property (nonatomic) FTTUserObject *userObject;
+@property (nonatomic) NSMutableArray *enemies;
+
 @end
-
-
-typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
-  FTTEnemySpawnLocationTop,
-  FTTEnemySpawnLocationLeft,
-  FTTEnemySpawnLocationBottom,
-  FTTEnemySpawnLocationRight,
-};
 
 
 static inline CGFloat FTTObjectWidth() {
@@ -66,7 +71,10 @@ static inline CGFloat FTTObjectWidth() {
     self.wantsFullScreenLayout = YES;
 
     self.motionMannager = [[CMMotionManager alloc] init];
-    self.motionMannager.accelerometerUpdateInterval = 0.1;
+    self.motionMannager.accelerometerUpdateInterval = 1.0 / 42; // 42 fps baby
+
+    self.backgroundQueue = [[NSOperationQueue alloc] init];
+    self.backgroundQueue.maxConcurrentOperationCount = 1;
   }
 
   return self;
@@ -76,10 +84,15 @@ static inline CGFloat FTTObjectWidth() {
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.view.backgroundColor = [UIColor blackColor];
-
   [self setupPlane];
   [self setupEnemies];
+
+  self.view.backgroundColor = [UIColor blackColor];
+  self.universeView = [[FTTUniverseView alloc] initWithFrame:self.view.bounds];
+  self.universeView.userObject = self.userObject;
+  self.universeView.enemies = self.enemies;
+  [self.view addSubview:self.universeView];
+
   [self setupGameCenter];
 //  [self restartGame];
 }
@@ -91,7 +104,7 @@ static inline CGFloat FTTObjectWidth() {
 - (void)restartGame {
   NSParameterAssert(self.motionMannager.accelerometerActive == NO);
 
-  self.planeView.center = CGPointMake(self.deviceWidth / 2, self.deviceHeight / 2);
+  [self.userObject resetPosition];
 
   [self resetEnemies];
 
@@ -149,11 +162,7 @@ static inline CGFloat FTTObjectWidth() {
 
 
 - (void)setupPlane {
-  self.planeView = [[UIView alloc] initWithFrame:CGRectMake(self.deviceWidth / 2, self.deviceHeight / 2,
-                                                            FTTObjectWidth(), FTTObjectWidth())];
-  self.planeView.backgroundColor = [UIColor whiteColor];
-
-  [self.view addSubview:self.planeView];
+  self.userObject = [[FTTUserObject alloc] init];
 }
 
 
@@ -161,17 +170,9 @@ static inline CGFloat FTTObjectWidth() {
   self.enemies = [NSMutableArray arrayWithCapacity:42];
 
   for (int i = 0; i < 42; i++) {
-    CGRect frame = CGRectMake(0, 0, FTTObjectWidth(), FTTObjectWidth());
-
-    FTTEnemyView *enemy = [[FTTEnemyView alloc] initWithFrame:frame];
-
-    enemy.backgroundColor = [UIColor redColor];
+    FTTEnemyObject *enemy = [[FTTEnemyObject alloc] init];
 
     [self.enemies addObject:enemy];
-
-    [self.view addSubview:enemy];
-
-    [self resetEnemy:enemy];
   }
 }
 
@@ -201,56 +202,25 @@ static inline CGFloat FTTObjectWidth() {
 # pragma mark - position update
 
 
-- (void)resetEnemy:(FTTEnemyView *)enemy {
-  FTTEnemySpawnLocation location = rand() % 4;
-
-  CGPoint center;
-
-  switch (location) {
-    case FTTEnemySpawnLocationTop: {
-      center = CGPointMake(rand() % self.deviceWidth, 0);
-      break;
-    }
-    case FTTEnemySpawnLocationLeft: {
-      center = CGPointMake(0, rand() % self.deviceHeight);
-      break;
-    }
-    case FTTEnemySpawnLocationBottom: {
-      center = CGPointMake(rand() % self.deviceWidth, self.deviceHeight);
-      break;
-    }
-    case FTTEnemySpawnLocationRight: {
-      center = CGPointMake(self.deviceWidth, rand() % self.deviceHeight);
-      break;
-    }
-  }
-
-  enemy.center = center;
-
-  CGFloat speed = rand() % 10 + 20;
-  enemy.speedX = (self.planeView.center.x - enemy.center.x) / speed;
-  enemy.speedY = (self.planeView.center.y - enemy.center.y) / speed;
-}
-
-
 - (void)resetEnemies {
   for (int i = 0; i < 42; i++) {
-    FTTEnemyView *enemy = self.enemies[i];
+    FTTEnemyObject *enemy = self.enemies[i];
 
-    [self resetEnemy:enemy];
+    [enemy resetPosition];
+    [enemy resetSpeedWithUserObject:self.userObject];
   }
 }
 
 
 - (CGPoint)updatedPlanePositionWithAccelerometerData:(CMAccelerometerData *)accelerometerData {
-  CGFloat speed = 15;
+  CGFloat speed = 4;
 
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    speed = 25;
+    speed = 8;
   }
 
-  CGFloat newX = self.planeView.center.x + accelerometerData.acceleration.x * speed;
-  CGFloat newY = self.planeView.center.y - accelerometerData.acceleration.y * speed;
+  CGFloat newX = self.userObject.position.x + accelerometerData.acceleration.x * speed;
+  CGFloat newY = self.userObject.position.y - accelerometerData.acceleration.y * speed;
 
   newX = MAX(0, newX);
   newX = MIN(self.deviceWidth, newX);
@@ -262,50 +232,40 @@ static inline CGFloat FTTObjectWidth() {
 }
 
 
-- (void)detectEnemyPositionsAndResetIfNeeded {
-  for (int i = 0; i < 42; i++) {
-    FTTEnemyView *enemy = self.enemies[i];
-
-    CGFloat newX = enemy.center.x + enemy.speedX;
-    CGFloat newY = enemy.center.y + enemy.speedY;
-
-    if (newX <= 0 || newX >= self.deviceWidth || newY <= 0 || newY >= self.deviceHeight) {
-      [self resetEnemy:enemy];
-    }
-  }
-}
-
-
 - (void)startReceivingAccelerationData {
   NSParameterAssert(self.motionMannager.accelerometerActive == NO);
 
   __weak FTTGameViewController *weakSelf = self;
 
-  [self.motionMannager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+  [self.motionMannager startAccelerometerUpdatesToQueue:self.backgroundQueue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
 
-    //    NSLog(@"acc %@", accelerometerData);
+    // move plane
+    weakSelf.userObject.position = [weakSelf updatedPlanePositionWithAccelerometerData:accelerometerData];
 
-    [weakSelf detectEnemyPositionsAndResetIfNeeded];
+    // move enemies
+    for (int i = 0; i < 42; i++) {
+      FTTEnemyObject *enemy = weakSelf.enemies[i];
 
-    [UIView animateWithDuration:0.07 animations:^{
+      [enemy moveTowardsUserObject:weakSelf.userObject];
+    }
 
-      // move plane
-      weakSelf.planeView.center = [weakSelf updatedPlanePositionWithAccelerometerData:accelerometerData];
-
-      // move enemies and detect collision
-      for (int i = 0; i < 42; i++) {
-        FTTEnemyView *enemy = weakSelf.enemies[i];
-
-        enemy.center = CGPointMake(enemy.center.x + enemy.speedX,
-                                   enemy.center.y + enemy.speedY);
-
-        if (CGRectIntersectsRect(enemy.frame, weakSelf.planeView.frame)) {
-          [weakSelf youAreDead];
-
-          break;
-        }
-      }
+    // draw universe
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+      [self.universeView setNeedsDisplay];
     }];
+
+    // detect collision
+    for (int i = 0; i < 42; i++) {
+      FTTEnemyObject *enemy = weakSelf.enemies[i];
+
+      if ([enemy hitUserObject:weakSelf.userObject]) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+          [weakSelf youAreDead];
+        }];
+
+        break;
+      }
+    }
   }];
 }
 
