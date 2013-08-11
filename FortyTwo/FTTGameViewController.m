@@ -26,16 +26,20 @@
 @property (nonatomic) CMMotionManager *motionMannager;
 @property (nonatomic) NSOperationQueue *backgroundQueue;
 
-@property (nonatomic) BOOL gamePlaying;
-@property (nonatomic) BOOL gameStarted;
-@property (nonatomic) BOOL gameCenterEnabled;
-
 // views
 @property (nonatomic) FTTUniverseView *universeView;
 
 // models
 @property (nonatomic) FTTUserObject *userObject;
 @property (nonatomic) NSMutableArray *enemies;
+
+// game play
+@property (nonatomic) BOOL gamePlaying;
+@property (nonatomic) BOOL gameStarted;
+@property (nonatomic) BOOL gameCenterEnabled;
+@property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
+@property (nonatomic) NSTimeInterval resumedTimestamp;
+@property (nonatomic) NSTimeInterval lastRecordedTimestamp;
 
 @end
 
@@ -111,19 +115,24 @@ static inline CGFloat FTTObjectWidth() {
   self.gamePlaying = YES;
   self.gameStarted = YES;
 
+  self.cumulatedCurrentGamePlayTime = 0;
+  self.resumedTimestamp = 0;
   [self startReceivingAccelerationData];
 }
 
 
 - (void)youAreDead {
   @synchronized(self) {
+    self.cumulatedCurrentGamePlayTime += self.lastRecordedTimestamp - self.resumedTimestamp;
     [self.motionMannager stopAccelerometerUpdates];
 
     if (self.gamePlaying) {
       self.gamePlaying = NO;
 
+      NSString *messageFormat = NSLocalizedString(@"You lasted %.1f seconds.", nil);
+
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You are dead.", nil)
-                                                      message:nil
+                                                      message:[NSString stringWithFormat:messageFormat, self.cumulatedCurrentGamePlayTime]
                                                      delegate:self
                                             cancelButtonTitle:NSLocalizedString(@"Retry", nil)
                                             otherButtonTitles: nil];
@@ -136,8 +145,9 @@ static inline CGFloat FTTObjectWidth() {
 
 - (void)pauseGame {
   @synchronized(self) {
-    if (self.gamePlaying) {
-      NSParameterAssert(self.motionMannager.accelerometerActive);
+    if (self.gamePlaying && self.motionMannager.accelerometerActive) {
+      self.cumulatedCurrentGamePlayTime += self.lastRecordedTimestamp - self.resumedTimestamp;
+      self.resumedTimestamp = 0;
 
       [self.motionMannager stopAccelerometerUpdates];
 
@@ -238,6 +248,12 @@ static inline CGFloat FTTObjectWidth() {
   __weak FTTGameViewController *weakSelf = self;
 
   [self.motionMannager startAccelerometerUpdatesToQueue:self.backgroundQueue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+
+    // record time
+    if (weakSelf.resumedTimestamp == 0) {
+      weakSelf.resumedTimestamp = accelerometerData.timestamp;
+    }
+    weakSelf.lastRecordedTimestamp = accelerometerData.timestamp;
 
     // move plane
     weakSelf.userObject.position = [weakSelf updatedPlanePositionWithAccelerometerData:accelerometerData];
