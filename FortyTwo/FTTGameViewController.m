@@ -21,6 +21,7 @@
 @property (nonatomic) UIView *planeView;
 @property (nonatomic) NSMutableArray *enemies;
 @property (nonatomic) BOOL gamePlaying;
+@property (nonatomic) BOOL gameStarted;
 @property (nonatomic) BOOL gameCenterEnabled;
 
 @end
@@ -95,6 +96,7 @@ static inline CGFloat FTTObjectWidth() {
   [self resetEnemies];
 
   self.gamePlaying = YES;
+  self.gameStarted = YES;
 
   [self startReceivingAccelerationData];
 }
@@ -179,13 +181,17 @@ static inline CGFloat FTTObjectWidth() {
   localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
     if (viewController) {
       self.gameCenterEnabled = NO;
-      [self presentViewController:viewController animated:YES completion:nil];
+//      [self presentViewController:viewController animated:YES completion:nil];
     } else if (localPlayer.isAuthenticated) {
       self.gameCenterEnabled = YES;
-      [self restartGame];
+      if (self.gameStarted == NO) {
+        [self restartGame];
+      }
     } else {
       self.gameCenterEnabled = NO;
-      [self restartGame];
+      if (self.gameStarted == NO) {
+        [self restartGame];
+      }
     }
   };
 }
