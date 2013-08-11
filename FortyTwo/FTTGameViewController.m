@@ -12,6 +12,8 @@
 
 #import "FTTEnemyView.h"
 
+#import <GameKit/GameKit.h>
+
 
 @interface FTTGameViewController ()
 
@@ -19,6 +21,7 @@
 @property (nonatomic) UIView *planeView;
 @property (nonatomic) NSMutableArray *enemies;
 @property (nonatomic) BOOL gamePlaying;
+@property (nonatomic) BOOL gameCenterEnabled;
 
 @end
 
@@ -76,7 +79,8 @@ static inline CGFloat FTTObjectWidth() {
 
   [self setupPlane];
   [self setupEnemies];
-  [self restartGame];
+  [self setupGameCenter];
+//  [self restartGame];
 }
 
 
@@ -166,6 +170,24 @@ static inline CGFloat FTTObjectWidth() {
 
     [self resetEnemy:enemy];
   }
+}
+
+
+- (void)setupGameCenter {
+  __weak GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+
+  localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
+    if (viewController) {
+      self.gameCenterEnabled = NO;
+      [self presentViewController:viewController animated:YES completion:nil];
+    } else if (localPlayer.isAuthenticated) {
+      self.gameCenterEnabled = YES;
+      [self restartGame];
+    } else {
+      self.gameCenterEnabled = NO;
+      [self restartGame];
+    }
+  };
 }
 
 

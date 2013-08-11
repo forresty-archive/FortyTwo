@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		25FDB9638A0341EA864CE6CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E506E5CB430742129E078A47 /* libPods.a */; };
+		68CFF05017B73A5D00BD9DE1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68CFF04F17B73A5D00BD9DE1 /* GameKit.framework */; };
 		68E12D3917B604B400CCCA01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D3817B604B400CCCA01 /* UIKit.framework */; };
 		68E12D3B17B604B400CCCA01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D3A17B604B400CCCA01 /* Foundation.framework */; };
 		68E12D3D17B604B400CCCA01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D3C17B604B400CCCA01 /* CoreGraphics.framework */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		68CFF04F17B73A5D00BD9DE1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		68E12D3517B604B400CCCA01 /* FortyTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FortyTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68E12D3817B604B400CCCA01 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		68E12D3A17B604B400CCCA01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68CFF05017B73A5D00BD9DE1 /* GameKit.framework in Frameworks */,
 				68E12D7117B618B600CCCA01 /* CoreMotion.framework in Frameworks */,
 				68E12D3917B604B400CCCA01 /* UIKit.framework in Frameworks */,
 				68E12D3B17B604B400CCCA01 /* Foundation.framework in Frameworks */,
@@ -115,6 +118,7 @@
 		68E12D3717B604B400CCCA01 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68CFF04F17B73A5D00BD9DE1 /* GameKit.framework */,
 				68E12D7017B618B600CCCA01 /* CoreMotion.framework */,
 				68E12D3817B604B400CCCA01 /* UIKit.framework */,
 				68E12D3A17B604B400CCCA01 /* Foundation.framework */,
@@ -422,9 +426,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FortyTwo/FortyTwo-Prefix.pch";
 				INFOPLIST_FILE = "FortyTwo/FortyTwo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -436,9 +440,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FortyTwo/FortyTwo-Prefix.pch";
 				INFOPLIST_FILE = "FortyTwo/FortyTwo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
