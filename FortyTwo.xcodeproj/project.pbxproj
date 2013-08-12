@@ -13,6 +13,7 @@
 		68CFF05617B793EB00BD9DE1 /* FTTUniverseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF05517B793EB00BD9DE1 /* FTTUniverseView.m */; };
 		68CFF05917B7944300BD9DE1 /* FTTUserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF05817B7944300BD9DE1 /* FTTUserObject.m */; };
 		68CFF05E17B7948600BD9DE1 /* FTTObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF05D17B7948600BD9DE1 /* FTTObject.m */; };
+		68CFF06117B8E57F00BD9DE1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68CFF06017B8E57F00BD9DE1 /* AVFoundation.framework */; };
 		68E12D3917B604B400CCCA01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D3817B604B400CCCA01 /* UIKit.framework */; };
 		68E12D3B17B604B400CCCA01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D3A17B604B400CCCA01 /* Foundation.framework */; };
 		68E12D3D17B604B400CCCA01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D3C17B604B400CCCA01 /* CoreGraphics.framework */; };
@@ -51,6 +52,7 @@
 		68CFF05817B7944300BD9DE1 /* FTTUserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTUserObject.m; sourceTree = "<group>"; };
 		68CFF05C17B7948600BD9DE1 /* FTTObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTObject.h; sourceTree = "<group>"; };
 		68CFF05D17B7948600BD9DE1 /* FTTObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTObject.m; sourceTree = "<group>"; };
+		68CFF06017B8E57F00BD9DE1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		68E12D3517B604B400CCCA01 /* FortyTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FortyTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68E12D3817B604B400CCCA01 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		68E12D3A17B604B400CCCA01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -82,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68CFF06117B8E57F00BD9DE1 /* AVFoundation.framework in Frameworks */,
 				68CFF05017B73A5D00BD9DE1 /* GameKit.framework in Frameworks */,
 				68E12D7117B618B600CCCA01 /* CoreMotion.framework in Frameworks */,
 				68E12D3917B604B400CCCA01 /* UIKit.framework in Frameworks */,
@@ -149,6 +152,7 @@
 		68E12D3717B604B400CCCA01 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68CFF06017B8E57F00BD9DE1 /* AVFoundation.framework */,
 				68CFF04F17B73A5D00BD9DE1 /* GameKit.framework */,
 				68E12D7017B618B600CCCA01 /* CoreMotion.framework */,
 				68E12D3817B604B400CCCA01 /* UIKit.framework */,

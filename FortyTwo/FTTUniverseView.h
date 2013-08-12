@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
+static const NSUInteger FTTBombCooldownTime = 4.2;
+
+
 @class FTTUserObject;
 
 
@@ -16,7 +19,9 @@
 
 @property (nonatomic) NSArray *enemies;
 @property (nonatomic) FTTUserObject *userObject;
-@property (nonatomic) NSTimeInterval timePlayed;
+@property (nonatomic) NSTimeInterval bombCooldownTime;
 @property (nonatomic, readonly) BOOL bombAvailable;
+
+- (void)deployBomb;
 
 @end
