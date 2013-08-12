@@ -17,5 +17,6 @@
 @property (nonatomic) NSArray *enemies;
 @property (nonatomic) FTTUserObject *userObject;
 @property (nonatomic) NSTimeInterval timePlayed;
+@property (nonatomic, readonly) BOOL bombAvailable;
 
 @end

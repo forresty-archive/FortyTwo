@@ -12,6 +12,13 @@
 #import "FTTEnemyObject.h"
 
 
+@interface FTTUniverseView ()
+
+@property (nonatomic) UIColor *currentProgressBarColor;
+
+@end
+
+
 @implementation FTTUniverseView
 
 
@@ -38,13 +45,29 @@
   }
 
   // draw time
-  [[UIColor whiteColor] setStroke];
+  UIColor *progressBarColor = self.currentProgressBarColor;
+  [progressBarColor setStroke];
   CGRect timeBorderRect = CGRectMake(CGRectGetMaxX(self.bounds) - 100, 20, 80, 8);
   [[UIBezierPath bezierPathWithRect:timeBorderRect] stroke];
 
-  [[UIColor whiteColor] setFill];
+  [progressBarColor setFill];
   CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 100, 20, MIN(80, 80 * self.timePlayed / 42), 8);
   [[UIBezierPath bezierPathWithRect:timePlayedRect] fill];
+}
+
+
+- (BOOL)bombAvailable {
+  return self.timePlayed >= 42;
+}
+
+
+- (UIColor *)currentProgressBarColor {
+  // change color every 0.5 seconds
+  if (self.bombAvailable && (self.timePlayed - (NSUInteger)self.timePlayed) < 0.5) {
+    return [UIColor blueColor];
+  }
+
+  return [UIColor whiteColor];
 }
 
 
