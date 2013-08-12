@@ -10,6 +10,7 @@
 
 // frameworks
 #import <CoreMotion/CoreMotion.h>
+#import <AVFoundation/AVFoundation.h>
 #import <GameKit/GameKit.h>
 
 // views
@@ -26,6 +27,11 @@
 @property (nonatomic) CMMotionManager *motionMannager;
 @property (nonatomic) NSOperationQueue *backgroundQueue;
 
+// audio
+@property (nonatomic) AVAudioRecorder* recorder;
+@property (nonatomic) NSTimer* levelTimer;
+@property (nonatomic) CGFloat lowPassResults;
+
 // views
 @property (nonatomic) FTTUniverseView *universeView;
 
@@ -37,8 +43,11 @@
 @property (nonatomic) BOOL gamePlaying;
 @property (nonatomic) BOOL gameStarted;
 @property (nonatomic) BOOL gameCenterEnabled;
+
 @property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
+
+@property (nonatomic) NSTimeInterval cumulatedBombCooldownTime;
 
 @end
 
@@ -80,6 +89,7 @@
 
   [self setupPlane];
   [self setupEnemies];
+  [self setupShoutDetection];
 
   self.view.backgroundColor = [UIColor blackColor];
   self.universeView = [[FTTUniverseView alloc] initWithFrame:self.view.bounds];
@@ -106,6 +116,7 @@
   self.gameStarted = YES;
 
   self.cumulatedCurrentGamePlayTime = 0;
+  self.cumulatedBombCooldownTime = 0;
   self.resumedTimestamp = 0;
   [self startReceivingAccelerationData];
 }
@@ -166,6 +177,64 @@
 
 - (void)resumeGame {
   [self startReceivingAccelerationData];
+}
+
+
+# pragma mark - bomb deployment
+
+
+- (BOOL)bombDeployed {
+  if (self.lowPassResults > 0.4 && self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime >= FTTBombCooldownTime) {
+    self.cumulatedBombCooldownTime = self.cumulatedCurrentGamePlayTime;
+
+    return YES;
+  }
+
+  return NO;
+}
+
+
+# pragma mark - shout detection
+
+
+- (void)setupShoutDetection {
+  NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+
+  NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [NSNumber numberWithFloat: 44100.0], AVSampleRateKey,
+                            [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+                            [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
+                            [NSNumber numberWithInt: AVAudioQualityMax], AVEncoderAudioQualityKey,
+                            nil];
+
+  NSError *error;
+
+  self.recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+
+  if (self.recorder) {
+    [self.recorder prepareToRecord];
+    self.recorder.meteringEnabled = YES;
+    [self.recorder record];
+    self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                                       target:self
+                                                     selector:@selector(levelTimerCallback:)
+                                                     userInfo:nil
+                                                      repeats:YES];
+  }
+}
+
+
+// I have no idea what this means...
+// http://stackoverflow.com/questions/10622721/audio-level-detect
+- (void)levelTimerCallback:(NSTimer *)timer {
+  [self.recorder updateMeters];
+
+  const double ALPHA = 0.05;
+
+  double peakPowerForChannel = pow(10, (0.05 * [self.recorder peakPowerForChannel:0]));
+
+  self.lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * self.lowPassResults;
+//  NSLog(@"%f",(self.lowPassResults * 100.0f));
 }
 
 
@@ -256,6 +325,13 @@
     }
     weakSelf.cumulatedCurrentGamePlayTime = accelerometerData.timestamp - weakSelf.resumedTimestamp;
 
+    // bomb
+    if (weakSelf.bombDeployed) {
+      weakSelf.cumulatedBombCooldownTime = weakSelf.cumulatedCurrentGamePlayTime;
+      [weakSelf.universeView deployBomb];
+      [weakSelf resetEnemies];
+    }
+
     // move plane
     weakSelf.userObject.position = [weakSelf updatedPlanePositionWithAccelerometerData:accelerometerData];
 
@@ -268,8 +344,8 @@
 
     // draw universe
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-      self.universeView.timePlayed = weakSelf.cumulatedCurrentGamePlayTime;
-      [self.universeView setNeedsDisplay];
+      weakSelf.universeView.bombCooldownTime = weakSelf.cumulatedCurrentGamePlayTime - weakSelf.cumulatedBombCooldownTime;
+      [weakSelf.universeView setNeedsDisplay];
     }];
 
     // detect collision

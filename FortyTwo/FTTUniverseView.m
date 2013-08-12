@@ -15,6 +15,7 @@
 @interface FTTUniverseView ()
 
 @property (nonatomic) UIColor *currentProgressBarColor;
+@property (nonatomic) BOOL bombDeployed;
 
 @end
 
@@ -51,23 +52,35 @@
   [[UIBezierPath bezierPathWithRect:timeBorderRect] stroke];
 
   [progressBarColor setFill];
-  CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 100, 20, MIN(80, 80 * self.timePlayed / 42), 8);
+  CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 100, 20, MIN(80, 80 * self.bombCooldownTime / FTTBombCooldownTime), 8);
   [[UIBezierPath bezierPathWithRect:timePlayedRect] fill];
+
+  // bomb
+  if (self.bombDeployed) {
+    // draw bomb effect
+
+    self.bombDeployed = NO;
+  }
 }
 
 
 - (BOOL)bombAvailable {
-  return self.timePlayed >= 42;
+  return self.bombCooldownTime >= FTTBombCooldownTime;
 }
 
 
 - (UIColor *)currentProgressBarColor {
   // change color every 0.5 seconds
-  if (self.bombAvailable && (self.timePlayed - (NSUInteger)self.timePlayed) < 0.5) {
+  if (self.bombAvailable && (self.bombCooldownTime - (NSUInteger)self.bombCooldownTime) < 0.5) {
     return [UIColor blueColor];
   }
 
   return [UIColor whiteColor];
+}
+
+
+- (void)deployBomb {
+  self.bombDeployed = YES;
 }
 
 
