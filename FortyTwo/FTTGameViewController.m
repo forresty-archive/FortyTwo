@@ -122,6 +122,24 @@
 }
 
 
+// used in simulator && dev env only
+- (void)simulateFrame {
+  [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
+  [self moveEnemies];
+
+  self.userObject.position = [self updatedPlanePositionWithSpeedX:(rand() % 100 / 100.0) speedY:(rand() % 100 / 100.0)];
+
+  [NSThread sleepForTimeInterval:1.0 / 42];
+
+  [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    [self updateUniverse];
+  }];
+
+  // detect collision
+  [self detectCollision];
+}
+
+
 - (void)youAreDead {
   @synchronized(self) {
     [self.motionMannager stopAccelerometerUpdates];
@@ -342,22 +360,11 @@
 
     // draw universe
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-      weakSelf.universeView.bombCooldownTime = weakSelf.cumulatedCurrentGamePlayTime - weakSelf.cumulatedBombCooldownTime;
-      [weakSelf.universeView setNeedsDisplay];
+      [weakSelf updateUniverse];
     }];
 
     // detect collision
-    for (int i = 0; i < 42; i++) {
-      FTTEnemyObject *enemy = weakSelf.enemies[i];
-
-      if ([enemy hitUserObject:weakSelf.userObject]) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-          [weakSelf youAreDead];
-        }];
-
-        break;
-      }
-    }
+    [weakSelf detectCollision];
   }];
 }
 
@@ -375,6 +382,27 @@
     FTTEnemyObject *enemy = self.enemies[i];
 
     [enemy moveTowardsUserObject:self.userObject];
+  }
+}
+
+
+- (void)updateUniverse {
+  self.universeView.bombCooldownTime = self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime;
+  [self.universeView setNeedsDisplay];
+}
+
+
+- (void)detectCollision {
+  for (int i = 0; i < 42; i++) {
+    FTTEnemyObject *enemy = self.enemies[i];
+
+    if ([enemy hitUserObject:self.userObject]) {
+      [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self youAreDead];
+      }];
+
+      break;
+    }
   }
 }
 
