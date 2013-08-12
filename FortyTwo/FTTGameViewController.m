@@ -117,18 +117,31 @@
 
     if (self.gamePlaying) {
       self.gamePlaying = NO;
-
-      NSString *messageFormat = NSLocalizedString(@"You lasted %.1f seconds.", nil);
-
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You are dead.", nil)
-                                                      message:[NSString stringWithFormat:messageFormat, self.cumulatedCurrentGamePlayTime]
-                                                     delegate:self
-                                            cancelButtonTitle:NSLocalizedString(@"Retry", nil)
-                                            otherButtonTitles: nil];
-
-      [alert show];
+      [self reportScore];
+      [self showGameOverAlert];
     }
   }
+}
+
+
+- (void)reportScore {
+  GKScore *scoreReporter = [[GKScore alloc] initWithCategory:@"com.forresty.FortyTwo.timeLasted"];
+  scoreReporter.value = self.cumulatedCurrentGamePlayTime * 100;
+  scoreReporter.context = 0;
+
+  [scoreReporter reportScoreWithCompletionHandler:nil];
+}
+
+
+- (void)showGameOverAlert {
+  NSString *messageFormat = NSLocalizedString(@"You lasted %.1f seconds.", nil);
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You are dead.", nil)
+                                                  message:[NSString stringWithFormat:messageFormat, self.cumulatedCurrentGamePlayTime]
+                                                 delegate:self
+                                        cancelButtonTitle:NSLocalizedString(@"Retry", nil)
+                                        otherButtonTitles: nil];
+
+  [alert show];
 }
 
 
