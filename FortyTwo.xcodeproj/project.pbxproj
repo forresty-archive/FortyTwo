@@ -133,6 +133,15 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		68CFF06C17B9247400BD9DE1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				68CFF05417B793EB00BD9DE1 /* FTTUniverseView.h */,
+				68CFF05517B793EB00BD9DE1 /* FTTUniverseView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		68E12D2C17B604B400CCCA01 = {
 			isa = PBXGroup;
 			children = (
@@ -175,8 +184,7 @@
 				68E12D4817B604B400CCCA01 /* FTTAppDelegate.m */,
 				68E12D3F17B604B400CCCA01 /* Supporting Files */,
 				68CFF05B17B7947200BD9DE1 /* Controllers */,
-				68CFF05417B793EB00BD9DE1 /* FTTUniverseView.h */,
-				68CFF05517B793EB00BD9DE1 /* FTTUniverseView.m */,
+				68CFF06C17B9247400BD9DE1 /* Views */,
 				68CFF05A17B7946900BD9DE1 /* Models */,
 			);
 			path = FortyTwo;
