@@ -22,6 +22,8 @@
   [Flurry startSession:@"7K3SWS7SVPTPMFDGVWZC"];
   [TestFlight takeOff:@"14cef1d7-e6ac-4951-90d7-267deefd0a84"];
 
+  [UIApplication sharedApplication].idleTimerDisabled = YES;
+
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
   self.gameViewController = [[FTTGameViewController alloc] init];
