@@ -184,7 +184,9 @@
 
 
 - (BOOL)bombDeployed {
-  if (self.lowPassResults > 0.4 && self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime >= FTTBombCooldownTime) {
+  if (self.lowPassResults > 0.5 &&
+      self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime >= FTTBombCooldownTime) {
+
     self.cumulatedBombCooldownTime = self.cumulatedCurrentGamePlayTime;
 
     return YES;
@@ -224,16 +226,18 @@
 }
 
 
-// I have no idea what this means...
 // http://stackoverflow.com/questions/10622721/audio-level-detect
 - (void)levelTimerCallback:(NSTimer *)timer {
   [self.recorder updateMeters];
 
   const double ALPHA = 0.05;
 
+  // I have no idea what this means...
   double peakPowerForChannel = pow(10, (0.05 * [self.recorder peakPowerForChannel:0]));
 
+  // smooth
   self.lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * self.lowPassResults;
+
 //  NSLog(@"%f",(self.lowPassResults * 100.0f));
 }
 

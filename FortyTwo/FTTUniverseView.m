@@ -17,6 +17,9 @@
 @property (nonatomic) UIColor *currentProgressBarColor;
 @property (nonatomic) BOOL bombDeployed;
 
+// bomd effect drawing
+@property (nonatomic) NSUInteger bombEffectFramesDrawn;
+
 @end
 
 
@@ -52,14 +55,23 @@
   [[UIBezierPath bezierPathWithRect:timeBorderRect] stroke];
 
   [progressBarColor setFill];
-  CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 100, 20, MIN(80, 80 * self.bombCooldownTime / FTTBombCooldownTime), 8);
+  CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 100, 20,
+                                     MIN(80, 80 * self.bombCooldownTime / FTTBombCooldownTime), 8);
   [[UIBezierPath bezierPathWithRect:timePlayedRect] fill];
 
   // bomb
   if (self.bombDeployed) {
     // draw bomb effect
+    [[UIColor whiteColor] setFill];
+    [[UIBezierPath bezierPathWithRect:rect] fill];
 
-    self.bombDeployed = NO;
+    self.bombEffectFramesDrawn += 1;
+
+    // only draw 5 frames
+    if (self.bombEffectFramesDrawn > 5) {
+      self.bombEffectFramesDrawn = 0;
+      self.bombDeployed = NO;
+    }
   }
 }
 
