@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-static const NSUInteger FTTBombCooldownTime = 42;
+static const NSUInteger FTTBombCooldownTime = 4.2;
 
 
 @class FTTUserObject;

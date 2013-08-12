@@ -286,6 +286,9 @@
     if (viewController) {
       self.gameCenterEnabled = NO;
 //      [self presentViewController:viewController animated:YES completion:nil];
+      if (self.gameStarted == NO) {
+        [self restartGame];
+      }
     } else if (localPlayer.isAuthenticated) {
       self.gameCenterEnabled = YES;
       if (self.gameStarted == NO) {

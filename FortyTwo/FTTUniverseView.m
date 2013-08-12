@@ -59,6 +59,28 @@
                                      MIN(80, 80 * self.bombCooldownTime / FTTBombCooldownTime), 8);
   [[UIBezierPath bezierPathWithRect:timePlayedRect] fill];
 
+  // draw bomb indicator
+  if (progressBarColor == [UIColor blueColor]) {
+    UIBezierPath *bombPath = [UIBezierPath bezierPath];
+    NSUInteger xOffset = CGRectGetMaxX(self.bounds) - 100 - 6;
+    NSUInteger yOffset = 20 + 1;
+
+    [bombPath moveToPoint:CGPointMake(xOffset, yOffset)];
+    [bombPath addLineToPoint:CGPointMake(xOffset, yOffset + 6)];
+    [bombPath addLineToPoint:CGPointMake(xOffset + 2, yOffset + 6)];
+    [bombPath addLineToPoint:CGPointMake(xOffset + 3, yOffset + 5)];
+    [bombPath addLineToPoint:CGPointMake(xOffset + 3, yOffset + 4)];
+    [bombPath addLineToPoint:CGPointMake(xOffset + 2, yOffset + 3)];
+    [bombPath addLineToPoint:CGPointMake(xOffset + 0, yOffset + 3)];
+    [bombPath addLineToPoint:CGPointMake(xOffset + 2, yOffset + 3)];
+    [bombPath addLineToPoint:CGPointMake(xOffset + 3, yOffset + 2)];
+    [bombPath addLineToPoint:CGPointMake(xOffset + 3, yOffset + 1)];
+    [bombPath addLineToPoint:CGPointMake(xOffset + 2, yOffset)];
+    [bombPath closePath];
+
+    [bombPath stroke];
+  }
+
   // bomb
   if (self.bombDeployed) {
     // draw bomb effect
