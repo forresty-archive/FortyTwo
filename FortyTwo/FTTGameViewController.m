@@ -146,7 +146,11 @@
 
     if (self.gamePlaying) {
       self.gamePlaying = NO;
-      [self reportScore];
+
+      if (self.gameCenterEnabled) {
+        [self reportScore];
+      }
+
       [self showGameOverAlert];
     }
   }
@@ -284,21 +288,16 @@
 
   localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
     if (viewController) {
+      // don't present this view controller for now
       self.gameCenterEnabled = NO;
-//      [self presentViewController:viewController animated:YES completion:nil];
-      if (self.gameStarted == NO) {
-        [self restartGame];
-      }
     } else if (localPlayer.isAuthenticated) {
       self.gameCenterEnabled = YES;
-      if (self.gameStarted == NO) {
-        [self restartGame];
-      }
     } else {
       self.gameCenterEnabled = NO;
-      if (self.gameStarted == NO) {
-        [self restartGame];
-      }
+    }
+
+    if (self.gameStarted == NO) {
+      [self restartGame];
     }
   };
 }
