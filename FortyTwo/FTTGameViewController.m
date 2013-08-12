@@ -296,15 +296,15 @@
 }
 
 
-- (CGPoint)updatedPlanePositionWithAccelerometerData:(CMAccelerometerData *)accelerometerData {
+- (CGPoint)updatedPlanePositionWithSpeedX:(CGFloat)speedX speedY:(CGFloat)speedY {
   CGFloat speed = 4;
 
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
     speed = 8;
   }
 
-  CGFloat newX = self.userObject.position.x + accelerometerData.acceleration.x * speed;
-  CGFloat newY = self.userObject.position.y - accelerometerData.acceleration.y * speed;
+  CGFloat newX = self.userObject.position.x + speedX * speed;
+  CGFloat newY = self.userObject.position.y - speedY * speed;
 
   newX = MAX(0, newX);
   newX = MIN(DeviceWidth(), newX);
@@ -324,10 +324,7 @@
   [self.motionMannager startAccelerometerUpdatesToQueue:self.backgroundQueue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
 
     // record time
-    if (weakSelf.resumedTimestamp == 0) {
-      weakSelf.resumedTimestamp = accelerometerData.timestamp;
-    }
-    weakSelf.cumulatedCurrentGamePlayTime = accelerometerData.timestamp - weakSelf.resumedTimestamp;
+    [self updateTimestampsWithTimeInterval:accelerometerData.timestamp];
 
     // bomb
     if (weakSelf.bombDeployed) {
@@ -337,14 +334,11 @@
     }
 
     // move plane
-    weakSelf.userObject.position = [weakSelf updatedPlanePositionWithAccelerometerData:accelerometerData];
+    weakSelf.userObject.position = [weakSelf updatedPlanePositionWithSpeedX:accelerometerData.acceleration.x
+                                                                     speedY:accelerometerData.acceleration.y];
 
     // move enemies
-    for (int i = 0; i < 42; i++) {
-      FTTEnemyObject *enemy = weakSelf.enemies[i];
-
-      [enemy moveTowardsUserObject:weakSelf.userObject];
-    }
+    [weakSelf moveEnemies];
 
     // draw universe
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -365,6 +359,23 @@
       }
     }
   }];
+}
+
+
+- (void)updateTimestampsWithTimeInterval:(NSTimeInterval)timestamp {
+  if (self.resumedTimestamp == 0) {
+    self.resumedTimestamp = timestamp;
+  }
+  self.cumulatedCurrentGamePlayTime = timestamp - self.resumedTimestamp;
+}
+
+
+- (void)moveEnemies {
+  for (int i = 0; i < 42; i++) {
+    FTTEnemyObject *enemy = self.enemies[i];
+
+    [enemy moveTowardsUserObject:self.userObject];
+  }
 }
 
 
