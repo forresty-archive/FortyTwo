@@ -51,34 +51,50 @@
   // draw time
   UIColor *progressBarColor = self.currentProgressBarColor;
   [progressBarColor setStroke];
-  CGRect timeBorderRect = CGRectMake(CGRectGetMaxX(self.bounds) - 100, 20, 80, 8);
+  CGRect timeBorderRect = CGRectMake(CGRectGetMaxX(self.bounds) - 120, 20, 100, 10);
   [[UIBezierPath bezierPathWithRect:timeBorderRect] stroke];
 
   [progressBarColor setFill];
-  CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 100, 20,
-                                     MIN(80, 80 * self.bombCooldownTime / FTTBombCooldownTime), 8);
+  CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 120, 20,
+                                     MIN(100, 100 * self.bombCooldownTime / FTTBombCooldownTime), 10);
   [[UIBezierPath bezierPathWithRect:timePlayedRect] fill];
 
   // draw bomb indicator
-  if (progressBarColor == [UIColor blueColor]) {
-    UIBezierPath *bombPath = [UIBezierPath bezierPath];
-    NSUInteger xOffset = CGRectGetMaxX(self.bounds) - 100 - 6;
-    NSUInteger yOffset = 20 + 1;
+  if (self.bombAvailable) {
+    NSUInteger xOffset = CGRectGetMaxX(self.bounds) - 120 - 12;
+    NSUInteger yOffset = 20;
 
-    [bombPath moveToPoint:CGPointMake(xOffset, yOffset)];
-    [bombPath addLineToPoint:CGPointMake(xOffset, yOffset + 6)];
-    [bombPath addLineToPoint:CGPointMake(xOffset + 2, yOffset + 6)];
-    [bombPath addLineToPoint:CGPointMake(xOffset + 3, yOffset + 5)];
-    [bombPath addLineToPoint:CGPointMake(xOffset + 3, yOffset + 4)];
-    [bombPath addLineToPoint:CGPointMake(xOffset + 2, yOffset + 3)];
-    [bombPath addLineToPoint:CGPointMake(xOffset + 0, yOffset + 3)];
-    [bombPath addLineToPoint:CGPointMake(xOffset + 2, yOffset + 3)];
-    [bombPath addLineToPoint:CGPointMake(xOffset + 3, yOffset + 2)];
-    [bombPath addLineToPoint:CGPointMake(xOffset + 3, yOffset + 1)];
-    [bombPath addLineToPoint:CGPointMake(xOffset + 2, yOffset)];
-    [bombPath closePath];
+    //// Rectangle 2 Drawing
+    UIBezierPath* rectangle2Path = [UIBezierPath bezierPathWithRect: CGRectMake(0 + xOffset, 1.5 + yOffset, 1.5, 7.5)];
+    [rectangle2Path fill];
 
-    [bombPath stroke];
+    //// Rectangle 3 Drawing
+    UIBezierPath* rectangle3Path = [UIBezierPath bezierPathWithRect: CGRectMake(1 + xOffset, 0 + yOffset, 5.5, 1.5)];
+    [rectangle3Path fill];
+
+    //// Rectangle 4 Drawing
+    UIBezierPath* rectangle4Path = [UIBezierPath bezierPathWithRect: CGRectMake(6 + xOffset, 1.5 + yOffset, 1.5, 2.5)];
+    [rectangle4Path fill];
+
+    //// Rectangle 5 Drawing
+    UIBezierPath* rectangle5Path = [UIBezierPath bezierPathWithRect: CGRectMake(6 + xOffset, 5.5 + yOffset, 1.5, 1)];
+    [rectangle5Path fill];
+
+    //// Rectangle 6 Drawing
+    UIBezierPath* rectangle6Path = [UIBezierPath bezierPathWithRect: CGRectMake(6.5 + xOffset, 8 + yOffset, 1.5, 1)];
+    [rectangle6Path fill];
+
+    //// Rectangle 7 Drawing
+    UIBezierPath* rectangle7Path = [UIBezierPath bezierPathWithRect: CGRectMake(7 + xOffset, 6.5 + yOffset, 1.5, 1.5)];
+    [rectangle7Path fill];
+
+    //// Rectangle 8 Drawing
+    UIBezierPath* rectangle8Path = [UIBezierPath bezierPathWithRect: CGRectMake(1 + xOffset, 9 + yOffset, 6.5, 1.5)];
+    [rectangle8Path fill];
+
+    //// Rectangle 9 Drawing
+    UIBezierPath* rectangle9Path = [UIBezierPath bezierPathWithRect: CGRectMake(1.5 + xOffset, 4 + yOffset, 5, 1.5)];
+    [rectangle9Path fill];
   }
 
   // bomb
