@@ -98,7 +98,7 @@
   [self.view addSubview:self.universeView];
 
   [self setupGameCenter];
-//  [self restartGame];
+  [self restartGame];
 }
 
 
@@ -158,6 +158,7 @@
 
 
 - (void)reportScore {
+  NSParameterAssert(self.gameCenterEnabled);
   GKScore *scoreReporter = [[GKScore alloc] initWithCategory:@"com.forresty.FortyTwo.timeLasted"];
   scoreReporter.value = self.cumulatedCurrentGamePlayTime * 100;
   scoreReporter.context = 0;
@@ -294,10 +295,6 @@
       self.gameCenterEnabled = YES;
     } else {
       self.gameCenterEnabled = NO;
-    }
-
-    if (self.gameStarted == NO) {
-      [self restartGame];
     }
   };
 }
