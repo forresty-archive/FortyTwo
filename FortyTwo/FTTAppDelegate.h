@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FFAppDelegate.h"
-
 
 @class FTTGameViewController;
 
 
-@interface FTTAppDelegate : FFAppDelegate <UIApplicationDelegate>
+@interface FTTAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) FTTGameViewController *gameViewController;
 
