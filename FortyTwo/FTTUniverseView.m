@@ -48,6 +48,12 @@
     [[UIBezierPath bezierPathWithRect:[self rectForObjectPosition:enemy.position]] fill];
   }
 
+  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    CGContextScaleCTM(currentContext, 2, 2);
+    CGContextTranslateCTM(currentContext, -CGRectGetWidth(self.bounds) / 2, 0);
+  }
+
   // draw time
   UIColor *progressBarColor = self.currentProgressBarColor;
   [progressBarColor setStroke];
