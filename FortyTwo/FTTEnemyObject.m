@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
   CGFloat timeToUser = rand() % 90 + 90; // fps is 42, so this better be 90 ~ 180?
 
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    timeToUser = rand() % 50 + 50; // on iPad, make it faster, 50 ~ 100
+    timeToUser = rand() % 60 + 60;
   }
 
   self.speedX = (userObject.position.x - self.position.x) / timeToUser;
