@@ -317,7 +317,7 @@
   CGFloat speed = 4;
 
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    speed = 8;
+    speed = 12;
   }
 
   CGFloat newX = self.userObject.position.x + speedX * speed;
