@@ -8,6 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+
+@class FTTUserObject;
+
+
 @interface FTTMUniverseView : NSView
+
+@property (nonatomic) NSArray *enemies;
+@property (nonatomic) FTTUserObject *userObject;
 
 @end

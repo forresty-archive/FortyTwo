@@ -20,6 +20,9 @@
 		684F4F9B17CD05F300C1E066 /* FortyTwo_for_MacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4F9A17CD05F300C1E066 /* FortyTwo_for_MacTests.m */; };
 		684F4FA417CD077B00C1E066 /* FTTMGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4FA317CD077B00C1E066 /* FTTMGameViewController.m */; };
 		684F4FA717CD08A200C1E066 /* FTTMUniverseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4FA617CD08A200C1E066 /* FTTMUniverseView.m */; };
+		684F4FAB17CD72BF00C1E066 /* FTTObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF05D17B7948600BD9DE1 /* FTTObject.m */; };
+		684F4FAC17CD72BF00C1E066 /* FTTUserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF05817B7944300BD9DE1 /* FTTUserObject.m */; };
+		684F4FAD17CD72BF00C1E066 /* FTTEnemyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF05217B7937600BD9DE1 /* FTTEnemyObject.m */; };
 		6851F51817C4D286002593AB /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51717C4D286002593AB /* Default-Portrait~ipad.png */; };
 		6851F51A17C4D28A002593AB /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51917C4D28A002593AB /* Default-Portrait@2x~ipad.png */; };
 		6851F51C17C4D566002593AB /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51B17C4D566002593AB /* Icon-72.png */; };
@@ -90,6 +93,7 @@
 		684F4FA317CD077B00C1E066 /* FTTMGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTMGameViewController.m; sourceTree = "<group>"; };
 		684F4FA517CD08A200C1E066 /* FTTMUniverseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTMUniverseView.h; sourceTree = "<group>"; };
 		684F4FA617CD08A200C1E066 /* FTTMUniverseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTMUniverseView.m; sourceTree = "<group>"; };
+		684F4FAA17CD6B7F00C1E066 /* FTTDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTDefines.h; sourceTree = "<group>"; };
 		6851F51717C4D286002593AB /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		6851F51917C4D28A002593AB /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		6851F51B17C4D566002593AB /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../Icon-72.png"; sourceTree = "<group>"; };
@@ -236,6 +240,7 @@
 		68CFF05A17B7946900BD9DE1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				684F4FAA17CD6B7F00C1E066 /* FTTDefines.h */,
 				68CFF05C17B7948600BD9DE1 /* FTTObject.h */,
 				68CFF05D17B7948600BD9DE1 /* FTTObject.m */,
 				68CFF05717B7944300BD9DE1 /* FTTUserObject.h */,
@@ -574,6 +579,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				684F4FAB17CD72BF00C1E066 /* FTTObject.m in Sources */,
+				684F4FAC17CD72BF00C1E066 /* FTTUserObject.m in Sources */,
+				684F4FAD17CD72BF00C1E066 /* FTTEnemyObject.m in Sources */,
 				684F4F7E17CD05F200C1E066 /* main.m in Sources */,
 				684F4F8517CD05F200C1E066 /* FTTMAppDelegate.m in Sources */,
 				684F4FA417CD077B00C1E066 /* FTTMGameViewController.m in Sources */,

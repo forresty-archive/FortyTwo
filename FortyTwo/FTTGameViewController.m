@@ -60,6 +60,13 @@
   [FTTObject registerDefaultObjectWidth:FTTObjectWidth()];
   [FTTUserObject registerDefaultSpawnPosition:CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2)];
   [FTTEnemyObject registerUniverseSize:CGSizeMake(DeviceWidth(), DeviceHeight())];
+
+  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    [FTTEnemyObject registerTimeToUserParam:60];
+  } else {
+    [FTTEnemyObject registerTimeToUserParam:90];
+  }
+
 }
 
 + (instancetype)sharedInstance {

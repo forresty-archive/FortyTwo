@@ -29,5 +29,6 @@
 - (BOOL)hitUserObject:(FTTUserObject *)userObject;
 
 + (void)registerUniverseSize:(CGSize)universeSize;
++ (void)registerTimeToUserParam:(NSUInteger)param;
 
 @end

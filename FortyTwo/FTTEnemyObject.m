@@ -22,9 +22,14 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
 @implementation FTTEnemyObject
 
 static CGSize FTTUniverseSize;
+static NSUInteger FTTTimeToUserParam;
 
 + (void)registerUniverseSize:(CGSize)size {
   FTTUniverseSize = size;
+}
+
++ (void)registerTimeToUserParam:(NSUInteger)param {
+  FTTTimeToUserParam = param;
 }
 
 - (void)resetPosition {
@@ -56,11 +61,7 @@ static CGSize FTTUniverseSize;
 
 
 - (void)resetSpeedWithUserObject:(FTTUserObject *)userObject {
-  CGFloat timeToUser = rand() % 90 + 90; // fps is 42, so this better be 90 ~ 180?
-
-  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    timeToUser = rand() % 60 + 60;
-  }
+  CGFloat timeToUser = rand() % FTTTimeToUserParam + FTTTimeToUserParam; // fps is 42, so this better be 90 ~ 180?
 
   self.speedX = (userObject.position.x - self.position.x) / timeToUser;
   self.speedY = (userObject.position.y - self.position.y) / timeToUser;
