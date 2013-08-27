@@ -34,9 +34,15 @@ static inline CGFloat FTTObjectWidth() {
   [[NSColor blackColor] setFill];
   [[NSBezierPath bezierPathWithRect:dirtyRect] fill];
 
+  // draw user object
   [[NSColor whiteColor] setFill];
   [[NSBezierPath bezierPathWithRect:[self rectForObjectPosition:self.userObject.position]] fill];
 
+  // draw enemies
+  [[NSColor redColor] setFill];
+  for (FTTEnemyObject *enemy in self.enemies) {
+    [[NSBezierPath bezierPathWithRect:[self rectForObjectPosition:enemy.position]] fill];
+  }
 }
 
 
