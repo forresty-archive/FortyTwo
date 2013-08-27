@@ -18,6 +18,8 @@
 		684F4F9017CD05F300C1E066 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684F4F7117CD05F200C1E066 /* Cocoa.framework */; };
 		684F4F9817CD05F300C1E066 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 684F4F9617CD05F300C1E066 /* InfoPlist.strings */; };
 		684F4F9B17CD05F300C1E066 /* FortyTwo_for_MacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4F9A17CD05F300C1E066 /* FortyTwo_for_MacTests.m */; };
+		684F4FA417CD077B00C1E066 /* FTTMGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4FA317CD077B00C1E066 /* FTTMGameViewController.m */; };
+		684F4FA717CD08A200C1E066 /* FTTMUniverseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4FA617CD08A200C1E066 /* FTTMUniverseView.m */; };
 		6851F51817C4D286002593AB /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51717C4D286002593AB /* Default-Portrait~ipad.png */; };
 		6851F51A17C4D28A002593AB /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51917C4D28A002593AB /* Default-Portrait@2x~ipad.png */; };
 		6851F51C17C4D566002593AB /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51B17C4D566002593AB /* Icon-72.png */; };
@@ -84,6 +86,10 @@
 		684F4F9717CD05F300C1E066 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		684F4F9917CD05F300C1E066 /* FortyTwo_for_MacTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FortyTwo_for_MacTests.h; sourceTree = "<group>"; };
 		684F4F9A17CD05F300C1E066 /* FortyTwo_for_MacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FortyTwo_for_MacTests.m; sourceTree = "<group>"; };
+		684F4FA217CD077B00C1E066 /* FTTMGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTMGameViewController.h; sourceTree = "<group>"; };
+		684F4FA317CD077B00C1E066 /* FTTMGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTMGameViewController.m; sourceTree = "<group>"; };
+		684F4FA517CD08A200C1E066 /* FTTMUniverseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTMUniverseView.h; sourceTree = "<group>"; };
+		684F4FA617CD08A200C1E066 /* FTTMUniverseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTMUniverseView.m; sourceTree = "<group>"; };
 		6851F51717C4D286002593AB /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		6851F51917C4D28A002593AB /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		6851F51B17C4D566002593AB /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../Icon-72.png"; sourceTree = "<group>"; };
@@ -188,6 +194,10 @@
 				684F4F8417CD05F200C1E066 /* FTTMAppDelegate.m */,
 				684F4F8617CD05F200C1E066 /* MainMenu.xib */,
 				684F4F7817CD05F200C1E066 /* Supporting Files */,
+				684F4FA217CD077B00C1E066 /* FTTMGameViewController.h */,
+				684F4FA317CD077B00C1E066 /* FTTMGameViewController.m */,
+				684F4FA517CD08A200C1E066 /* FTTMUniverseView.h */,
+				684F4FA617CD08A200C1E066 /* FTTMUniverseView.m */,
 			);
 			path = "FortyTwo for Mac";
 			sourceTree = "<group>";
@@ -566,6 +576,8 @@
 			files = (
 				684F4F7E17CD05F200C1E066 /* main.m in Sources */,
 				684F4F8517CD05F200C1E066 /* FTTMAppDelegate.m in Sources */,
+				684F4FA417CD077B00C1E066 /* FTTMGameViewController.m in Sources */,
+				684F4FA717CD08A200C1E066 /* FTTMUniverseView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,10 +8,18 @@
 
 #import "FTTMAppDelegate.h"
 
+#import "FTTMGameViewController.h"
+
+
 @implementation FTTMAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-  // Insert code here to initialize your application
+  NSLog(@"wtf");
+  self.gameViewController = [[FTTMGameViewController alloc] init];
+
+  self.gameViewController.view.frame = ((NSView *)self.window.contentView).bounds;
+
+  [self.window.contentView addSubview:self.gameViewController.view];
 }
 
 @end
