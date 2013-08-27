@@ -25,7 +25,7 @@ static inline CGFloat FTTObjectWidth() {
 //    NSLog(@"frame %@", NSStringFromRect(frame));
     // Initialization code here.
   }
-  
+
   return self;
 }
 

@@ -56,7 +56,7 @@
     self.universeView.userObject = self.userObject;
     self.universeView.enemies = self.enemies;
   }
-    
+
   return self;
 }
 
