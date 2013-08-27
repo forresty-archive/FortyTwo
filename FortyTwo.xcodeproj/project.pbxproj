@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		25FDB9638A0341EA864CE6CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E506E5CB430742129E078A47 /* libPods.a */; };
+		684F4F7217CD05F200C1E066 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684F4F7117CD05F200C1E066 /* Cocoa.framework */; };
+		684F4F7C17CD05F200C1E066 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 684F4F7A17CD05F200C1E066 /* InfoPlist.strings */; };
+		684F4F7E17CD05F200C1E066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4F7D17CD05F200C1E066 /* main.m */; };
+		684F4F8217CD05F200C1E066 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 684F4F8017CD05F200C1E066 /* Credits.rtf */; };
+		684F4F8517CD05F200C1E066 /* FTTMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4F8417CD05F200C1E066 /* FTTMAppDelegate.m */; };
+		684F4F8817CD05F200C1E066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 684F4F8617CD05F200C1E066 /* MainMenu.xib */; };
+		684F4F8F17CD05F300C1E066 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D5617B604B400CCCA01 /* SenTestingKit.framework */; };
+		684F4F9017CD05F300C1E066 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684F4F7117CD05F200C1E066 /* Cocoa.framework */; };
+		684F4F9817CD05F300C1E066 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 684F4F9617CD05F300C1E066 /* InfoPlist.strings */; };
+		684F4F9B17CD05F300C1E066 /* FortyTwo_for_MacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4F9A17CD05F300C1E066 /* FortyTwo_for_MacTests.m */; };
 		6851F51817C4D286002593AB /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51717C4D286002593AB /* Default-Portrait~ipad.png */; };
 		6851F51A17C4D28A002593AB /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51917C4D28A002593AB /* Default-Portrait@2x~ipad.png */; };
 		6851F51C17C4D566002593AB /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51B17C4D566002593AB /* Icon-72.png */; };
@@ -39,6 +49,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		684F4F9117CD05F300C1E066 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68E12D2D17B604B400CCCA01 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 684F4F6F17CD05F200C1E066;
+			remoteInfo = "FortyTwo for Mac";
+		};
 		68E12D5A17B604B400CCCA01 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 68E12D2D17B604B400CCCA01 /* Project object */;
@@ -49,6 +66,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		684F4F7017CD05F200C1E066 /* FortyTwo for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FortyTwo for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		684F4F7117CD05F200C1E066 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		684F4F7417CD05F200C1E066 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		684F4F7517CD05F200C1E066 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		684F4F7617CD05F200C1E066 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		684F4F7917CD05F200C1E066 /* FortyTwo for Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FortyTwo for Mac-Info.plist"; sourceTree = "<group>"; };
+		684F4F7B17CD05F200C1E066 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		684F4F7D17CD05F200C1E066 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		684F4F7F17CD05F200C1E066 /* FortyTwo for Mac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FortyTwo for Mac-Prefix.pch"; sourceTree = "<group>"; };
+		684F4F8117CD05F200C1E066 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		684F4F8317CD05F200C1E066 /* FTTMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTMAppDelegate.h; sourceTree = "<group>"; };
+		684F4F8417CD05F200C1E066 /* FTTMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTTMAppDelegate.m; sourceTree = "<group>"; };
+		684F4F8717CD05F200C1E066 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		684F4F8E17CD05F300C1E066 /* FortyTwo for MacTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FortyTwo for MacTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		684F4F9517CD05F300C1E066 /* FortyTwo for MacTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FortyTwo for MacTests-Info.plist"; sourceTree = "<group>"; };
+		684F4F9717CD05F300C1E066 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		684F4F9917CD05F300C1E066 /* FortyTwo_for_MacTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FortyTwo_for_MacTests.h; sourceTree = "<group>"; };
+		684F4F9A17CD05F300C1E066 /* FortyTwo_for_MacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FortyTwo_for_MacTests.m; sourceTree = "<group>"; };
 		6851F51717C4D286002593AB /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		6851F51917C4D28A002593AB /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		6851F51B17C4D566002593AB /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../Icon-72.png"; sourceTree = "<group>"; };
@@ -92,6 +127,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		684F4F6D17CD05F200C1E066 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				684F4F7217CD05F200C1E066 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		684F4F8A17CD05F300C1E066 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				684F4F8F17CD05F300C1E066 /* SenTestingKit.framework in Frameworks */,
+				684F4F9017CD05F300C1E066 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68E12D3217B604B400CCCA01 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,6 +171,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		684F4F7317CD05F200C1E066 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				684F4F7417CD05F200C1E066 /* AppKit.framework */,
+				684F4F7517CD05F200C1E066 /* CoreData.framework */,
+				684F4F7617CD05F200C1E066 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		684F4F7717CD05F200C1E066 /* FortyTwo for Mac */ = {
+			isa = PBXGroup;
+			children = (
+				684F4F8317CD05F200C1E066 /* FTTMAppDelegate.h */,
+				684F4F8417CD05F200C1E066 /* FTTMAppDelegate.m */,
+				684F4F8617CD05F200C1E066 /* MainMenu.xib */,
+				684F4F7817CD05F200C1E066 /* Supporting Files */,
+			);
+			path = "FortyTwo for Mac";
+			sourceTree = "<group>";
+		};
+		684F4F7817CD05F200C1E066 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				684F4F7917CD05F200C1E066 /* FortyTwo for Mac-Info.plist */,
+				684F4F7A17CD05F200C1E066 /* InfoPlist.strings */,
+				684F4F7D17CD05F200C1E066 /* main.m */,
+				684F4F7F17CD05F200C1E066 /* FortyTwo for Mac-Prefix.pch */,
+				684F4F8017CD05F200C1E066 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		684F4F9317CD05F300C1E066 /* FortyTwo for MacTests */ = {
+			isa = PBXGroup;
+			children = (
+				684F4F9917CD05F300C1E066 /* FortyTwo_for_MacTests.h */,
+				684F4F9A17CD05F300C1E066 /* FortyTwo_for_MacTests.m */,
+				684F4F9417CD05F300C1E066 /* Supporting Files */,
+			);
+			path = "FortyTwo for MacTests";
+			sourceTree = "<group>";
+		};
+		684F4F9417CD05F300C1E066 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				684F4F9517CD05F300C1E066 /* FortyTwo for MacTests-Info.plist */,
+				684F4F9617CD05F300C1E066 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		68CFF05A17B7946900BD9DE1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +259,8 @@
 			children = (
 				68E12D3E17B604B400CCCA01 /* FortyTwo */,
 				68E12D5C17B604B400CCCA01 /* FortyTwoTests */,
+				684F4F7717CD05F200C1E066 /* FortyTwo for Mac */,
+				684F4F9317CD05F300C1E066 /* FortyTwo for MacTests */,
 				68E12D3717B604B400CCCA01 /* Frameworks */,
 				68E12D3617B604B400CCCA01 /* Products */,
 				B7A1CE0C22884CB4A8A417B4 /* Pods.xcconfig */,
@@ -166,6 +272,8 @@
 			children = (
 				68E12D3517B604B400CCCA01 /* FortyTwo.app */,
 				68E12D5517B604B400CCCA01 /* FortyTwoTests.octest */,
+				684F4F7017CD05F200C1E066 /* FortyTwo for Mac.app */,
+				684F4F8E17CD05F300C1E066 /* FortyTwo for MacTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +289,8 @@
 				68E12D3C17B604B400CCCA01 /* CoreGraphics.framework */,
 				68E12D5617B604B400CCCA01 /* SenTestingKit.framework */,
 				E506E5CB430742129E078A47 /* libPods.a */,
+				684F4F7117CD05F200C1E066 /* Cocoa.framework */,
+				684F4F7317CD05F200C1E066 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -240,6 +350,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		684F4F6F17CD05F200C1E066 /* FortyTwo for Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 684F4FA017CD05F300C1E066 /* Build configuration list for PBXNativeTarget "FortyTwo for Mac" */;
+			buildPhases = (
+				684F4F6C17CD05F200C1E066 /* Sources */,
+				684F4F6D17CD05F200C1E066 /* Frameworks */,
+				684F4F6E17CD05F200C1E066 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FortyTwo for Mac";
+			productName = "FortyTwo for Mac";
+			productReference = 684F4F7017CD05F200C1E066 /* FortyTwo for Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		684F4F8D17CD05F300C1E066 /* FortyTwo for MacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 684F4FA117CD05F300C1E066 /* Build configuration list for PBXNativeTarget "FortyTwo for MacTests" */;
+			buildPhases = (
+				684F4F8917CD05F300C1E066 /* Sources */,
+				684F4F8A17CD05F300C1E066 /* Frameworks */,
+				684F4F8B17CD05F300C1E066 /* Resources */,
+				684F4F8C17CD05F300C1E066 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				684F4F9217CD05F300C1E066 /* PBXTargetDependency */,
+			);
+			name = "FortyTwo for MacTests";
+			productName = "FortyTwo for MacTests";
+			productReference = 684F4F8E17CD05F300C1E066 /* FortyTwo for MacTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		68E12D3417B604B400CCCA01 /* FortyTwo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68E12D6717B604B400CCCA01 /* Build configuration list for PBXNativeTarget "FortyTwo" */;
@@ -302,11 +448,31 @@
 			targets = (
 				68E12D3417B604B400CCCA01 /* FortyTwo */,
 				68E12D5417B604B400CCCA01 /* FortyTwoTests */,
+				684F4F6F17CD05F200C1E066 /* FortyTwo for Mac */,
+				684F4F8D17CD05F300C1E066 /* FortyTwo for MacTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		684F4F6E17CD05F200C1E066 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				684F4F7C17CD05F200C1E066 /* InfoPlist.strings in Resources */,
+				684F4F8217CD05F200C1E066 /* Credits.rtf in Resources */,
+				684F4F8817CD05F200C1E066 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		684F4F8B17CD05F300C1E066 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				684F4F9817CD05F300C1E066 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68E12D3317B604B400CCCA01 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -335,6 +501,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		684F4F8C17CD05F300C1E066 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		686F239C8FA24AB58D141E5F /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,6 +560,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		684F4F6C17CD05F200C1E066 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				684F4F7E17CD05F200C1E066 /* main.m in Sources */,
+				684F4F8517CD05F200C1E066 /* FTTMAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		684F4F8917CD05F300C1E066 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				684F4F9B17CD05F300C1E066 /* FortyTwo_for_MacTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68E12D3117B604B400CCCA01 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,6 +602,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		684F4F9217CD05F300C1E066 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 684F4F6F17CD05F200C1E066 /* FortyTwo for Mac */;
+			targetProxy = 684F4F9117CD05F300C1E066 /* PBXContainerItemProxy */;
+		};
 		68E12D5B17B604B400CCCA01 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 68E12D3417B604B400CCCA01 /* FortyTwo */;
@@ -414,6 +615,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		684F4F7A17CD05F200C1E066 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				684F4F7B17CD05F200C1E066 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		684F4F8017CD05F200C1E066 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				684F4F8117CD05F200C1E066 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		684F4F8617CD05F200C1E066 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				684F4F8717CD05F200C1E066 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		684F4F9617CD05F300C1E066 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				684F4F9717CD05F300C1E066 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		68E12D4117B604B400CCCA01 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -433,6 +666,90 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		684F4F9C17CD05F300C1E066 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FortyTwo for Mac/FortyTwo for Mac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "FortyTwo for Mac/FortyTwo for Mac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		684F4F9D17CD05F300C1E066 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FortyTwo for Mac/FortyTwo for Mac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "FortyTwo for Mac/FortyTwo for Mac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		684F4F9E17CD05F300C1E066 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FortyTwo for Mac.app/Contents/MacOS/FortyTwo for Mac";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FortyTwo for Mac/FortyTwo for Mac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "FortyTwo for MacTests/FortyTwo for MacTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		684F4F9F17CD05F300C1E066 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FortyTwo for Mac.app/Contents/MacOS/FortyTwo for Mac";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FortyTwo for Mac/FortyTwo for Mac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "FortyTwo for MacTests/FortyTwo for MacTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		68E12D6517B604B400CCCA01 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -554,6 +871,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		684F4FA017CD05F300C1E066 /* Build configuration list for PBXNativeTarget "FortyTwo for Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				684F4F9C17CD05F300C1E066 /* Debug */,
+				684F4F9D17CD05F300C1E066 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		684F4FA117CD05F300C1E066 /* Build configuration list for PBXNativeTarget "FortyTwo for MacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				684F4F9E17CD05F300C1E066 /* Debug */,
+				684F4F9F17CD05F300C1E066 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		68E12D3017B604B400CCCA01 /* Build configuration list for PBXProject "FortyTwo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
