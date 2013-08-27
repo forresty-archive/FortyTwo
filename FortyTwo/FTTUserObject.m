@@ -11,9 +11,15 @@
 
 @implementation FTTUserObject
 
+static CGPoint defaultSpawnPosition;
+
++ (void)registerDefaultSpawnPosition:(CGPoint)position {
+  defaultSpawnPosition = position;
+}
 
 - (void)resetPosition {
-  self.position = CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2);
+//  self.position = CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2);
+  self.position = defaultSpawnPosition;
 }
 
 @end

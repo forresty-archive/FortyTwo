@@ -20,6 +20,8 @@
 #import "FTTUserObject.h"
 #import "FTTEnemyObject.h"
 
+#import "FTTDefines.h"
+
 
 @interface FTTGameViewController ()
 
@@ -54,6 +56,11 @@
 
 @implementation FTTGameViewController
 
++ (void)initialize {
+  [FTTObject registerDefaultObjectWidth:FTTObjectWidth()];
+  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2)];
+  [FTTEnemyObject registerUniverseSize:CGSizeMake(DeviceWidth(), DeviceHeight())];
+}
 
 + (instancetype)sharedInstance {
   static FTTGameViewController *_instance = nil;

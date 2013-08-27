@@ -13,6 +13,8 @@
 
 @interface FTTUserObject : FTTObject
 
++ (void)registerDefaultSpawnPosition:(CGPoint)position;
+
 - (void)resetPosition;
 
 @end
