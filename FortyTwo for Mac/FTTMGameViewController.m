@@ -62,8 +62,7 @@
       [self.enemies addObject:enemy];
     }
 
-    self.universeView.userObject = self.userObject;
-    self.universeView.enemies = self.enemies;
+    self.universeView.dataSource = self;
 
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/42 target:self selector:@selector(simulateFrame) userInfo:nil repeats:YES];
     self.gamePlaying = YES;
@@ -157,6 +156,7 @@
 
 # pragma mark - keyboard event handling
 
+
 - (void)keyDown:(NSEvent *)theEvent {
   // Arrow keys are associated with the numeric keypad
   if ([theEvent modifierFlags] & NSNumericPadKeyMask) {
@@ -184,6 +184,24 @@
 - (void)moveRight:(id)sender {
   self.userObject.position = [self updatedPlanePositionWithSpeedX:1 speedY:0];
     [self detectCollision];
+}
+
+
+# pragma mark - FTTMUniverseViewDataSource
+
+
+- (CGPoint)positionOfUserObject {
+  return self.userObject.position;
+}
+
+
+- (NSArray *)positionsOfEnemyObjects {
+  NSMutableArray *positions = [NSMutableArray arrayWithCapacity:42];
+  for (FTTEnemyObject *enemy in self.enemies) {
+    [positions addObject:NSStringFromPoint(enemy.position)];
+  }
+
+  return positions;
 }
 
 @end

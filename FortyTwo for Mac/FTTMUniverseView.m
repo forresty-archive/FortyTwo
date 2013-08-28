@@ -8,9 +8,6 @@
 
 #import "FTTMUniverseView.h"
 
-#import "FTTUserObject.h"
-#import "FTTEnemyObject.h"
-
 
 static inline CGFloat FTTObjectWidth() {
   return 5;
@@ -18,16 +15,6 @@ static inline CGFloat FTTObjectWidth() {
 
 @implementation FTTMUniverseView
 
-- (id)initWithFrame:(NSRect)frame {
-  self = [super initWithFrame:frame];
-
-  if (self) {
-//    NSLog(@"frame %@", NSStringFromRect(frame));
-    // Initialization code here.
-  }
-
-  return self;
-}
 
 - (void)drawRect:(NSRect)dirtyRect {
 //  NSLog(@"rect %@", NSStringFromRect(dirtyRect));
@@ -36,12 +23,13 @@ static inline CGFloat FTTObjectWidth() {
 
   // draw user object
   [[NSColor whiteColor] setFill];
-  [[NSBezierPath bezierPathWithRect:[self rectForObjectPosition:self.userObject.position]] fill];
+  [[NSBezierPath bezierPathWithRect:[self rectForObjectPosition:self.dataSource.positionOfUserObject]] fill];
 
   // draw enemies
   [[NSColor redColor] setFill];
-  for (FTTEnemyObject *enemy in self.enemies) {
-    [[NSBezierPath bezierPathWithRect:[self rectForObjectPosition:enemy.position]] fill];
+  for (NSString *positionString in self.dataSource.positionsOfEnemyObjects) {
+    CGPoint enemyPosition = NSPointFromString(positionString);
+    [[NSBezierPath bezierPathWithRect:[self rectForObjectPosition:enemyPosition]] fill];
   }
 }
 

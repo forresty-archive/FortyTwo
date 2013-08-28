@@ -11,10 +11,16 @@
 
 @class FTTUserObject;
 
+@protocol FTTMUniverseViewDataSource <NSObject>
+
+- (CGPoint)positionOfUserObject;
+- (NSArray *)positionsOfEnemyObjects;
+
+@end
+
 
 @interface FTTMUniverseView : NSView
 
-@property (nonatomic) NSArray *enemies;
-@property (nonatomic) FTTUserObject *userObject;
+@property (nonatomic) id<FTTMUniverseViewDataSource> dataSource;
 
 @end

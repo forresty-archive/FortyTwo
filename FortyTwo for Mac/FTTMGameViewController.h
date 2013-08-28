@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FTTMGameViewController : NSViewController
+#import "FTTMUniverseView.h"
+
+
+@interface FTTMGameViewController : NSViewController <FTTMUniverseViewDataSource>
 
 @end
