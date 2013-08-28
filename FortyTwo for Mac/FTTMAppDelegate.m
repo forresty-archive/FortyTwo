@@ -20,6 +20,8 @@
   self.gameViewController.view.frame = ((NSView *)self.window.contentView).bounds;
 
   [self.window.contentView addSubview:self.gameViewController.view];
+
+  [self.window makeFirstResponder:self.gameViewController];
 }
 
 @end

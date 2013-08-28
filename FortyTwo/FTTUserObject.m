@@ -18,7 +18,6 @@ static CGPoint defaultSpawnPosition;
 }
 
 - (void)resetPosition {
-//  self.position = CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2);
   self.position = defaultSpawnPosition;
 }
 
