@@ -77,15 +77,12 @@
   [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
   [self moveEnemies];
 
-//  self.userObject.position = [self updatedPlanePositionWithSpeedX:(rand() % 100 / 100.0) speedY:(rand() % 100 / 100.0)];
-
   [NSThread sleepForTimeInterval:1.0 / 42];
 
   [[NSOperationQueue mainQueue] addOperationWithBlock:^{
     [self updateUniverse];
   }];
 
-  // detect collision
   [self detectCollision];
 }
 
@@ -122,7 +119,6 @@
 }
 
 - (void)updateUniverse {
-//  self.universeView.bombCooldownTime = self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime;
   [self.universeView setNeedsDisplay:YES];
 }
 
@@ -144,7 +140,6 @@
 - (void)youAreDead {
   @synchronized(self) {
     [self.timer invalidate];
-//    [self.motionMannager stopAccelerometerUpdates];
 
     if (self.gamePlaying) {
       self.gamePlaying = NO;
@@ -190,4 +185,5 @@
   self.userObject.position = [self updatedPlanePositionWithSpeedX:1 speedY:0];
     [self detectCollision];
 }
+
 @end
