@@ -8,9 +8,6 @@
 
 #import "FTTUniverseView.h"
 
-#import "FTTUserObject.h"
-#import "FTTEnemyObject.h"
-
 #import "FTTDefines.h"
 
 @interface FTTUniverseView ()
@@ -41,12 +38,13 @@
 - (void)drawRect:(CGRect)rect {
   // draw user object
   [[UIColor whiteColor] setFill];
-  [[UIBezierPath bezierPathWithRect:[self rectForObjectPosition:self.userObject.position]] fill];
+  [[UIBezierPath bezierPathWithRect:[self rectForObjectPosition:self.dataSource.positionOfUserObject]] fill];
 
   // draw enemies
   [[UIColor redColor] setFill];
-  for (FTTEnemyObject *enemy in self.enemies) {
-    [[UIBezierPath bezierPathWithRect:[self rectForObjectPosition:enemy.position]] fill];
+  for (NSString *positionString in self.dataSource.positionsOfEnemyObjects) {
+    CGPoint enemyPosition = CGPointFromString(positionString);
+    [[UIBezierPath bezierPathWithRect:[self rectForObjectPosition:enemyPosition]] fill];
   }
 
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {

@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FTTUniverseView.h"
 
-@interface FTTGameViewController : UIViewController <UIAlertViewDelegate>
+
+@interface FTTGameViewController : UIViewController <UIAlertViewDelegate, FTTUniverseViewDataSource>
 
 
 + (instancetype)sharedInstance;

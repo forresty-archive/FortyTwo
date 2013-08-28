@@ -107,8 +107,7 @@
 
   self.view.backgroundColor = [UIColor blackColor];
   self.universeView = [[FTTUniverseView alloc] initWithFrame:self.view.bounds];
-  self.universeView.userObject = self.userObject;
-  self.universeView.enemies = self.enemies;
+  self.universeView.dataSource = self;
   [self.view addSubview:self.universeView];
 
   [self setupGameCenter];
@@ -429,6 +428,23 @@
   } else {
     [self restartGame];
   }
+}
+
+
+# pragma mark - FTTUniverseViewDataSource
+
+
+- (CGPoint)positionOfUserObject {
+  return self.userObject.position;
+}
+
+- (NSArray *)positionsOfEnemyObjects {
+  NSMutableArray *positions = [NSMutableArray arrayWithCapacity:42];
+  for (FTTEnemyObject *enemy in self.enemies) {
+    [positions addObject:NSStringFromCGPoint(enemy.position)];
+  }
+
+  return positions;
 }
 
 

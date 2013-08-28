@@ -12,13 +12,18 @@
 static const NSUInteger FTTBombCooldownTime = 42;
 
 
-@class FTTUserObject;
+@protocol FTTUniverseViewDataSource <NSObject>
+
+- (CGPoint)positionOfUserObject;
+- (NSArray *)positionsOfEnemyObjects;
+
+@end
 
 
 @interface FTTUniverseView : UIView
 
-@property (nonatomic) NSArray *enemies;
-@property (nonatomic) FTTUserObject *userObject;
+@property (nonatomic) id<FTTUniverseViewDataSource> dataSource;
+
 @property (nonatomic) NSTimeInterval bombCooldownTime;
 @property (nonatomic, readonly) BOOL bombAvailable;
 
