@@ -11,15 +11,21 @@
 
 @implementation FTTObject
 
+static CGFloat FTTDefaultObjectWidth;
 
 - (id)init {
   self = [super init];
 
   if (self) {
+    self.width = FTTDefaultObjectWidth;
     [self resetPosition];
   }
 
   return self;
+}
+
++ (void)registerDefaultObjectWidth:(CGFloat)width {
+  FTTDefaultObjectWidth = width;
 }
 
 

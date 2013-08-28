@@ -21,6 +21,16 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
 
 @implementation FTTEnemyObject
 
+static CGSize FTTUniverseSize;
+static NSUInteger FTTTimeToUserParam;
+
++ (void)registerUniverseSize:(CGSize)size {
+  FTTUniverseSize = size;
+}
+
++ (void)registerTimeToUserParam:(NSUInteger)param {
+  FTTTimeToUserParam = param;
+}
 
 - (void)resetPosition {
   FTTEnemySpawnLocation location = rand() % 4;
@@ -29,19 +39,19 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
 
   switch (location) {
     case FTTEnemySpawnLocationTop: {
-      center = CGPointMake(rand() % DeviceWidth(), 0);
+      center = CGPointMake(rand() % (NSUInteger)FTTUniverseSize.width, 0);
       break;
     }
     case FTTEnemySpawnLocationLeft: {
-      center = CGPointMake(0, rand() % DeviceHeight());
+      center = CGPointMake(0, rand() % (NSUInteger)FTTUniverseSize.height);
       break;
     }
     case FTTEnemySpawnLocationBottom: {
-      center = CGPointMake(rand() % DeviceWidth(), DeviceHeight());
+      center = CGPointMake(rand() % (NSUInteger)FTTUniverseSize.width, (NSUInteger)FTTUniverseSize.height);
       break;
     }
     case FTTEnemySpawnLocationRight: {
-      center = CGPointMake(DeviceWidth(), rand() % DeviceHeight());
+      center = CGPointMake(FTTUniverseSize.width, rand() % (NSUInteger)FTTUniverseSize.height);
       break;
     }
   }
@@ -51,11 +61,7 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
 
 
 - (void)resetSpeedWithUserObject:(FTTUserObject *)userObject {
-  CGFloat timeToUser = rand() % 90 + 90; // fps is 42, so this better be 90 ~ 180?
-
-  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    timeToUser = rand() % 60 + 60;
-  }
+  CGFloat timeToUser = rand() % FTTTimeToUserParam + FTTTimeToUserParam; // fps is 42, so this better be 90 ~ 180?
 
   self.speedX = (userObject.position.x - self.position.x) / timeToUser;
   self.speedY = (userObject.position.y - self.position.y) / timeToUser;
@@ -66,7 +72,7 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
   CGFloat newX = self.position.x + self.speedX;
   CGFloat newY = self.position.y + self.speedY;
 
-  if (newX <= 0 || newX >= DeviceWidth() || newY <= 0 || newY >= DeviceHeight()) {
+  if (newX <= 0 || newX >= FTTUniverseSize.width || newY <= 0 || newY >= FTTUniverseSize.height) {
     [self resetPosition];
     [self resetSpeedWithUserObject:userObject];
   } else {
@@ -76,8 +82,8 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
 
 
 - (BOOL)hitUserObject:(FTTUserObject *)userObject {
-  if (ABS(self.position.x - userObject.position.x) < FTTObjectWidth() &&
-      ABS(self.position.y - userObject.position.y) < FTTObjectWidth()) {
+  if (ABS(self.position.x - userObject.position.x) < userObject.width &&
+      ABS(self.position.y - userObject.position.y) < userObject.width) {
     return YES;
   }
 

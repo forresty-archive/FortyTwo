@@ -11,6 +11,7 @@
 #import "FTTUserObject.h"
 #import "FTTEnemyObject.h"
 
+#import "FTTDefines.h"
 
 @interface FTTUniverseView ()
 
