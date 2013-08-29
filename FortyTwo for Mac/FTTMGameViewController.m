@@ -57,7 +57,7 @@
     self.enemies = [NSMutableArray arrayWithCapacity:42];
 
     for (int i = 0; i < 42; i++) {
-      FTTEnemyObject *enemy = [[FTTEnemyObject alloc] init];
+      FTTEnemyObject *enemy = [[FTTEnemyObject alloc] initWithTargetUserObject:self.userObject];
 
       [self.enemies addObject:enemy];
     }
@@ -113,7 +113,7 @@
   for (int i = 0; i < 42; i++) {
     FTTEnemyObject *enemy = self.enemies[i];
 
-    [enemy moveTowardsUserObject:self.userObject];
+    [enemy move];
   }
 }
 
@@ -126,7 +126,7 @@
   for (int i = 0; i < 42; i++) {
     FTTEnemyObject *enemy = self.enemies[i];
 
-    if ([enemy hitUserObject:self.userObject]) {
+    if ([enemy hitTarget]) {
       [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self youAreDead];
       }];

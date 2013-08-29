@@ -191,6 +191,24 @@
 			path = FortyTwo;
 			sourceTree = "<group>";
 		};
+		6800F02A17CF418800337E27 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				684F4FA217CD077B00C1E066 /* FTTMGameViewController.h */,
+				684F4FA317CD077B00C1E066 /* FTTMGameViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6800F02B17CF418F00337E27 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				684F4FA517CD08A200C1E066 /* FTTMUniverseView.h */,
+				684F4FA617CD08A200C1E066 /* FTTMUniverseView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		684F4F7317CD05F200C1E066 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,10 +226,8 @@
 				684F4F8417CD05F200C1E066 /* FTTMAppDelegate.m */,
 				684F4F8617CD05F200C1E066 /* MainMenu.xib */,
 				684F4F7817CD05F200C1E066 /* Supporting Files */,
-				684F4FA217CD077B00C1E066 /* FTTMGameViewController.h */,
-				684F4FA317CD077B00C1E066 /* FTTMGameViewController.m */,
-				684F4FA517CD08A200C1E066 /* FTTMUniverseView.h */,
-				684F4FA617CD08A200C1E066 /* FTTMUniverseView.m */,
+				6800F02A17CF418800337E27 /* Controllers */,
+				6800F02B17CF418F00337E27 /* Views */,
 			);
 			path = "FortyTwo for Mac";
 			sourceTree = "<group>";
