@@ -19,14 +19,16 @@
 @property (nonatomic) CGFloat speedX;
 @property (nonatomic) CGFloat speedY;
 
+- (instancetype)initWithTargetUserObject:(FTTUserObject *)userObject;
+
 - (void)resetPosition;
 
-- (void)resetSpeedWithUserObject:(FTTUserObject *)userObject;
+- (void)resetSpeed;
 
 // reset position and speed automatically if at the edge of the world
-- (void)moveTowardsUserObject:(FTTUserObject *)userObject;
+- (void)move;
 
-- (BOOL)hitUserObject:(FTTUserObject *)userObject;
+- (BOOL)hitTarget;
 
 + (void)registerUniverseSize:(CGSize)universeSize;
 + (void)registerTimeToUserParam:(NSUInteger)param;

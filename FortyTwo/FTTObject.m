@@ -9,9 +9,11 @@
 #import "FTTObject.h"
 
 
+static CGFloat FTTDefaultObjectWidth;
+
+
 @implementation FTTObject
 
-static CGFloat FTTDefaultObjectWidth;
 
 - (id)init {
   self = [super init];
@@ -28,9 +30,9 @@ static CGFloat FTTDefaultObjectWidth;
   FTTDefaultObjectWidth = width;
 }
 
-
 - (void)resetPosition {
   @throw @"should override";
 }
+
 
 @end

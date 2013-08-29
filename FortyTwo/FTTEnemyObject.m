@@ -19,10 +19,19 @@ typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
 };
 
 
+@interface FTTEnemyObject ()
+
+@property (nonatomic) FTTUserObject *userObject;
+
+@end
+
+
 @implementation FTTEnemyObject
+
 
 static CGSize FTTUniverseSize;
 static NSUInteger FTTTimeToUserParam;
+
 
 + (void)registerUniverseSize:(CGSize)size {
   FTTUniverseSize = size;
@@ -31,6 +40,18 @@ static NSUInteger FTTTimeToUserParam;
 + (void)registerTimeToUserParam:(NSUInteger)param {
   FTTTimeToUserParam = param;
 }
+
+
+- (instancetype)initWithTargetUserObject:(FTTUserObject *)userObject {
+  self = [super init];
+
+  if (self) {
+    self.userObject = userObject;
+  }
+
+  return self;
+}
+
 
 - (void)resetPosition {
   FTTEnemySpawnLocation location = rand() % 4;
@@ -60,30 +81,30 @@ static NSUInteger FTTTimeToUserParam;
 }
 
 
-- (void)resetSpeedWithUserObject:(FTTUserObject *)userObject {
+- (void)resetSpeed {
   CGFloat timeToUser = rand() % FTTTimeToUserParam + FTTTimeToUserParam; // fps is 42, so this better be 90 ~ 180?
 
-  self.speedX = (userObject.position.x - self.position.x) / timeToUser;
-  self.speedY = (userObject.position.y - self.position.y) / timeToUser;
+  self.speedX = (self.userObject.position.x - self.position.x) / timeToUser;
+  self.speedY = (self.userObject.position.y - self.position.y) / timeToUser;
 }
 
 
-- (void)moveTowardsUserObject:(FTTUserObject *)userObject {
+- (void)move {
   CGFloat newX = self.position.x + self.speedX;
   CGFloat newY = self.position.y + self.speedY;
 
   if (newX <= 0 || newX >= FTTUniverseSize.width || newY <= 0 || newY >= FTTUniverseSize.height) {
     [self resetPosition];
-    [self resetSpeedWithUserObject:userObject];
+    [self resetSpeed];
   } else {
     self.position = CGPointMake(newX, newY);
   }
 }
 
 
-- (BOOL)hitUserObject:(FTTUserObject *)userObject {
-  if (ABS(self.position.x - userObject.position.x) < userObject.width &&
-      ABS(self.position.y - userObject.position.y) < userObject.width) {
+- (BOOL)hitTarget {
+  if (ABS(self.position.x - self.userObject.position.x) < self.userObject.width &&
+      ABS(self.position.y - self.userObject.position.y) < self.userObject.width) {
     return YES;
   }
 

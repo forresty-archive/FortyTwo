@@ -181,6 +181,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6800F02917CF277700337E27 /* FortyTwoKit */ = {
+			isa = PBXGroup;
+			children = (
+				684F4FAA17CD6B7F00C1E066 /* FTTDefines.h */,
+				68CFF05A17B7946900BD9DE1 /* Models */,
+			);
+			name = FortyTwoKit;
+			path = FortyTwo;
+			sourceTree = "<group>";
+		};
 		684F4F7317CD05F200C1E066 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,7 +250,6 @@
 		68CFF05A17B7946900BD9DE1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				684F4FAA17CD6B7F00C1E066 /* FTTDefines.h */,
 				68CFF05C17B7948600BD9DE1 /* FTTObject.h */,
 				68CFF05D17B7948600BD9DE1 /* FTTObject.m */,
 				68CFF05717B7944300BD9DE1 /* FTTUserObject.h */,
@@ -272,6 +281,7 @@
 		68E12D2C17B604B400CCCA01 = {
 			isa = PBXGroup;
 			children = (
+				6800F02917CF277700337E27 /* FortyTwoKit */,
 				68E12D3E17B604B400CCCA01 /* FortyTwo */,
 				68E12D5C17B604B400CCCA01 /* FortyTwoTests */,
 				684F4F7717CD05F200C1E066 /* FortyTwo for Mac */,
@@ -318,7 +328,6 @@
 				68E12D3F17B604B400CCCA01 /* Supporting Files */,
 				68CFF05B17B7947200BD9DE1 /* Controllers */,
 				68CFF06C17B9247400BD9DE1 /* Views */,
-				68CFF05A17B7946900BD9DE1 /* Models */,
 			);
 			path = FortyTwo;
 			sourceTree = "<group>";
@@ -898,6 +907,7 @@
 				684F4F9D17CD05F300C1E066 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		684F4FA117CD05F300C1E066 /* Build configuration list for PBXNativeTarget "FortyTwo for MacTests" */ = {
 			isa = XCConfigurationList;
@@ -906,6 +916,7 @@
 				684F4F9F17CD05F300C1E066 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		68E12D3017B604B400CCCA01 /* Build configuration list for PBXProject "FortyTwo" */ = {
 			isa = XCConfigurationList;
