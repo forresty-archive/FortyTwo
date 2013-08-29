@@ -14,7 +14,6 @@
 @implementation FTTMAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-  NSLog(@"wtf");
   self.gameViewController = [[FTTMGameViewController alloc] init];
 
   self.gameViewController.view.frame = ((NSView *)self.window.contentView).bounds;
