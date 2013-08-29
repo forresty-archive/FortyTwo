@@ -21,8 +21,6 @@
 
 - (instancetype)initWithTargetUserObject:(FTTUserObject *)userObject;
 
-- (void)resetPosition;
-
 - (void)resetSpeed;
 
 // reset position and speed automatically if at the edge of the world

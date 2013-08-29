@@ -15,6 +15,4 @@
 
 + (void)registerDefaultSpawnPosition:(CGPoint)position;
 
-- (void)resetPosition;
-
 @end
