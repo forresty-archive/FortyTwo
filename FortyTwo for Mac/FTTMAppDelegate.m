@@ -19,8 +19,8 @@
 
 - (void)restartGame {
   if (self.gameViewController) {
-    [self.gameViewController.view removeFromSuperview];
     [self.gameViewController stopGame];
+    [self.gameViewController.view removeFromSuperview];
   }
 
   self.gameViewController = [[FTTMGameViewController alloc] init];
