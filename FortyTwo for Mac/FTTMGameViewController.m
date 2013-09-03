@@ -43,7 +43,7 @@
   [FTTObject registerDefaultObjectWidth:5];
   [FTTUserObject registerDefaultSpawnPosition:CGPointMake(240, 180)];
   [FTTEnemyObject registerUniverseSize:CGSizeMake(480, 360)];
-  [FTTEnemyObject registerTimeToUserParam:60];
+  [FTTEnemyObject registerTimeToUserParam:90];
 }
 
 - (id)init {
@@ -72,11 +72,12 @@
 }
 
 
+# pragma mark - misc
+
+
 - (void)simulateFrame {
   [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
   [self moveEnemies];
-
-  [NSThread sleepForTimeInterval:1.0 / 42];
 
   [[NSOperationQueue mainQueue] addOperationWithBlock:^{
     [self updateUniverse];
@@ -84,6 +85,9 @@
 
   [self detectCollision];
 }
+
+
+# pragma mark - game play
 
 
 - (void)updateTimestampsWithTimeInterval:(NSTimeInterval)timestamp {
