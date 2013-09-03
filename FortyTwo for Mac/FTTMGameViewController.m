@@ -16,6 +16,14 @@
 #import "FTTEnemyObject.h"
 
 
+typedef NS_ENUM(NSUInteger, FTTMUserObjectHeading) {
+  FTTMUserObjectHeadingNone,
+  FTTMUserObjectHeadingUp,
+  FTTMUserObjectHeadingLeft,
+  FTTMUserObjectHeadingDown,
+  FTTMUserObjectHeadingRight,
+};
+
 @interface FTTMGameViewController ()
 
 // views
@@ -27,6 +35,8 @@
 
 // game play
 @property (nonatomic) BOOL gamePlaying;
+
+@property (nonatomic) FTTMUserObjectHeading userObjectHeading;
 
 @property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
@@ -62,6 +72,8 @@
 
 - (void)simulateFrame {
   [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
+
+  [self moveUserObject];
   [self moveEnemies];
 
   [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -116,6 +128,29 @@
   CGPoint newCenterForPlane = CGPointMake(newX, newY);
 
   return newCenterForPlane;
+}
+
+- (void)moveUserObject {
+  switch (self.userObjectHeading) {
+    case FTTMUserObjectHeadingUp: {
+      self.userObject.position = [self updatedPlanePositionWithSpeedX:0 speedY:-1];
+      break;
+    }
+    case FTTMUserObjectHeadingDown: {
+      self.userObject.position = [self updatedPlanePositionWithSpeedX:0 speedY:1];
+      break;
+    }
+    case FTTMUserObjectHeadingLeft: {
+      self.userObject.position = [self updatedPlanePositionWithSpeedX:-1 speedY:0];
+      break;
+    }
+    case FTTMUserObjectHeadingRight: {
+      self.userObject.position = [self updatedPlanePositionWithSpeedX:1 speedY:0];
+      break;
+    }
+    default:
+      break;
+  }
 }
 
 - (void)moveEnemies {
@@ -178,24 +213,25 @@
   }
 }
 
+- (void)keyUp:(NSEvent *)theEvent {
+  [super keyUp:theEvent];
+  self.userObjectHeading = FTTMUserObjectHeadingNone;
+}
+
 - (void)moveUp:(id)sender {
-  self.userObject.position = [self updatedPlanePositionWithSpeedX:0 speedY:-1];
-  [self detectCollision];
+  self.userObjectHeading = FTTMUserObjectHeadingUp;
 }
 
 - (void)moveDown:(id)sender {
-  self.userObject.position = [self updatedPlanePositionWithSpeedX:0 speedY:1];
-  [self detectCollision];
+  self.userObjectHeading = FTTMUserObjectHeadingDown;
 }
 
 - (void)moveLeft:(id)sender {
-  self.userObject.position = [self updatedPlanePositionWithSpeedX:-1 speedY:0];
-  [self detectCollision];
+  self.userObjectHeading = FTTMUserObjectHeadingLeft;
 }
 
 - (void)moveRight:(id)sender {
-  self.userObject.position = [self updatedPlanePositionWithSpeedX:1 speedY:0];
-    [self detectCollision];
+  self.userObjectHeading = FTTMUserObjectHeadingRight;
 }
 
 
