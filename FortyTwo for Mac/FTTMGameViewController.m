@@ -50,22 +50,7 @@
   self = [super init];
 
   if (self) {
-    self.universeView = [[FTTMUniverseView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];
-    self.view = self.universeView;
-    self.userObject = [[FTTUserObject alloc] init];
-
-    self.enemies = [NSMutableArray arrayWithCapacity:42];
-
-    for (int i = 0; i < 42; i++) {
-      FTTEnemyObject *enemy = [[FTTEnemyObject alloc] initWithTargetUserObject:self.userObject];
-
-      [self.enemies addObject:enemy];
-    }
-
-    self.universeView.dataSource = self;
-
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/42 target:self selector:@selector(simulateFrame) userInfo:nil repeats:YES];
-    self.gamePlaying = YES;
+    [self restartGame];
   }
 
   return self;
@@ -88,6 +73,26 @@
 
 
 # pragma mark - game play
+
+
+- (void)restartGame {
+  self.universeView = [[FTTMUniverseView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];
+  self.view = self.universeView;
+  self.userObject = [[FTTUserObject alloc] init];
+
+  self.enemies = [NSMutableArray arrayWithCapacity:42];
+
+  for (int i = 0; i < 42; i++) {
+    FTTEnemyObject *enemy = [[FTTEnemyObject alloc] initWithTargetUserObject:self.userObject];
+
+    [self.enemies addObject:enemy];
+  }
+
+  self.universeView.dataSource = self;
+
+  self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/42 target:self selector:@selector(simulateFrame) userInfo:nil repeats:YES];
+  self.gamePlaying = YES;
+}
 
 
 - (void)updateTimestampsWithTimeInterval:(NSTimeInterval)timestamp {
@@ -198,7 +203,6 @@
   return self.userObject.position;
 }
 
-
 - (NSArray *)positionsOfEnemyObjects {
   NSMutableArray *positions = [NSMutableArray arrayWithCapacity:42];
   for (FTTEnemyObject *enemy in self.enemies) {
@@ -207,5 +211,6 @@
 
   return positions;
 }
+
 
 @end

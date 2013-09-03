@@ -13,4 +13,6 @@
 
 @interface FTTMGameViewController : NSViewController <FTTMUniverseViewDataSource>
 
+- (IBAction) restartGame;
+
 @end
