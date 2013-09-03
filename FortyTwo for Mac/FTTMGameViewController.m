@@ -16,12 +16,16 @@
 #import "FTTEnemyObject.h"
 
 
-typedef NS_ENUM(NSUInteger, FTTMUserObjectHeading) {
-  FTTMUserObjectHeadingNone,
-  FTTMUserObjectHeadingUp,
-  FTTMUserObjectHeadingLeft,
-  FTTMUserObjectHeadingDown,
-  FTTMUserObjectHeadingRight,
+typedef NS_ENUM(NSUInteger, FTTMUserObjectVerticalHeading) {
+  FTTMUserObjectVerticalHeadingNone,
+  FTTMUserObjectVerticalHeadingUp,
+  FTTMUserObjectVerticalHeadingDown,
+};
+
+typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
+  FTTMUserObjectHorizontalHeadingNone,
+  FTTMUserObjectHorizontalHeadingLeft,
+  FTTMUserObjectHorizontalHeadingRight,
 };
 
 @interface FTTMGameViewController ()
@@ -36,7 +40,8 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHeading) {
 // game play
 @property (nonatomic) BOOL gamePlaying;
 
-@property (nonatomic) FTTMUserObjectHeading userObjectHeading;
+@property (nonatomic) FTTMUserObjectVerticalHeading userObjectVerticalHeading;
+@property (nonatomic) FTTMUserObjectHorizontalHeading userObjectHorizontalHeading;
 
 @property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
@@ -44,6 +49,9 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHeading) {
 @property (nonatomic) NSTimer *timer;
 
 @end
+
+
+static CGFloat FTTMUserObjectSpeed = 0.5;
 
 
 @implementation FTTMGameViewController
@@ -131,21 +139,26 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHeading) {
 }
 
 - (void)moveUserObject {
-  switch (self.userObjectHeading) {
-    case FTTMUserObjectHeadingUp: {
-      self.userObject.position = [self updatedPlanePositionWithSpeedX:0 speedY:-1];
+  switch (self.userObjectVerticalHeading) {
+    case FTTMUserObjectVerticalHeadingUp: {
+      self.userObject.position = [self updatedPlanePositionWithSpeedX:0 speedY:-FTTMUserObjectSpeed];
       break;
     }
-    case FTTMUserObjectHeadingDown: {
-      self.userObject.position = [self updatedPlanePositionWithSpeedX:0 speedY:1];
+    case FTTMUserObjectVerticalHeadingDown: {
+      self.userObject.position = [self updatedPlanePositionWithSpeedX:0 speedY:FTTMUserObjectSpeed];
       break;
     }
-    case FTTMUserObjectHeadingLeft: {
-      self.userObject.position = [self updatedPlanePositionWithSpeedX:-1 speedY:0];
+    default:
+      break;
+  }
+
+  switch (self.userObjectHorizontalHeading) {
+    case FTTMUserObjectHorizontalHeadingLeft: {
+      self.userObject.position = [self updatedPlanePositionWithSpeedX:-FTTMUserObjectSpeed speedY:0];
       break;
     }
-    case FTTMUserObjectHeadingRight: {
-      self.userObject.position = [self updatedPlanePositionWithSpeedX:1 speedY:0];
+    case FTTMUserObjectHorizontalHeadingRight: {
+      self.userObject.position = [self updatedPlanePositionWithSpeedX:FTTMUserObjectSpeed speedY:0];
       break;
     }
     default:
@@ -215,23 +228,29 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHeading) {
 
 - (void)keyUp:(NSEvent *)theEvent {
   [super keyUp:theEvent];
-  self.userObjectHeading = FTTMUserObjectHeadingNone;
+  if (theEvent.keyCode == 126 || theEvent.keyCode == 125) {
+    // up or down
+    self.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingNone;
+  } else if (theEvent.keyCode == 123 || theEvent.keyCode == 124) {
+    // left or right
+    self.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingNone;
+  }
 }
 
 - (void)moveUp:(id)sender {
-  self.userObjectHeading = FTTMUserObjectHeadingUp;
+  self.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingUp;
 }
 
 - (void)moveDown:(id)sender {
-  self.userObjectHeading = FTTMUserObjectHeadingDown;
+  self.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingDown;
 }
 
 - (void)moveLeft:(id)sender {
-  self.userObjectHeading = FTTMUserObjectHeadingLeft;
+  self.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingLeft;
 }
 
 - (void)moveRight:(id)sender {
-  self.userObjectHeading = FTTMUserObjectHeadingRight;
+  self.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingRight;
 }
 
 
