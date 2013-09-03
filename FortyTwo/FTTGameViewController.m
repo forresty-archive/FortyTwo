@@ -367,7 +367,7 @@
       [weakSelf resetEnemies];
     }
 
-    // move planex
+    // move plane
     weakSelf.userObject.position = [weakSelf updatedPlanePositionWithSpeedX:accelerometerData.acceleration.x
                                                                      speedY:accelerometerData.acceleration.y];
 
