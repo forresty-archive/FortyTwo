@@ -14,6 +14,15 @@
 @implementation FTTMAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+  [self restartGame];
+}
+
+- (void)restartGame {
+  if (self.gameViewController) {
+    [self.gameViewController.view removeFromSuperview];
+    [self.gameViewController stopGame];
+  }
+
   self.gameViewController = [[FTTMGameViewController alloc] init];
 
   self.gameViewController.view.frame = ((NSView *)self.window.contentView).bounds;
@@ -22,5 +31,6 @@
 
   [self.window makeFirstResponder:self.gameViewController];
 }
+
 
 @end

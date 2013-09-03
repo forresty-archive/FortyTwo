@@ -147,10 +147,8 @@
 
 - (void)youAreDead {
   @synchronized(self) {
-    [self.timer invalidate];
-
     if (self.gamePlaying) {
-      self.gamePlaying = NO;
+      [self stopGame];
 
       NSLog(@"you are dead");
 //      if (self.gameCenterEnabled) {
@@ -162,6 +160,11 @@
   }
 }
 
+- (void)stopGame {
+  [self.timer invalidate];
+
+  self.gamePlaying = NO;
+}
 
 # pragma mark - keyboard event handling
 

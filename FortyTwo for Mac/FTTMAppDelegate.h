@@ -16,6 +16,8 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
+- (IBAction)restartGame;
+
 @property (nonatomic) FTTMGameViewController *gameViewController;
 
 @end
