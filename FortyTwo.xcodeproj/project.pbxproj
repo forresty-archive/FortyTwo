@@ -27,6 +27,7 @@
 		6851F51A17C4D28A002593AB /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51917C4D28A002593AB /* Default-Portrait@2x~ipad.png */; };
 		6851F51C17C4D566002593AB /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51B17C4D566002593AB /* Icon-72.png */; };
 		6851F51E17C4D568002593AB /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6851F51D17C4D568002593AB /* Icon-72@2x.png */; };
+		688F780417D5E65300A5D41C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 688F780317D5E65300A5D41C /* AudioToolbox.framework */; };
 		68CFF05017B73A5D00BD9DE1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68CFF04F17B73A5D00BD9DE1 /* GameKit.framework */; };
 		68CFF05317B7937600BD9DE1 /* FTTEnemyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF05217B7937600BD9DE1 /* FTTEnemyObject.m */; };
 		68CFF05617B793EB00BD9DE1 /* FTTUniverseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF05517B793EB00BD9DE1 /* FTTUniverseView.m */; };
@@ -98,6 +99,7 @@
 		6851F51917C4D28A002593AB /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		6851F51B17C4D566002593AB /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../Icon-72.png"; sourceTree = "<group>"; };
 		6851F51D17C4D568002593AB /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "../Icon-72@2x.png"; sourceTree = "<group>"; };
+		688F780317D5E65300A5D41C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		68CFF04F17B73A5D00BD9DE1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		68CFF05117B7937600BD9DE1 /* FTTEnemyObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTEnemyObject.h; sourceTree = "<group>"; };
 		68CFF05217B7937600BD9DE1 /* FTTEnemyObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTEnemyObject.m; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				688F780417D5E65300A5D41C /* AudioToolbox.framework in Frameworks */,
 				68CFF06117B8E57F00BD9DE1 /* AVFoundation.framework in Frameworks */,
 				68CFF05017B73A5D00BD9DE1 /* GameKit.framework in Frameworks */,
 				68E12D7117B618B600CCCA01 /* CoreMotion.framework in Frameworks */,
@@ -322,6 +325,7 @@
 		68E12D3717B604B400CCCA01 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				688F780317D5E65300A5D41C /* AudioToolbox.framework */,
 				68CFF06017B8E57F00BD9DE1 /* AVFoundation.framework */,
 				68CFF04F17B73A5D00BD9DE1 /* GameKit.framework */,
 				68E12D7017B618B600CCCA01 /* CoreMotion.framework */,

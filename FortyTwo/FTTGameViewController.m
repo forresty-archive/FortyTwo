@@ -160,6 +160,10 @@
     if (self.gamePlaying) {
       self.gamePlaying = NO;
 
+      // TODO: this seems not working
+      // Vibrate
+      AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+
       if (self.gameCenterEnabled) {
         [self reportScore];
       }
