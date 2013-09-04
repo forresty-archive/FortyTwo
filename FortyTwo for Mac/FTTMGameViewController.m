@@ -14,21 +14,8 @@
 // models
 #import "FTTUniverse.h"
 
-
 // keyboard control
-#import "FTTSpeedVector.h"
-
-typedef NS_ENUM(NSUInteger, FTTMUserObjectVerticalHeading) {
-  FTTMUserObjectVerticalHeadingNone,
-  FTTMUserObjectVerticalHeadingUp,
-  FTTMUserObjectVerticalHeadingDown,
-};
-
-typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
-  FTTMUserObjectHorizontalHeadingNone,
-  FTTMUserObjectHorizontalHeadingLeft,
-  FTTMUserObjectHorizontalHeadingRight,
-};
+#import "FTTKeyboardInputSource.h"
 
 
 @interface FTTMGameViewController ()
@@ -41,21 +28,14 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
 
 // game play
 @property (nonatomic) FTTFrameManager *frameManager;
+@property (nonatomic) FTTKeyboardInputSource *keyboardInputSource;
 
 @property (nonatomic) BOOL gamePlaying;
 
 @property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
 
-// user control
-@property (nonatomic) FTTMUserObjectVerticalHeading userObjectVerticalHeading;
-@property (nonatomic) FTTMUserObjectHorizontalHeading userObjectHorizontalHeading;
-@property (nonatomic) FTTSpeedVector *userSpeedVector;
-
 @end
-
-
-static CGFloat FTTMUserObjectSpeed = 0.5;
 
 
 @implementation FTTMGameViewController
@@ -76,7 +56,9 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
 
 
 - (void)restartGame {
-  self.userSpeedVector = [[FTTSpeedVector alloc] init];
+  self.keyboardInputSource = [[FTTKeyboardInputSource alloc] init];
+  self.nextResponder = self.keyboardInputSource;
+
   self.universeView = [[FTTMUniverseView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];
   self.view = self.universeView;
 
@@ -133,45 +115,6 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
   self.gamePlaying = NO;
 }
 
-# pragma mark - keyboard event handling
-
-
-- (void)keyDown:(NSEvent *)theEvent {
-  // Arrow keys are associated with the numeric keypad
-  if ([theEvent modifierFlags] & NSNumericPadKeyMask) {
-    [self interpretKeyEvents:[NSArray arrayWithObject:theEvent]];
-  } else {
-    [super keyDown:theEvent];
-  }
-}
-
-- (void)keyUp:(NSEvent *)theEvent {
-  [super keyUp:theEvent];
-  if (theEvent.keyCode == 126 || theEvent.keyCode == 125) {
-    // up or down
-    self.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingNone;
-  } else if (theEvent.keyCode == 123 || theEvent.keyCode == 124) {
-    // left or right
-    self.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingNone;
-  }
-}
-
-- (void)moveUp:(id)sender {
-  self.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingUp;
-}
-
-- (void)moveDown:(id)sender {
-  self.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingDown;
-}
-
-- (void)moveLeft:(id)sender {
-  self.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingLeft;
-}
-
-- (void)moveRight:(id)sender {
-  self.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingRight;
-}
-
 
 # pragma mark - FTTFrameManagerDelegate
 
@@ -179,37 +122,7 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
 - (void)frameManagerDidUpdateFrame {
   [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
 
-  switch (self.userObjectVerticalHeading) {
-    case FTTMUserObjectVerticalHeadingUp: {
-      self.userSpeedVector.y = -FTTMUserObjectSpeed;
-      break;
-    }
-    case FTTMUserObjectVerticalHeadingDown: {
-      self.userSpeedVector.y = FTTMUserObjectSpeed;
-      break;
-    }
-    default: {
-      self.userSpeedVector.y = 0;
-      break;
-    }
-  }
-
-  switch (self.userObjectHorizontalHeading) {
-    case FTTMUserObjectHorizontalHeadingLeft: {
-      self.userSpeedVector.x = -FTTMUserObjectSpeed;
-      break;
-    }
-    case FTTMUserObjectHorizontalHeadingRight: {
-      self.userSpeedVector.x = FTTMUserObjectSpeed;
-      break;
-    }
-    default: {
-      self.userSpeedVector.x = 0;
-      break;
-    }
-  }
-
-  [self.universe updateUserWithSpeedVector:self.userSpeedVector];
+  [self.universe updateUserWithSpeedVector:self.keyboardInputSource.userSpeedVector];
   [self.universe tick];
 
   [[NSOperationQueue mainQueue] addOperationWithBlock:^{

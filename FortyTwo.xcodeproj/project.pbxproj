@@ -42,6 +42,9 @@
 		680EDD4D17D6EFB600EEACE8 /* FTTUniverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD4B17D6EFB600EEACE8 /* FTTUniverse.m */; };
 		680EDD5117D6FFAD00EEACE8 /* FTTSpeedVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */; };
 		680EDD5217D6FFAD00EEACE8 /* FTTSpeedVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */; };
+		680EDD5517D703BD00EEACE8 /* FTTInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5417D703BD00EEACE8 /* FTTInputSource.m */; };
+		680EDD5617D703BD00EEACE8 /* FTTInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5417D703BD00EEACE8 /* FTTInputSource.m */; };
+		680EDD5917D7040500EEACE8 /* FTTKeyboardInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5817D7040500EEACE8 /* FTTKeyboardInputSource.m */; };
 		684F4F7217CD05F200C1E066 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684F4F7117CD05F200C1E066 /* Cocoa.framework */; };
 		684F4F7C17CD05F200C1E066 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 684F4F7A17CD05F200C1E066 /* InfoPlist.strings */; };
 		684F4F7E17CD05F200C1E066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4F7D17CD05F200C1E066 /* main.m */; };
@@ -119,6 +122,10 @@
 		680EDD4E17D6F3D800EEACE8 /* FTTMUniverseViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTMUniverseViewDataSource.h; sourceTree = "<group>"; };
 		680EDD4F17D6FFAD00EEACE8 /* FTTSpeedVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTSpeedVector.h; sourceTree = "<group>"; };
 		680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTSpeedVector.m; sourceTree = "<group>"; };
+		680EDD5317D703BD00EEACE8 /* FTTInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTInputSource.h; sourceTree = "<group>"; };
+		680EDD5417D703BD00EEACE8 /* FTTInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTInputSource.m; sourceTree = "<group>"; };
+		680EDD5717D7040500EEACE8 /* FTTKeyboardInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTKeyboardInputSource.h; sourceTree = "<group>"; };
+		680EDD5817D7040500EEACE8 /* FTTKeyboardInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTKeyboardInputSource.m; sourceTree = "<group>"; };
 		684F4F7017CD05F200C1E066 /* FortyTwo for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FortyTwo for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		684F4F7117CD05F200C1E066 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		684F4F7417CD05F200C1E066 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -316,6 +323,10 @@
 				680EDD4B17D6EFB600EEACE8 /* FTTUniverse.m */,
 				680EDD4F17D6FFAD00EEACE8 /* FTTSpeedVector.h */,
 				680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */,
+				680EDD5317D703BD00EEACE8 /* FTTInputSource.h */,
+				680EDD5417D703BD00EEACE8 /* FTTInputSource.m */,
+				680EDD5717D7040500EEACE8 /* FTTKeyboardInputSource.h */,
+				680EDD5817D7040500EEACE8 /* FTTKeyboardInputSource.m */,
 			);
 			path = "FortyTwo for Mac";
 			sourceTree = "<group>";
@@ -791,6 +802,8 @@
 				680EDD4917D6EB5C00EEACE8 /* FTTFrameManager.m in Sources */,
 				680EDD4D17D6EFB600EEACE8 /* FTTUniverse.m in Sources */,
 				680EDD5217D6FFAD00EEACE8 /* FTTSpeedVector.m in Sources */,
+				680EDD5617D703BD00EEACE8 /* FTTInputSource.m in Sources */,
+				680EDD5917D7040500EEACE8 /* FTTKeyboardInputSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,6 +831,7 @@
 				680EDD4817D6EB5C00EEACE8 /* FTTFrameManager.m in Sources */,
 				680EDD4C17D6EFB600EEACE8 /* FTTUniverse.m in Sources */,
 				680EDD5117D6FFAD00EEACE8 /* FTTSpeedVector.m in Sources */,
+				680EDD5517D703BD00EEACE8 /* FTTInputSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
