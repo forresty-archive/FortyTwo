@@ -19,6 +19,8 @@
 @property (nonatomic) AVAudioRecorder* recorder;
 @property (nonatomic) NSTimer* levelTimer;
 @property (nonatomic) CGFloat lowPassResults;
+
+// shout
 @property (nonatomic) BOOL shouting;
 
 @end
