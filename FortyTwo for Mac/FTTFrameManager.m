@@ -24,7 +24,6 @@
 
   if (self) {
     self.frameRate = frameRate;
-    [self start];
   }
 
   return self;

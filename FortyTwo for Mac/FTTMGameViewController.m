@@ -14,6 +14,7 @@
 // models
 #import "FTTUserObject.h"
 #import "FTTEnemyObject.h"
+#import "FTTUniverse.h"
 
 
 typedef NS_ENUM(NSUInteger, FTTMUserObjectVerticalHeading) {
@@ -42,11 +43,12 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
 
 @property (nonatomic) BOOL gamePlaying;
 
-@property (nonatomic) FTTMUserObjectVerticalHeading userObjectVerticalHeading;
-@property (nonatomic) FTTMUserObjectHorizontalHeading userObjectHorizontalHeading;
-
 @property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
+
+// user control
+@property (nonatomic) FTTMUserObjectVerticalHeading userObjectVerticalHeading;
+@property (nonatomic) FTTMUserObjectHorizontalHeading userObjectHorizontalHeading;
 
 
 @end
