@@ -72,7 +72,6 @@
   self.gamePlaying = YES;
 }
 
-
 - (void)updateTimestampsWithTimeInterval:(NSTimeInterval)timestamp {
   if (self.resumedTimestamp == 0) {
     self.resumedTimestamp = timestamp;
@@ -80,11 +79,9 @@
   self.cumulatedCurrentGamePlayTime = timestamp - self.resumedTimestamp;
 }
 
-
 - (void)updateUniverse {
   [self.universeView setNeedsDisplay:YES];
 }
-
 
 - (void)detectCollision {
   if (self.universe.userIsHit) {
@@ -100,11 +97,6 @@
       [self stopGame];
 
       NSLog(@"you are dead");
-//      if (self.gameCenterEnabled) {
-//        [self reportScore];
-//      }
-//
-//      [self showGameOverAlert];
     }
   }
 }
@@ -131,5 +123,6 @@
 
   [self detectCollision];
 }
+
 
 @end

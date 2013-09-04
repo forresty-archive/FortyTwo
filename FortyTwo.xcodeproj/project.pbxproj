@@ -117,8 +117,8 @@
 		680EDD0617D6DF0E00EEACE8 /* FortyTwoBeta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FortyTwoBeta-Info.plist"; sourceTree = "<group>"; };
 		680EDD4617D6EB5C00EEACE8 /* FTTFrameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTFrameManager.h; sourceTree = "<group>"; };
 		680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTFrameManager.m; sourceTree = "<group>"; };
-		680EDD4A17D6EFB600EEACE8 /* FTTUniverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTUniverse.h; sourceTree = "<group>"; };
-		680EDD4B17D6EFB600EEACE8 /* FTTUniverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTUniverse.m; sourceTree = "<group>"; };
+		680EDD4A17D6EFB600EEACE8 /* FTTUniverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTTUniverse.h; path = "FortyTwo for Mac/FTTUniverse.h"; sourceTree = SOURCE_ROOT; };
+		680EDD4B17D6EFB600EEACE8 /* FTTUniverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTTUniverse.m; path = "FortyTwo for Mac/FTTUniverse.m"; sourceTree = SOURCE_ROOT; };
 		680EDD4E17D6F3D800EEACE8 /* FTTMUniverseViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTMUniverseViewDataSource.h; sourceTree = "<group>"; };
 		680EDD4F17D6FFAD00EEACE8 /* FTTSpeedVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTSpeedVector.h; sourceTree = "<group>"; };
 		680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTSpeedVector.m; sourceTree = "<group>"; };
@@ -319,8 +319,6 @@
 				6800F02B17CF418F00337E27 /* Views */,
 				680EDD4617D6EB5C00EEACE8 /* FTTFrameManager.h */,
 				680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */,
-				680EDD4A17D6EFB600EEACE8 /* FTTUniverse.h */,
-				680EDD4B17D6EFB600EEACE8 /* FTTUniverse.m */,
 				680EDD4F17D6FFAD00EEACE8 /* FTTSpeedVector.h */,
 				680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */,
 				680EDD5317D703BD00EEACE8 /* FTTInputSource.h */,
@@ -365,6 +363,8 @@
 		68CFF05A17B7946900BD9DE1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				680EDD4A17D6EFB600EEACE8 /* FTTUniverse.h */,
+				680EDD4B17D6EFB600EEACE8 /* FTTUniverse.m */,
 				68CFF05C17B7948600BD9DE1 /* FTTObject.h */,
 				68CFF05D17B7948600BD9DE1 /* FTTObject.m */,
 				68CFF05717B7944300BD9DE1 /* FTTUserObject.h */,
