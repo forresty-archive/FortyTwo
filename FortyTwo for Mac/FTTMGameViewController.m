@@ -8,6 +8,9 @@
 
 #import "FTTMGameViewController.h"
 
+// keyboard control
+#import "FTTMKeyboardInputSource.h"
+
 // views
 #import "FTTMUniverseView.h"
 
@@ -79,6 +82,7 @@
   self.universe = [[FTTUniverse alloc] initWithWidth:480 height:360];
   self.universeDataSource = [[FTTUniverseDataSource alloc] initWithUniverse:self.universe];
   self.universeView.dataSource = self.universeDataSource;
+  self.keyboardInputSource.delegate = self.universeDataSource;
 
   self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];
   self.frameManager.delegate = self;
@@ -132,16 +136,6 @@
   });
 
   [self detectCollision];
-}
-
-
-# pragma mark - FFTMKeyboardInputSourceDelegate
-
-
-- (void)keyboardInputSourceDidDeployedBomb {
-  dispatch_async(dispatch_get_main_queue(), ^{
-//    [self.universeView deployBomb];
-  });
 }
 
 

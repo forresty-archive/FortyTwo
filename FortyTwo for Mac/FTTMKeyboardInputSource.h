@@ -8,20 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "FTTMKeyboardInputSourceDelegate.h"
+
 
 @class FTTSpeedVector;
 
 
-@protocol FFTMKeyboardInputSourceDelegate <NSObject>
-
-- (void)keyboardInputSourceDidDeployedBomb;
-
-@end
-
-
 @interface FTTMKeyboardInputSource : NSResponder
 
-@property (nonatomic, weak) id<FFTMKeyboardInputSourceDelegate> delegate;
+@property (nonatomic, weak) id<FTTMKeyboardInputSourceDelegate> delegate;
 
 @property (nonatomic, readonly) FTTSpeedVector *userSpeedVector;
 

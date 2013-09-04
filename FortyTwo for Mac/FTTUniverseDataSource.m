@@ -73,4 +73,13 @@
 }
 
 
+# pragma mark - FFTMKeyboardInputSourceDelegate
+
+
+- (void)keyboardInputSourceDidDeployedBomb {
+  // hmm what to do?
+  NSLog(@"bomb deployed");
+}
+
+
 @end
