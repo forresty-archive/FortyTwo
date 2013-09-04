@@ -156,18 +156,12 @@
       // Vibrate
       AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 
-      if (self.gameCenterManager.gameCenterEnabled) {
-        [self reportScore];
-      }
+      [self.gameCenterManager reportScore:self.cumulatedCurrentGamePlayTime * 100
+                 forLeaderBoardIdentifier:@"com.forresty.FortyTwo.timeLasted"];
 
       [self showGameOverAlert];
     }
   }
-}
-
-- (void)reportScore {
-  [self.gameCenterManager reportScore:self.cumulatedCurrentGamePlayTime * 100
-             forLeaderBoardIdentifier:@"com.forresty.FortyTwo.timeLasted"];
 }
 
 - (void)showGameOverAlert {
@@ -264,6 +258,8 @@
 
     // bomb
     if (weakSelf.bombDeployed) {
+      [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.BluePill"];
+
       weakSelf.cumulatedBombCooldownTime = weakSelf.cumulatedCurrentGamePlayTime;
       [weakSelf.universeView deployBomb];
       [weakSelf resetEnemies];

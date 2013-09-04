@@ -68,12 +68,13 @@
 
 
 - (void)reportScore:(int64_t)score forLeaderBoardIdentifier:(NSString *)identifier {
-  NSParameterAssert(self.gameCenterEnabled);
-  GKScore *scoreReporter = [[GKScore alloc] initWithCategory:identifier];
-  scoreReporter.value = score;
-  scoreReporter.context = 0;
+  if (self.gameCenterEnabled) {
+    GKScore *scoreReporter = [[GKScore alloc] initWithCategory:identifier];
+    scoreReporter.value = score;
+    scoreReporter.context = 0;
 
-  [scoreReporter reportScoreWithCompletionHandler:nil];
+    [scoreReporter reportScoreWithCompletionHandler:nil];
+  }
 }
 
 
@@ -81,8 +82,22 @@
 
 
 - (void)reportAchievementWithIdentifier:(NSString *)identifier {
-
+  [self reportAchievementWithIdentifier:identifier percentComplete:100];
 }
 
+- (void)reportAchievementWithIdentifier:(NSString *)identifier percentComplete:(float)percent {
+  if (self.gameCenterEnabled) {
+    GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:identifier];
+
+    if (achievement) {
+      achievement.percentComplete = percent;
+      [achievement reportAchievementWithCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+          NSLog(@"Error in reporting achievements: %@", error);
+        }
+      }];
+    }
+  }
+}
 
 @end
