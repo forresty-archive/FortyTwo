@@ -72,7 +72,6 @@
   } else {
     [FTTEnemyObject registerTimeToUserParam:90];
   }
-
 }
 
 - (instancetype)init {
@@ -88,7 +87,6 @@
 
   return self;
 }
-
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -217,6 +215,7 @@
 
 
 # pragma mark - position update
+
 
 - (void)resetEnemies {
   for (int i = 0; i < 42; i++) {
