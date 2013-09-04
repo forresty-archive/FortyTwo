@@ -115,23 +115,6 @@
   [self.accelerometerInputSource start];
 }
 
-// used in simulator && dev env only
-//- (void)simulateFrame {
-//  [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
-//  [self moveEnemies];
-//
-//  self.userObject.position = [self updatedPlanePositionWithSpeedX:(rand() % 100 / 100.0) speedY:(rand() % 100 / 100.0)];
-//
-//  [NSThread sleepForTimeInterval:1.0 / 42];
-//
-//  [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//    [self updateUniverse];
-//  }];
-//
-//  // detect collision
-//  [self detectCollision];
-//}
-
 - (void)youAreDead {
   @synchronized(self) {
     [self.frameManager pause];
