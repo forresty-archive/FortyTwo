@@ -112,13 +112,13 @@
   self.cumulatedBombCooldownTime = 0;
   self.resumedTimestamp = 0;
 
-  [self.accelerometerInputSource start];
+  [self.accelerometerInputSource startUpdatingUserInput];
 }
 
 - (void)youAreDead {
   @synchronized(self) {
     [self.frameManager pause];
-    [self.accelerometerInputSource pause];
+    [self.accelerometerInputSource stopUpdatingUserInput];
 
     if (self.gamePlaying) {
       self.gamePlaying = NO;
@@ -152,7 +152,7 @@
       self.resumedTimestamp = 0;
 
       [self.frameManager pause];
-      [self.accelerometerInputSource pause];
+      [self.accelerometerInputSource stopUpdatingUserInput];
 
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Game Paused", nil)
                                                       message:nil
@@ -167,7 +167,7 @@
 
 - (void)resumeGame {
   [self.frameManager start];
-  [self.accelerometerInputSource start];
+  [self.accelerometerInputSource startUpdatingUserInput];
 }
 
 

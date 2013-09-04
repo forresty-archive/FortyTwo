@@ -16,8 +16,8 @@
 
 @property (readonly) FTTSpeedVector *userSpeedVector;
 
-- (void)start;
+- (void)startUpdatingUserInput;
 
-- (void)pause;
+- (void)stopUpdatingUserInput;
 
 @end

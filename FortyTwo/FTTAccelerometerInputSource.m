@@ -44,7 +44,7 @@
   return self;
 }
 
-- (void)start {
+- (void)startUpdatingUserInput {
   NSParameterAssert(self.motionMannager.accelerometerActive == NO);
 
 
@@ -63,7 +63,7 @@
   }];
 }
 
-- (void)pause {
+- (void)stopUpdatingUserInput {
   [self.motionMannager stopAccelerometerUpdates];
 }
 
