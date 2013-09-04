@@ -114,6 +114,7 @@
 		680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTFrameManager.m; sourceTree = "<group>"; };
 		680EDD4A17D6EFB600EEACE8 /* FTTUniverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTUniverse.h; sourceTree = "<group>"; };
 		680EDD4B17D6EFB600EEACE8 /* FTTUniverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTUniverse.m; sourceTree = "<group>"; };
+		680EDD4E17D6F3D800EEACE8 /* FTTMUniverseViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTMUniverseViewDataSource.h; sourceTree = "<group>"; };
 		684F4F7017CD05F200C1E066 /* FortyTwo for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FortyTwo for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		684F4F7117CD05F200C1E066 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		684F4F7417CD05F200C1E066 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -298,6 +299,7 @@
 		684F4F7717CD05F200C1E066 /* FortyTwo for Mac */ = {
 			isa = PBXGroup;
 			children = (
+				680EDD4E17D6F3D800EEACE8 /* FTTMUniverseViewDataSource.h */,
 				684F4F8317CD05F200C1E066 /* FTTMAppDelegate.h */,
 				684F4F8417CD05F200C1E066 /* FTTMAppDelegate.m */,
 				684F4F8617CD05F200C1E066 /* MainMenu.xib */,

@@ -8,15 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "FTTMUniverseViewDataSource.h"
+
 
 @class FTTUserObject;
-
-@protocol FTTMUniverseViewDataSource <NSObject>
-
-- (CGPoint)positionOfUserObject;
-- (NSArray *)positionsOfEnemyObjects;
-
-@end
 
 
 @interface FTTMUniverseView : NSView

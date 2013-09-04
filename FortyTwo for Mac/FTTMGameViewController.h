@@ -8,12 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "FTTMUniverseView.h"
-
 #import "FTTFrameManager.h"
 
 
-@interface FTTMGameViewController : NSViewController <FTTMUniverseViewDataSource, FTTFrameManagerDelegate>
+@interface FTTMGameViewController : NSViewController <FTTFrameManagerDelegate>
 
 - (void) stopGame;
 

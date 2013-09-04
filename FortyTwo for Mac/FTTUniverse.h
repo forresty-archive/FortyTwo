@@ -9,8 +9,30 @@
 #import <Foundation/Foundation.h>
 
 
-@interface FTTUniverse : NSObject
+#import "FTTMUniverseView.h"
+
+
+typedef NS_ENUM(NSUInteger, FTTMUserObjectVerticalHeading) {
+  FTTMUserObjectVerticalHeadingNone,
+  FTTMUserObjectVerticalHeadingUp,
+  FTTMUserObjectVerticalHeadingDown,
+};
+
+typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
+  FTTMUserObjectHorizontalHeadingNone,
+  FTTMUserObjectHorizontalHeadingLeft,
+  FTTMUserObjectHorizontalHeadingRight,
+};
+
+
+@interface FTTUniverse : NSObject <FTTMUniverseViewDataSource>
 
 - (void)tick;
+
+@property (nonatomic, readonly) NSMutableArray *enemies;
+
+// user control
+@property (nonatomic) FTTMUserObjectVerticalHeading userObjectVerticalHeading;
+@property (nonatomic) FTTMUserObjectHorizontalHeading userObjectHorizontalHeading;
 
 @end
