@@ -9,12 +9,12 @@
 #ifndef FortyTwo_FTTDefines_h
 #define FortyTwo_FTTDefines_h
 
-static NSUInteger DeviceWidth() {
+static NSUInteger FTTDeviceWidth() {
   return [UIScreen mainScreen].bounds.size.width;
 }
 
 
-static NSUInteger DeviceHeight() {
+static NSUInteger FTTDeviceHeight() {
   return [UIScreen mainScreen].bounds.size.height;
 }
 

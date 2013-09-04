@@ -65,8 +65,8 @@
 
 + (void)initialize {
   [FTTObject registerDefaultObjectWidth:FTTObjectWidth()];
-  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2)];
-  [FTTEnemyObject registerUniverseSize:CGSizeMake(DeviceWidth(), DeviceHeight())];
+  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(FTTDeviceWidth() / 2, FTTDeviceHeight() / 2)];
+  [FTTEnemyObject registerUniverseSize:CGSizeMake(FTTDeviceWidth(), FTTDeviceHeight())];
 
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
     [FTTEnemyObject registerTimeToUserParam:60];
@@ -74,7 +74,6 @@
     [FTTEnemyObject registerTimeToUserParam:90];
   }
 }
-
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -99,8 +98,7 @@
 
 
 - (void)restartGame {
-  self.universe = [[FTTUniverse alloc] initWithWidth:(NSUInteger)CGRectGetWidth(self.view.bounds)
-                                              height:(NSUInteger)CGRectGetHeight(self.view.bounds)];
+  self.universe = [[FTTUniverse alloc] initWithWidth:FTTDeviceWidth() height:FTTDeviceHeight()];
   self.universeView.dataSource = self.universe;
 
   self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];
