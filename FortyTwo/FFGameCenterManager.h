@@ -11,9 +11,9 @@
 
 @interface FFGameCenterManager : NSObject
 
-+ (instancetype)sharedManager;
-
 @property (nonatomic, readonly) BOOL gameCenterEnabled;
+
++ (instancetype)sharedManager;
 
 - (void)reportScore:(int64_t)score forLeaderBoardIdentifier:(NSString *)identifier;
 
