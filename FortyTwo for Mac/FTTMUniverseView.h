@@ -18,4 +18,6 @@
 
 @property (nonatomic) id<FTTUniverseViewDataSource> dataSource;
 
+@property (nonatomic) NSTimeInterval timeElapsed;
+
 @end

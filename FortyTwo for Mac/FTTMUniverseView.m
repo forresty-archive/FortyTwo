@@ -13,6 +13,9 @@ static inline CGFloat FTTObjectWidth() {
   return 5;
 }
 
+static NSUInteger FTTBombCooldownTime = 42;
+
+
 @implementation FTTMUniverseView
 
 
@@ -31,6 +34,17 @@ static inline CGFloat FTTObjectWidth() {
     CGPoint enemyPosition = NSPointFromString(positionString);
     [[NSBezierPath bezierPathWithRect:[self rectForObjectPosition:enemyPosition]] fill];
   }
+
+  // draw time
+  NSColor *progressBarColor = [NSColor whiteColor];
+  [progressBarColor setStroke];
+  CGRect timeBorderRect = CGRectMake(CGRectGetMaxX(self.bounds) - 120, CGRectGetMaxY(self.bounds) - 20, 100, 10);
+  [[NSBezierPath bezierPathWithRect:timeBorderRect] stroke];
+
+  [progressBarColor setFill];
+  CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 120, CGRectGetMaxY(self.bounds) - 20,
+                                     MIN(100, 100 * self.timeElapsed / FTTBombCooldownTime), 10);
+  [[NSBezierPath bezierPathWithRect:timePlayedRect] fill];
 }
 
 

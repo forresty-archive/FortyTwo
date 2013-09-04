@@ -19,6 +19,9 @@
 // keyboard control
 #import "FTTMKeyboardInputSource.h"
 
+// FFToolkit
+#import "FFStopWatch.h"
+
 
 @interface FTTMGameViewController ()
 
@@ -31,11 +34,9 @@
 // game play
 @property (nonatomic) FTTFrameManager *frameManager;
 @property (nonatomic) FTTMKeyboardInputSource *keyboardInputSource;
+@property (nonatomic) FFStopWatch *stopWatch;
 
 @property (nonatomic) BOOL gamePlaying;
-
-@property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
-@property (nonatomic) NSTimeInterval resumedTimestamp;
 
 @end
 
@@ -64,6 +65,8 @@
 
 
 - (void)restartGame {
+  self.stopWatch = [[FFStopWatch alloc] init];
+
   self.keyboardInputSource = [[FTTMKeyboardInputSource alloc] init];
   self.nextResponder = self.keyboardInputSource;
 
@@ -77,17 +80,13 @@
   self.frameManager.delegate = self;
   [self.frameManager start];
 
+  [self.stopWatch start];
   self.gamePlaying = YES;
 }
 
-- (void)updateTimestampsWithTimeInterval:(NSTimeInterval)timestamp {
-  if (self.resumedTimestamp == 0) {
-    self.resumedTimestamp = timestamp;
-  }
-  self.cumulatedCurrentGamePlayTime = timestamp - self.resumedTimestamp;
-}
 
 - (void)updateUniverse {
+  self.universeView.timeElapsed = self.stopWatch.timeElapsed;
   [self.universeView setNeedsDisplay:YES];
 }
 
@@ -110,6 +109,7 @@
 }
 
 - (void)stopGame {
+  [self.stopWatch pause];
   [self.frameManager pause];
 
   self.gamePlaying = NO;
@@ -120,8 +120,6 @@
 
 
 - (void)frameManagerDidUpdateFrame {
-  [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
-
   [self.universe updateUserWithSpeedVector:self.keyboardInputSource.userSpeedVector];
   [self.universe tick];
 
