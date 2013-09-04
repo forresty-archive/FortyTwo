@@ -9,8 +9,11 @@
 #import "FTTGameViewController.h"
 
 // frameworks
+// -- motion
 #import <CoreMotion/CoreMotion.h>
+// -- vibration
 #import <AVFoundation/AVFoundation.h>
+// -- game center
 #import <GameKit/GameKit.h>
 
 // views
@@ -29,10 +32,9 @@
 @property (nonatomic) CMMotionManager *motionMannager;
 @property (nonatomic) NSOperationQueue *backgroundQueue;
 
-// audio
-@property (nonatomic) AVAudioRecorder* recorder;
-@property (nonatomic) NSTimer* levelTimer;
-@property (nonatomic) CGFloat lowPassResults;
+// shout detection
+@property (nonatomic) FTTShoutDetector *shoutDetector;
+@property (nonatomic) BOOL bombDeployed;
 
 // views
 @property (nonatomic) FTTUniverseView *universeView;
@@ -70,23 +72,10 @@
 
 }
 
-+ (instancetype)sharedInstance {
-  static FTTGameViewController *_instance = nil;
-
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    _instance = [[self alloc] init];
-  });
-
-  return _instance;
-}
-
 - (instancetype)init {
   self = [super init];
 
   if (self) {
-    self.wantsFullScreenLayout = YES;
-
     self.motionMannager = [[CMMotionManager alloc] init];
     self.motionMannager.accelerometerUpdateInterval = 1.0 / 42; // 42 fps baby
 
@@ -103,7 +92,8 @@
 
   [self setupPlane];
   [self setupEnemies];
-  [self setupShoutDetection];
+  self.shoutDetector = [[FTTShoutDetector alloc] init];
+  self.shoutDetector.delegate = self;
 
   self.view.backgroundColor = [UIColor blackColor];
   self.universeView = [[FTTUniverseView alloc] initWithFrame:self.view.bounds];
@@ -211,67 +201,6 @@
 
 - (void)resumeGame {
   [self startReceivingAccelerationData];
-}
-
-
-# pragma mark - bomb deployment
-
-
-- (BOOL)bombDeployed {
-  if (self.lowPassResults > 0.5 &&
-      self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime >= FTTBombCooldownTime) {
-
-    self.cumulatedBombCooldownTime = self.cumulatedCurrentGamePlayTime;
-
-    return YES;
-  }
-
-  return NO;
-}
-
-
-# pragma mark - shout detection
-
-
-- (void)setupShoutDetection {
-  NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
-
-  NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-                            [NSNumber numberWithFloat: 44100.0], AVSampleRateKey,
-                            [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-                            [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
-                            [NSNumber numberWithInt: AVAudioQualityMax], AVEncoderAudioQualityKey,
-                            nil];
-
-  NSError *error;
-
-  self.recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
-
-  if (self.recorder) {
-    [self.recorder prepareToRecord];
-    self.recorder.meteringEnabled = YES;
-    [self.recorder record];
-    self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
-                                                       target:self
-                                                     selector:@selector(levelTimerCallback:)
-                                                     userInfo:nil
-                                                      repeats:YES];
-  }
-}
-
-// http://stackoverflow.com/questions/10622721/audio-level-detect
-- (void)levelTimerCallback:(NSTimer *)timer {
-  [self.recorder updateMeters];
-
-  const double ALPHA = 0.05;
-
-  // I have no idea what this means...
-  double peakPowerForChannel = pow(10, (0.05 * [self.recorder peakPowerForChannel:0]));
-
-  // smooth
-  self.lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * self.lowPassResults;
-
-//  NSLog(@"%f",(self.lowPassResults * 100.0f));
 }
 
 
@@ -443,6 +372,23 @@
 
 - (void)reportAchievementWithIdentifier:(NSString *)identifier {
 
+}
+
+
+# pragma mark - FTTShoutDetectorDelegate
+
+
+- (void)shoutDetectorDidDetectShout {
+  if (self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime >= FTTBombCooldownTime) {
+
+    self.cumulatedBombCooldownTime = self.cumulatedCurrentGamePlayTime;
+
+    self.bombDeployed = YES;
+  }
+}
+
+- (void)shoutDetectorShoutDidEnd {
+  self.bombDeployed = NO;
 }
 
 

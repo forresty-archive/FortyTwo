@@ -10,13 +10,11 @@
 
 #import "FTTUniverseView.h"
 
+#import "FTTShoutDetector.h"
 
-@interface FTTGameViewController : UIViewController <UIAlertViewDelegate, FTTUniverseViewDataSource>
 
-
-+ (instancetype)sharedInstance;
+@interface FTTGameViewController : UIViewController <UIAlertViewDelegate, FTTUniverseViewDataSource, FTTShoutDetectorDelegate>
 
 - (void)pauseGame;
-
 
 @end

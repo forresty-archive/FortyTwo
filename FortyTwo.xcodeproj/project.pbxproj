@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		25FDB9638A0341EA864CE6CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E506E5CB430742129E078A47 /* libPods.a */; };
+		680EDCF817D6CC2600EEACE8 /* FTTShoutDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDCF717D6CC2600EEACE8 /* FTTShoutDetector.m */; };
 		684F4F7217CD05F200C1E066 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684F4F7117CD05F200C1E066 /* Cocoa.framework */; };
 		684F4F7C17CD05F200C1E066 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 684F4F7A17CD05F200C1E066 /* InfoPlist.strings */; };
 		684F4F7E17CD05F200C1E066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4F7D17CD05F200C1E066 /* main.m */; };
@@ -72,6 +73,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		680EDCF617D6CC2600EEACE8 /* FTTShoutDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTShoutDetector.h; sourceTree = "<group>"; };
+		680EDCF717D6CC2600EEACE8 /* FTTShoutDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTShoutDetector.m; sourceTree = "<group>"; };
 		684F4F7017CD05F200C1E066 /* FortyTwo for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FortyTwo for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		684F4F7117CD05F200C1E066 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		684F4F7417CD05F200C1E066 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -348,6 +351,8 @@
 				68E12D3F17B604B400CCCA01 /* Supporting Files */,
 				68CFF05B17B7947200BD9DE1 /* Controllers */,
 				68CFF06C17B9247400BD9DE1 /* Views */,
+				680EDCF617D6CC2600EEACE8 /* FTTShoutDetector.h */,
+				680EDCF717D6CC2600EEACE8 /* FTTShoutDetector.m */,
 			);
 			path = FortyTwo;
 			sourceTree = "<group>";
@@ -637,6 +642,7 @@
 				68CFF05617B793EB00BD9DE1 /* FTTUniverseView.m in Sources */,
 				68CFF05917B7944300BD9DE1 /* FTTUserObject.m in Sources */,
 				68CFF05E17B7948600BD9DE1 /* FTTObject.m in Sources */,
+				680EDCF817D6CC2600EEACE8 /* FTTShoutDetector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
