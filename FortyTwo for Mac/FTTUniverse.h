@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FTTUniverseViewDataSource.h"
+
+@class FTTSpeedVector, FTTUserObject;
 
 
-@class FTTSpeedVector;
+@interface FTTUniverse : NSObject
 
-
-@interface FTTUniverse : NSObject <FTTUniverseViewDataSource>
+@property (nonatomic, readonly) FTTUserObject *userObject;
+@property (nonatomic, readonly) NSMutableArray *enemies;
 
 - (instancetype)initWithWidth:(NSUInteger)width height:(NSUInteger)height;
 

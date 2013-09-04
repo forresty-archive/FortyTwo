@@ -25,9 +25,9 @@ static NSUInteger FTTBombCooldownTime = 42;
 
 @implementation FTTMUniverseView
 
-- (void)deployBomb {
-  self.bombDeployed = YES;
-}
+//- (void)deployBomb {
+//  self.bombDeployed = YES;
+//}
 
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -54,7 +54,7 @@ static NSUInteger FTTBombCooldownTime = 42;
 
   [progressBarColor setFill];
   CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 120, CGRectGetMaxY(self.bounds) - 20,
-                                     MIN(100, 100 * self.timeElapsed / FTTBombCooldownTime), 10);
+                                     MIN(100, [self.dataSource percentCompleteOfBombRecharge]), 10);
   [[NSBezierPath bezierPathWithRect:timePlayedRect] fill];
 
   // bomb

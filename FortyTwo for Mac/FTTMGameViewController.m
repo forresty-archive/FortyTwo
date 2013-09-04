@@ -16,6 +16,9 @@
 #import "FTTUserObject.h"
 #import "FTTEnemyObject.h"
 
+// misc
+#import "FTTUniverseDataSource.h"
+
 // FFToolkit
 #import "FFStopWatch.h"
 
@@ -27,6 +30,9 @@
 
 // models
 @property (nonatomic) FTTUniverse *universe;
+
+// misc
+@property (nonatomic) FTTUniverseDataSource *universeDataSource;
 
 // game play
 @property (nonatomic) FTTFrameManager *frameManager;
@@ -71,7 +77,8 @@
   self.view = self.universeView;
 
   self.universe = [[FTTUniverse alloc] initWithWidth:480 height:360];
-  self.universeView.dataSource = self.universe;
+  self.universeDataSource = [[FTTUniverseDataSource alloc] initWithUniverse:self.universe];
+  self.universeView.dataSource = self.universeDataSource;
 
   self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];
   self.frameManager.delegate = self;
@@ -83,7 +90,7 @@
 
 
 - (void)updateUniverse {
-  self.universeView.timeElapsed = self.stopWatch.timeElapsed;
+//  self.universeView.timeElapsed = self.stopWatch.timeElapsed;
   [self.universeView setNeedsDisplay:YES];
 }
 
@@ -133,7 +140,7 @@
 
 - (void)keyboardInputSourceDidDeployedBomb {
   dispatch_async(dispatch_get_main_queue(), ^{
-    [self.universeView deployBomb];
+//    [self.universeView deployBomb];
   });
 }
 

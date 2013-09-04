@@ -11,7 +11,13 @@
 
 @protocol FTTUniverseViewDataSource <NSObject>
 
+// position of objects
 - (CGPoint)positionOfUserObject;
 - (NSArray *)positionsOfEnemyObjects;
+
+// bomb
+- (CGFloat)percentCompleteOfBombRecharge;
+- (BOOL)bombAvailable;
+- (BOOL)bombDeployed;
 
 @end

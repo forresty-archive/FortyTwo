@@ -18,8 +18,8 @@
 
 @property (nonatomic) id<FTTUniverseViewDataSource> dataSource;
 
-@property (nonatomic) NSTimeInterval timeElapsed;
+//@property (nonatomic) NSTimeInterval timeElapsed;
 
-- (void)deployBomb;
+//- (void)deployBomb;
 
 @end

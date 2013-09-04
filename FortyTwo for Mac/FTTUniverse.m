@@ -109,22 +109,4 @@
 }
 
 
-# pragma mark - FTTMUniverseViewDataSource
-
-
-- (CGPoint)positionOfUserObject {
-  return self.userObject.position;
-}
-
-- (NSArray *)positionsOfEnemyObjects {
-  NSMutableArray *positions = [NSMutableArray arrayWithCapacity:42];
-
-  for (FTTEnemyObject *enemy in self.enemies) {
-    [positions addObject:[NSString stringWithFormat:@"{%f, %f}", enemy.position.x, enemy.position.y]];
-  }
-
-  return positions;
-}
-
-
 @end
