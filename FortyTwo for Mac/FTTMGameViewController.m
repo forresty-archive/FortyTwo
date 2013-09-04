@@ -70,7 +70,7 @@
   self.universeView = [[FTTMUniverseView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];
   self.view = self.universeView;
 
-  self.universe = [[FTTUniverse alloc] init];
+  self.universe = [[FTTUniverse alloc] initWithWidth:480 height:360];
   self.universeView.dataSource = self.universe;
 
   self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];
