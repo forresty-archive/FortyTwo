@@ -38,6 +38,8 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
 @property (nonatomic) NSMutableArray *enemies;
 
 // game play
+@property (nonatomic) FTTFrameManager *frameManager;
+
 @property (nonatomic) BOOL gamePlaying;
 
 @property (nonatomic) FTTMUserObjectVerticalHeading userObjectVerticalHeading;
@@ -46,7 +48,6 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
 @property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
 
-@property (nonatomic) NSTimer *timer;
 
 @end
 
@@ -75,23 +76,6 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
 }
 
 
-# pragma mark - misc
-
-
-- (void)simulateFrame {
-  [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
-
-  [self moveUserObject];
-  [self moveEnemies];
-
-  [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-    [self updateUniverse];
-  }];
-
-  [self detectCollision];
-}
-
-
 # pragma mark - game play
 
 
@@ -110,7 +94,10 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
 
   self.universeView.dataSource = self;
 
-  self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/42 target:self selector:@selector(simulateFrame) userInfo:nil repeats:YES];
+  self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];
+  self.frameManager.delegate = self;
+  [self.frameManager start];
+
   self.gamePlaying = YES;
 }
 
@@ -209,7 +196,7 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
 }
 
 - (void)stopGame {
-  [self.timer invalidate];
+  [self.frameManager pause];
 
   self.gamePlaying = NO;
 }
@@ -268,6 +255,23 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
   }
 
   return positions;
+}
+
+
+# pragma mark - FTTFrameManagerDelegate
+
+
+- (void)frameManagerDidUpdateFrame {
+  [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
+
+  [self moveUserObject];
+  [self moveEnemies];
+
+  [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    [self updateUniverse];
+  }];
+
+  [self detectCollision];
 }
 
 

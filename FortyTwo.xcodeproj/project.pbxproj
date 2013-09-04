@@ -36,6 +36,8 @@
 		680EDD4317D6E28800EEACE8 /* FTTUniverseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF05517B793EB00BD9DE1 /* FTTUniverseView.m */; };
 		680EDD4417D6E28800EEACE8 /* FTTShoutDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDCF717D6CC2600EEACE8 /* FTTShoutDetector.m */; };
 		680EDD4517D6E28800EEACE8 /* FFGameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDCFA17D6D12F00EEACE8 /* FFGameCenterManager.m */; };
+		680EDD4817D6EB5C00EEACE8 /* FTTFrameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */; };
+		680EDD4917D6EB5C00EEACE8 /* FTTFrameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */; };
 		684F4F7217CD05F200C1E066 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684F4F7117CD05F200C1E066 /* Cocoa.framework */; };
 		684F4F7C17CD05F200C1E066 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 684F4F7A17CD05F200C1E066 /* InfoPlist.strings */; };
 		684F4F7E17CD05F200C1E066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4F7D17CD05F200C1E066 /* main.m */; };
@@ -106,6 +108,8 @@
 		680EDCFA17D6D12F00EEACE8 /* FFGameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFGameCenterManager.m; sourceTree = "<group>"; };
 		680EDD0017D6DF0E00EEACE8 /* FortyTwoBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FortyTwoBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		680EDD0617D6DF0E00EEACE8 /* FortyTwoBeta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FortyTwoBeta-Info.plist"; sourceTree = "<group>"; };
+		680EDD4617D6EB5C00EEACE8 /* FTTFrameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTFrameManager.h; sourceTree = "<group>"; };
+		680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTFrameManager.m; sourceTree = "<group>"; };
 		684F4F7017CD05F200C1E066 /* FortyTwo for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FortyTwo for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		684F4F7117CD05F200C1E066 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		684F4F7417CD05F200C1E066 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -296,6 +300,8 @@
 				684F4F7817CD05F200C1E066 /* Supporting Files */,
 				6800F02A17CF418800337E27 /* Controllers */,
 				6800F02B17CF418F00337E27 /* Views */,
+				680EDD4617D6EB5C00EEACE8 /* FTTFrameManager.h */,
+				680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */,
 			);
 			path = "FortyTwo for Mac";
 			sourceTree = "<group>";
@@ -768,6 +774,7 @@
 				684F4F8517CD05F200C1E066 /* FTTMAppDelegate.m in Sources */,
 				684F4FA417CD077B00C1E066 /* FTTMGameViewController.m in Sources */,
 				684F4FA717CD08A200C1E066 /* FTTMUniverseView.m in Sources */,
+				680EDD4917D6EB5C00EEACE8 /* FTTFrameManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +799,7 @@
 				68CFF05E17B7948600BD9DE1 /* FTTObject.m in Sources */,
 				680EDCF817D6CC2600EEACE8 /* FTTShoutDetector.m in Sources */,
 				680EDCFB17D6D12F00EEACE8 /* FFGameCenterManager.m in Sources */,
+				680EDD4817D6EB5C00EEACE8 /* FTTFrameManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
