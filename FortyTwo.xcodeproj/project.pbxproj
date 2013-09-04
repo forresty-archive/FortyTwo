@@ -118,13 +118,13 @@
 		680EDCFA17D6D12F00EEACE8 /* FFGameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFGameCenterManager.m; sourceTree = "<group>"; };
 		680EDD0017D6DF0E00EEACE8 /* FortyTwoBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FortyTwoBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		680EDD0617D6DF0E00EEACE8 /* FortyTwoBeta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FortyTwoBeta-Info.plist"; sourceTree = "<group>"; };
-		680EDD4617D6EB5C00EEACE8 /* FTTFrameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTFrameManager.h; sourceTree = "<group>"; };
-		680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTFrameManager.m; sourceTree = "<group>"; };
+		680EDD4617D6EB5C00EEACE8 /* FTTFrameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTTFrameManager.h; path = "FortyTwo for Mac/FTTFrameManager.h"; sourceTree = SOURCE_ROOT; };
+		680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTTFrameManager.m; path = "FortyTwo for Mac/FTTFrameManager.m"; sourceTree = SOURCE_ROOT; };
 		680EDD4A17D6EFB600EEACE8 /* FTTUniverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTTUniverse.h; path = "FortyTwo for Mac/FTTUniverse.h"; sourceTree = SOURCE_ROOT; };
 		680EDD4B17D6EFB600EEACE8 /* FTTUniverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTTUniverse.m; path = "FortyTwo for Mac/FTTUniverse.m"; sourceTree = SOURCE_ROOT; };
-		680EDD4E17D6F3D800EEACE8 /* FTTUniverseViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTUniverseViewDataSource.h; sourceTree = "<group>"; };
-		680EDD4F17D6FFAD00EEACE8 /* FTTSpeedVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTSpeedVector.h; sourceTree = "<group>"; };
-		680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTSpeedVector.m; sourceTree = "<group>"; };
+		680EDD4E17D6F3D800EEACE8 /* FTTUniverseViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FTTUniverseViewDataSource.h; path = "FortyTwo for Mac/FTTUniverseViewDataSource.h"; sourceTree = SOURCE_ROOT; };
+		680EDD4F17D6FFAD00EEACE8 /* FTTSpeedVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTTSpeedVector.h; path = "FortyTwo for Mac/FTTSpeedVector.h"; sourceTree = SOURCE_ROOT; };
+		680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTTSpeedVector.m; path = "FortyTwo for Mac/FTTSpeedVector.m"; sourceTree = SOURCE_ROOT; };
 		680EDD5717D7040500EEACE8 /* FTTMKeyboardInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTMKeyboardInputSource.h; sourceTree = "<group>"; };
 		680EDD5817D7040500EEACE8 /* FTTMKeyboardInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTMKeyboardInputSource.m; sourceTree = "<group>"; };
 		680EDD5A17D711E100EEACE8 /* FTTAccelerometerInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTAccelerometerInputSource.h; sourceTree = "<group>"; };
@@ -260,6 +260,11 @@
 			isa = PBXGroup;
 			children = (
 				684F4FAA17CD6B7F00C1E066 /* FTTDefines.h */,
+				680EDD4E17D6F3D800EEACE8 /* FTTUniverseViewDataSource.h */,
+				680EDD4617D6EB5C00EEACE8 /* FTTFrameManager.h */,
+				680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */,
+				680EDD4F17D6FFAD00EEACE8 /* FTTSpeedVector.h */,
+				680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */,
 				68CFF05A17B7946900BD9DE1 /* Models */,
 			);
 			name = FortyTwoKit;
@@ -313,17 +318,12 @@
 		684F4F7717CD05F200C1E066 /* FortyTwo for Mac */ = {
 			isa = PBXGroup;
 			children = (
-				680EDD4E17D6F3D800EEACE8 /* FTTUniverseViewDataSource.h */,
 				684F4F8317CD05F200C1E066 /* FTTMAppDelegate.h */,
 				684F4F8417CD05F200C1E066 /* FTTMAppDelegate.m */,
 				684F4F8617CD05F200C1E066 /* MainMenu.xib */,
 				684F4F7817CD05F200C1E066 /* Supporting Files */,
 				6800F02A17CF418800337E27 /* Controllers */,
 				6800F02B17CF418F00337E27 /* Views */,
-				680EDD4617D6EB5C00EEACE8 /* FTTFrameManager.h */,
-				680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */,
-				680EDD4F17D6FFAD00EEACE8 /* FTTSpeedVector.h */,
-				680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */,
 				680EDD5717D7040500EEACE8 /* FTTMKeyboardInputSource.h */,
 				680EDD5817D7040500EEACE8 /* FTTMKeyboardInputSource.m */,
 			);

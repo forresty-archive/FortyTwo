@@ -16,6 +16,8 @@
 
 @interface FTTUniverse : NSObject <FTTUniverseViewDataSource>
 
+- (instancetype)initWithWidth:(NSUInteger)width height:(NSUInteger)height;
+
 - (void)tick;
 
 - (BOOL)userIsHit;

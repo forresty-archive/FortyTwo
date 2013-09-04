@@ -13,6 +13,8 @@
 
 // models
 #import "FTTUniverse.h"
+#import "FTTUserObject.h"
+#import "FTTEnemyObject.h"
 
 // keyboard control
 #import "FTTMKeyboardInputSource.h"
@@ -40,6 +42,12 @@
 
 @implementation FTTMGameViewController
 
++ (void)initialize {
+  [FTTObject registerDefaultObjectWidth:5];
+  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(240, 180)];
+  [FTTEnemyObject registerUniverseSize:CGSizeMake(480, 360)];
+  [FTTEnemyObject registerTimeToUserParam:90];
+}
 
 - (id)init {
   self = [super init];

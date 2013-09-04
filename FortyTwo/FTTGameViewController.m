@@ -17,6 +17,8 @@
 
 // models
 #import "FTTUniverse.h"
+#import "FTTUserObject.h"
+#import "FTTEnemyObject.h"
 
 #import "FTTDefines.h"
 
@@ -61,17 +63,17 @@
 @implementation FTTGameViewController
 
 
-//+ (void)initialize {
-//  [FTTObject registerDefaultObjectWidth:FTTObjectWidth()];
-//  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2)];
-//  [FTTEnemyObject registerUniverseSize:CGSizeMake(DeviceWidth(), DeviceHeight())];
-//
-//  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-//    [FTTEnemyObject registerTimeToUserParam:60];
-//  } else {
-//    [FTTEnemyObject registerTimeToUserParam:90];
-//  }
-//}
++ (void)initialize {
+  [FTTObject registerDefaultObjectWidth:FTTObjectWidth()];
+  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2)];
+  [FTTEnemyObject registerUniverseSize:CGSizeMake(DeviceWidth(), DeviceHeight())];
+
+  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    [FTTEnemyObject registerTimeToUserParam:60];
+  } else {
+    [FTTEnemyObject registerTimeToUserParam:90];
+  }
+}
 
 
 - (void)viewDidLoad {
@@ -97,7 +99,8 @@
 
 
 - (void)restartGame {
-  self.universe = [[FTTUniverse alloc] init];
+  self.universe = [[FTTUniverse alloc] initWithWidth:(NSUInteger)CGRectGetWidth(self.view.bounds)
+                                              height:(NSUInteger)CGRectGetHeight(self.view.bounds)];
   self.universeView.dataSource = self.universe;
 
   self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];

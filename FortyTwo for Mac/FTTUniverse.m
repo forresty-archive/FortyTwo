@@ -16,6 +16,9 @@
 
 @interface FTTUniverse ()
 
+@property (nonatomic) NSUInteger width;
+@property (nonatomic) NSUInteger height;
+
 // models
 @property (nonatomic) FTTUserObject *userObject;
 @property (nonatomic) NSMutableArray *enemies;
@@ -27,17 +30,14 @@
 
 @implementation FTTUniverse
 
-+ (void)initialize {
-  [FTTObject registerDefaultObjectWidth:5];
-  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(240, 180)];
-  [FTTEnemyObject registerUniverseSize:CGSizeMake(480, 360)];
-  [FTTEnemyObject registerTimeToUserParam:90];
-}
 
-- (id)init {
+- (instancetype)initWithWidth:(NSUInteger)width height:(NSUInteger)height {
   self = [super init];
 
   if (self) {
+    self.width = width;
+    self.height = height;
+
     self.userObject = [[FTTUserObject alloc] init];
 
     self.enemies = [NSMutableArray arrayWithCapacity:42];
@@ -50,6 +50,10 @@
   }
 
   return self;
+}
+
+- (id)init {
+  @throw @"should not call";
 }
 
 - (void)tick {
@@ -82,9 +86,9 @@
   CGFloat newY = self.userObject.position.y - speedY * speed;
 
   newX = MAX(0, newX);
-  newX = MIN(480, newX);
+  newX = MIN(self.width, newX);
   newY = MAX(0, newY);
-  newY = MIN(360, newY);
+  newY = MIN(self.height, newY);
   CGPoint newCenterForPlane = CGPointMake(newX, newY);
 
   return newCenterForPlane;
