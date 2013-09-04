@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FTTUniverseView.h"
-
 #import "FTTShoutDetector.h"
 
+#import "FTTFrameManager.h"
 
-@interface FTTGameViewController : UIViewController <UIAlertViewDelegate, FTTUniverseViewDataSource, FTTShoutDetectorDelegate>
+
+@interface FTTGameViewController : UIViewController <UIAlertViewDelegate, FTTShoutDetectorDelegate, FTTFrameManagerDelegate>
 
 - (void)pauseGame;
 

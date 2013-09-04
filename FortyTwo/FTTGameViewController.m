@@ -9,8 +9,6 @@
 #import "FTTGameViewController.h"
 
 // frameworks
-// -- motion
-#import <CoreMotion/CoreMotion.h>
 // -- vibration
 #import <AVFoundation/AVFoundation.h>
 
@@ -18,20 +16,19 @@
 #import "FTTUniverseView.h"
 
 // models
-#import "FTTUserObject.h"
-#import "FTTEnemyObject.h"
+#import "FTTUniverse.h"
 
 #import "FTTDefines.h"
+
+#import "FTTFrameManager.h"
+
+#import "FTTAccelerometerInputSource.h"
 
 // FFToolkit
 #import "FFGameCenterManager.h"
 
 
 @interface FTTGameViewController ()
-
-// motion control
-@property (nonatomic) CMMotionManager *motionMannager;
-@property (nonatomic) NSOperationQueue *backgroundQueue;
 
 // shout detection
 @property (nonatomic) FTTShoutDetector *shoutDetector;
@@ -41,13 +38,15 @@
 @property (nonatomic) FTTUniverseView *universeView;
 
 // models
-@property (nonatomic) FTTUserObject *userObject;
-@property (nonatomic) NSMutableArray *enemies;
+@property (nonatomic) FTTUniverse *universe;
 
 // game center
 @property (nonatomic) FFGameCenterManager *gameCenterManager;
 
 // game play
+@property (nonatomic) FTTFrameManager *frameManager;
+@property (nonatomic) FTTAccelerometerInputSource *accelerometerInputSource;
+
 @property (nonatomic) BOOL gamePlaying;
 @property (nonatomic) BOOL gameStarted;
 
@@ -62,45 +61,32 @@
 @implementation FTTGameViewController
 
 
-+ (void)initialize {
-  [FTTObject registerDefaultObjectWidth:FTTObjectWidth()];
-  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2)];
-  [FTTEnemyObject registerUniverseSize:CGSizeMake(DeviceWidth(), DeviceHeight())];
+//+ (void)initialize {
+//  [FTTObject registerDefaultObjectWidth:FTTObjectWidth()];
+//  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2)];
+//  [FTTEnemyObject registerUniverseSize:CGSizeMake(DeviceWidth(), DeviceHeight())];
+//
+//  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+//    [FTTEnemyObject registerTimeToUserParam:60];
+//  } else {
+//    [FTTEnemyObject registerTimeToUserParam:90];
+//  }
+//}
 
-  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    [FTTEnemyObject registerTimeToUserParam:60];
-  } else {
-    [FTTEnemyObject registerTimeToUserParam:90];
-  }
-}
-
-- (instancetype)init {
-  self = [super init];
-
-  if (self) {
-    self.motionMannager = [[CMMotionManager alloc] init];
-    self.motionMannager.accelerometerUpdateInterval = 1.0 / 42; // 42 fps baby
-
-    self.backgroundQueue = [[NSOperationQueue alloc] init];
-    self.backgroundQueue.maxConcurrentOperationCount = 1;
-  }
-
-  return self;
-}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
   self.gameCenterManager = [FFGameCenterManager sharedManager];
+  self.accelerometerInputSource = [[FTTAccelerometerInputSource alloc] init];
 
-  [self setupPlane];
-  [self setupEnemies];
+  self.view.backgroundColor = [UIColor blackColor];
+
   self.shoutDetector = [[FTTShoutDetector alloc] init];
   self.shoutDetector.delegate = self;
 
-  self.view.backgroundColor = [UIColor blackColor];
   self.universeView = [[FTTUniverseView alloc] initWithFrame:self.view.bounds];
-  self.universeView.dataSource = self;
+
   [self.view addSubview:self.universeView];
 
   [self restartGame];
@@ -111,11 +97,12 @@
 
 
 - (void)restartGame {
-  NSParameterAssert(self.motionMannager.accelerometerActive == NO);
+  self.universe = [[FTTUniverse alloc] init];
+  self.universeView.dataSource = self.universe;
 
-  [self.userObject resetPosition];
-
-  [self resetEnemies];
+  self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];
+  self.frameManager.delegate = self;
+  [self.frameManager start];
 
   self.gamePlaying = YES;
   self.gameStarted = YES;
@@ -123,29 +110,31 @@
   self.cumulatedCurrentGamePlayTime = 0;
   self.cumulatedBombCooldownTime = 0;
   self.resumedTimestamp = 0;
-  [self startReceivingAccelerationData];
+
+  [self.accelerometerInputSource start];
 }
 
 // used in simulator && dev env only
-- (void)simulateFrame {
-  [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
-  [self moveEnemies];
-
-  self.userObject.position = [self updatedPlanePositionWithSpeedX:(rand() % 100 / 100.0) speedY:(rand() % 100 / 100.0)];
-
-  [NSThread sleepForTimeInterval:1.0 / 42];
-
-  [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-    [self updateUniverse];
-  }];
-
-  // detect collision
-  [self detectCollision];
-}
+//- (void)simulateFrame {
+//  [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
+//  [self moveEnemies];
+//
+//  self.userObject.position = [self updatedPlanePositionWithSpeedX:(rand() % 100 / 100.0) speedY:(rand() % 100 / 100.0)];
+//
+//  [NSThread sleepForTimeInterval:1.0 / 42];
+//
+//  [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//    [self updateUniverse];
+//  }];
+//
+//  // detect collision
+//  [self detectCollision];
+//}
 
 - (void)youAreDead {
   @synchronized(self) {
-    [self.motionMannager stopAccelerometerUpdates];
+    [self.frameManager pause];
+    [self.accelerometerInputSource pause];
 
     if (self.gamePlaying) {
       self.gamePlaying = NO;
@@ -175,10 +164,11 @@
 
 - (void)pauseGame {
   @synchronized(self) {
-    if (self.gamePlaying && self.motionMannager.accelerometerActive) {
+    if (self.gamePlaying) {
       self.resumedTimestamp = 0;
 
-      [self.motionMannager stopAccelerometerUpdates];
+      [self.frameManager pause];
+      [self.accelerometerInputSource pause];
 
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Game Paused", nil)
                                                       message:nil
@@ -192,93 +182,13 @@
 }
 
 - (void)resumeGame {
-  [self startReceivingAccelerationData];
-}
-
-
-# pragma mark - UI setup
-
-
-- (void)setupPlane {
-  self.userObject = [[FTTUserObject alloc] init];
-}
-
-- (void)setupEnemies {
-  self.enemies = [NSMutableArray arrayWithCapacity:42];
-
-  for (int i = 0; i < 42; i++) {
-    FTTEnemyObject *enemy = [[FTTEnemyObject alloc] initWithTargetUserObject:self.userObject];
-
-    [self.enemies addObject:enemy];
-  }
+  [self.frameManager start];
+  [self.accelerometerInputSource start];
 }
 
 
 # pragma mark - position update
 
-
-- (void)resetEnemies {
-  for (int i = 0; i < 42; i++) {
-    FTTEnemyObject *enemy = self.enemies[i];
-
-    [enemy resetPosition];
-    [enemy resetSpeed];
-  }
-}
-
-- (CGPoint)updatedPlanePositionWithSpeedX:(CGFloat)speedX speedY:(CGFloat)speedY {
-  CGFloat speed = 4;
-
-  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    speed = 12;
-  }
-
-  CGFloat newX = self.userObject.position.x + speedX * speed;
-  CGFloat newY = self.userObject.position.y - speedY * speed;
-
-  newX = MAX(0, newX);
-  newX = MIN(DeviceWidth(), newX);
-  newY = MAX(0, newY);
-  newY = MIN(DeviceHeight(), newY);
-  CGPoint newCenterForPlane = CGPointMake(newX, newY);
-
-  return newCenterForPlane;
-}
-
-- (void)startReceivingAccelerationData {
-  NSParameterAssert(self.motionMannager.accelerometerActive == NO);
-
-  __weak FTTGameViewController *weakSelf = self;
-
-  [self.motionMannager startAccelerometerUpdatesToQueue:self.backgroundQueue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-
-    // record time
-    [self updateTimestampsWithTimeInterval:accelerometerData.timestamp];
-
-    // bomb
-    if (weakSelf.bombDeployed) {
-      [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.BluePill"];
-
-      weakSelf.cumulatedBombCooldownTime = weakSelf.cumulatedCurrentGamePlayTime;
-      [weakSelf.universeView deployBomb];
-      [weakSelf resetEnemies];
-    }
-
-    // move plane
-    weakSelf.userObject.position = [weakSelf updatedPlanePositionWithSpeedX:accelerometerData.acceleration.x
-                                                                     speedY:accelerometerData.acceleration.y];
-    // move enemies
-    [weakSelf moveEnemies];
-
-    // draw universe
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-      [weakSelf updateUniverse];
-    }];
-
-    // detect collision
-    [weakSelf detectCollision];
-  }];
-}
 
 - (void)updateTimestampsWithTimeInterval:(NSTimeInterval)timestamp {
   if (self.resumedTimestamp == 0) {
@@ -291,30 +201,16 @@
   }
 }
 
-- (void)moveEnemies {
-  for (int i = 0; i < 42; i++) {
-    FTTEnemyObject *enemy = self.enemies[i];
-
-    [enemy move];
-  }
-}
-
 - (void)updateUniverse {
   self.universeView.bombCooldownTime = self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime;
   [self.universeView setNeedsDisplay];
 }
 
 - (void)detectCollision {
-  for (int i = 0; i < 42; i++) {
-    FTTEnemyObject *enemy = self.enemies[i];
-
-    if ([enemy hitTarget]) {
-      [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self youAreDead];
-      }];
-
-      break;
-    }
+  if (self.universe.userIsHit) {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+      [self youAreDead];
+    }];
   }
 }
 
@@ -328,23 +224,6 @@
   } else {
     [self restartGame];
   }
-}
-
-
-# pragma mark - FTTUniverseViewDataSource
-
-
-- (CGPoint)positionOfUserObject {
-  return self.userObject.position;
-}
-
-- (NSArray *)positionsOfEnemyObjects {
-  NSMutableArray *positions = [NSMutableArray arrayWithCapacity:42];
-  for (FTTEnemyObject *enemy in self.enemies) {
-    [positions addObject:NSStringFromCGPoint(enemy.position)];
-  }
-
-  return positions;
 }
 
 
@@ -364,5 +243,35 @@
   self.bombDeployed = NO;
 }
 
+
+# pragma mark - FTTFrameManagerDelegate
+
+
+- (void)frameManagerDidUpdateFrame {
+  // record time
+//  [self updateTimestampsWithTimeInterval:accelerometerData.timestamp];
+
+  // bomb
+  //  if (weakSelf.bombDeployed) {
+  //    [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.BluePill"];
+  //
+  //    weakSelf.cumulatedBombCooldownTime = weakSelf.cumulatedCurrentGamePlayTime;
+  //    [weakSelf.universeView deployBomb];
+  //    [weakSelf resetEnemies];
+  //  }
+
+  [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
+
+  [self.universe updateUserWithSpeedVector:self.accelerometerInputSource.userSpeedVector];
+  [self.universe tick];
+
+  // draw universe
+  [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    [self updateUniverse];
+  }];
+
+  // detect collision
+  [self detectCollision];
+}
 
 @end

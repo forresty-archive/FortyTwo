@@ -43,6 +43,11 @@
 		680EDD5117D6FFAD00EEACE8 /* FTTSpeedVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */; };
 		680EDD5217D6FFAD00EEACE8 /* FTTSpeedVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */; };
 		680EDD5917D7040500EEACE8 /* FTTMKeyboardInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5817D7040500EEACE8 /* FTTMKeyboardInputSource.m */; };
+		680EDD5C17D711E100EEACE8 /* FTTAccelerometerInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5B17D711E100EEACE8 /* FTTAccelerometerInputSource.m */; };
+		680EDD5D17D7159C00EEACE8 /* FTTUniverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD4B17D6EFB600EEACE8 /* FTTUniverse.m */; };
+		680EDD5E17D715A200EEACE8 /* FTTAccelerometerInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5B17D711E100EEACE8 /* FTTAccelerometerInputSource.m */; };
+		680EDD5F17D715F800EEACE8 /* FTTFrameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */; };
+		680EDD6017D7170000EEACE8 /* FTTSpeedVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */; };
 		684F4F7217CD05F200C1E066 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684F4F7117CD05F200C1E066 /* Cocoa.framework */; };
 		684F4F7C17CD05F200C1E066 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 684F4F7A17CD05F200C1E066 /* InfoPlist.strings */; };
 		684F4F7E17CD05F200C1E066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4F7D17CD05F200C1E066 /* main.m */; };
@@ -117,11 +122,13 @@
 		680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTFrameManager.m; sourceTree = "<group>"; };
 		680EDD4A17D6EFB600EEACE8 /* FTTUniverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTTUniverse.h; path = "FortyTwo for Mac/FTTUniverse.h"; sourceTree = SOURCE_ROOT; };
 		680EDD4B17D6EFB600EEACE8 /* FTTUniverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTTUniverse.m; path = "FortyTwo for Mac/FTTUniverse.m"; sourceTree = SOURCE_ROOT; };
-		680EDD4E17D6F3D800EEACE8 /* FTTMUniverseViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTMUniverseViewDataSource.h; sourceTree = "<group>"; };
+		680EDD4E17D6F3D800EEACE8 /* FTTUniverseViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTUniverseViewDataSource.h; sourceTree = "<group>"; };
 		680EDD4F17D6FFAD00EEACE8 /* FTTSpeedVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTSpeedVector.h; sourceTree = "<group>"; };
 		680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTSpeedVector.m; sourceTree = "<group>"; };
 		680EDD5717D7040500EEACE8 /* FTTMKeyboardInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTMKeyboardInputSource.h; sourceTree = "<group>"; };
 		680EDD5817D7040500EEACE8 /* FTTMKeyboardInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTMKeyboardInputSource.m; sourceTree = "<group>"; };
+		680EDD5A17D711E100EEACE8 /* FTTAccelerometerInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTAccelerometerInputSource.h; sourceTree = "<group>"; };
+		680EDD5B17D711E100EEACE8 /* FTTAccelerometerInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTAccelerometerInputSource.m; sourceTree = "<group>"; };
 		684F4F7017CD05F200C1E066 /* FortyTwo for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FortyTwo for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		684F4F7117CD05F200C1E066 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		684F4F7417CD05F200C1E066 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -306,7 +313,7 @@
 		684F4F7717CD05F200C1E066 /* FortyTwo for Mac */ = {
 			isa = PBXGroup;
 			children = (
-				680EDD4E17D6F3D800EEACE8 /* FTTMUniverseViewDataSource.h */,
+				680EDD4E17D6F3D800EEACE8 /* FTTUniverseViewDataSource.h */,
 				684F4F8317CD05F200C1E066 /* FTTMAppDelegate.h */,
 				684F4F8417CD05F200C1E066 /* FTTMAppDelegate.m */,
 				684F4F8617CD05F200C1E066 /* MainMenu.xib */,
@@ -444,6 +451,8 @@
 				680EDCF717D6CC2600EEACE8 /* FTTShoutDetector.m */,
 				680EDCF917D6D12F00EEACE8 /* FFGameCenterManager.h */,
 				680EDCFA17D6D12F00EEACE8 /* FFGameCenterManager.m */,
+				680EDD5A17D711E100EEACE8 /* FTTAccelerometerInputSource.h */,
+				680EDD5B17D711E100EEACE8 /* FTTAccelerometerInputSource.m */,
 			);
 			path = FortyTwo;
 			sourceTree = "<group>";
@@ -774,8 +783,12 @@
 				680EDD3E17D6E28800EEACE8 /* FTTUserObject.m in Sources */,
 				680EDD3F17D6E28800EEACE8 /* FTTEnemyObject.m in Sources */,
 				680EDD4017D6E28800EEACE8 /* FTTAppDelegate.m in Sources */,
+				680EDD5D17D7159C00EEACE8 /* FTTUniverse.m in Sources */,
 				680EDD4117D6E28800EEACE8 /* main.m in Sources */,
 				680EDD4217D6E28800EEACE8 /* FTTGameViewController.m in Sources */,
+				680EDD5E17D715A200EEACE8 /* FTTAccelerometerInputSource.m in Sources */,
+				680EDD5F17D715F800EEACE8 /* FTTFrameManager.m in Sources */,
+				680EDD6017D7170000EEACE8 /* FTTSpeedVector.m in Sources */,
 				680EDD4317D6E28800EEACE8 /* FTTUniverseView.m in Sources */,
 				680EDD4417D6E28800EEACE8 /* FTTShoutDetector.m in Sources */,
 				680EDD4517D6E28800EEACE8 /* FFGameCenterManager.m in Sources */,
@@ -824,6 +837,7 @@
 				680EDD4817D6EB5C00EEACE8 /* FTTFrameManager.m in Sources */,
 				680EDD4C17D6EFB600EEACE8 /* FTTUniverse.m in Sources */,
 				680EDD5117D6FFAD00EEACE8 /* FTTSpeedVector.m in Sources */,
+				680EDD5C17D711E100EEACE8 /* FTTAccelerometerInputSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

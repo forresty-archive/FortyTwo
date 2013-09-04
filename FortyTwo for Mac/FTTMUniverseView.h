@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "FTTMUniverseViewDataSource.h"
+#import "FTTUniverseViewDataSource.h"
 
 
 @class FTTUserObject;
@@ -16,6 +16,6 @@
 
 @interface FTTMUniverseView : NSView
 
-@property (nonatomic) id<FTTMUniverseViewDataSource> dataSource;
+@property (nonatomic) id<FTTUniverseViewDataSource> dataSource;
 
 @end

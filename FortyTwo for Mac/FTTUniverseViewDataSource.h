@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@protocol FTTMUniverseViewDataSource <NSObject>
+@protocol FTTUniverseViewDataSource <NSObject>
 
 - (CGPoint)positionOfUserObject;
 - (NSArray *)positionsOfEnemyObjects;

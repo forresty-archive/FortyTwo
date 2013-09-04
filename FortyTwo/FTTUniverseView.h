@@ -8,16 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FTTUniverseViewDataSource.h"
 
 static const NSUInteger FTTBombCooldownTime = 42;
-
-
-@protocol FTTUniverseViewDataSource <NSObject>
-
-- (CGPoint)positionOfUserObject;
-- (NSArray *)positionsOfEnemyObjects;
-
-@end
 
 
 @interface FTTUniverseView : UIView

@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FTTMUniverseView.h"
+#import "FTTUniverseViewDataSource.h"
 
 
 @class FTTSpeedVector;
 
 
-@interface FTTUniverse : NSObject <FTTMUniverseViewDataSource>
+@interface FTTUniverse : NSObject <FTTUniverseViewDataSource>
 
 - (void)tick;
 

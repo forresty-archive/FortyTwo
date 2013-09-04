@@ -113,7 +113,7 @@
 - (NSArray *)positionsOfEnemyObjects {
   NSMutableArray *positions = [NSMutableArray arrayWithCapacity:42];
   for (FTTEnemyObject *enemy in self.enemies) {
-    [positions addObject:NSStringFromPoint(enemy.position)];
+    [positions addObject:NSStringFromCGPoint(enemy.position)];
   }
 
   return positions;
