@@ -14,6 +14,7 @@
 @property (nonatomic) BOOL running;
 @property (nonatomic) NSTimeInterval cumulatedElapsedTime;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
+@property (nonatomic) NSMutableArray *laps;
 
 @end
 
@@ -36,12 +37,21 @@
   self.running = YES;
 }
 
+- (void)lap {
+  NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
+  [self updateTimestampsWithTimeInterval:currentTime];
+  [self.laps addObject:@(currentTime)];
+  self.resumedTimestamp = currentTime;
+  self.cumulatedElapsedTime = 0;
+}
+
 - (void)pause {
   [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
   self.running = NO;
 }
 
 - (void)reset {
+  self.laps = [NSMutableArray array];
   self.resumedTimestamp = [NSDate timeIntervalSinceReferenceDate];
   self.cumulatedElapsedTime = 0;
   self.running = NO;

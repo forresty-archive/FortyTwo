@@ -13,7 +13,11 @@
 
 @property (nonatomic, readonly) NSTimeInterval timeElapsed;
 
+@property (nonatomic, readonly) NSMutableArray *laps;
+
 - (void)start;
+
+- (void)lap;
 
 - (void)pause;
 
