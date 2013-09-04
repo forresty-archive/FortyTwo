@@ -11,7 +11,6 @@
 #import "FTTSpeedVector.h"
 
 
-
 typedef NS_ENUM(NSUInteger, FTTMUserObjectVerticalHeading) {
   FTTMUserObjectVerticalHeadingNone,
   FTTMUserObjectVerticalHeadingUp,
@@ -23,7 +22,6 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
   FTTMUserObjectHorizontalHeadingLeft,
   FTTMUserObjectHorizontalHeadingRight,
 };
-
 
 
 @interface FTTMKeyboardInputSource ()
@@ -115,5 +113,6 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
 - (void)moveRight:(id)sender {
   self.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingRight;
 }
+
 
 @end
