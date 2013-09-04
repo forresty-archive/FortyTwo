@@ -56,6 +56,19 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
 }
 
 
+- (BOOL)userIsHit {
+  for (int i = 0; i < 42; i++) {
+    FTTEnemyObject *enemy = self.enemies[i];
+
+    if ([enemy hitTarget]) {
+      return YES;
+    }
+  }
+
+  return NO;
+}
+
+
 - (CGPoint)updatedPlanePositionWithSpeedX:(CGFloat)speedX speedY:(CGFloat)speedY {
   CGFloat speed = 4;
 

@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
 
 - (void)tick;
 
-@property (nonatomic, readonly) NSMutableArray *enemies;
+- (BOOL)userIsHit;
 
 // user control
 @property (nonatomic) FTTMUserObjectVerticalHeading userObjectVerticalHeading;

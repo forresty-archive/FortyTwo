@@ -14,9 +14,6 @@
 // models
 #import "FTTUniverse.h"
 
-// temp
-#import "FTTEnemyObject.h"
-
 
 @interface FTTMGameViewController ()
 
@@ -83,16 +80,10 @@
 
 
 - (void)detectCollision {
-  for (int i = 0; i < 42; i++) {
-    FTTEnemyObject *enemy = self.universe.enemies[i];
-
-    if ([enemy hitTarget]) {
-      [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self youAreDead];
-      }];
-
-      break;
-    }
+  if (self.universe.userIsHit) {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+      [self youAreDead];
+    }];
   }
 }
 
