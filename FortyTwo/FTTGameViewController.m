@@ -20,10 +20,11 @@
 #import "FTTUserObject.h"
 #import "FTTEnemyObject.h"
 
+// misc
 #import "FTTDefines.h"
 
+#import "FTTUniverseDataSource.h"
 #import "FTTFrameManager.h"
-
 #import "FTTAccelerometerInputSource.h"
 
 // FFToolkit
@@ -41,6 +42,9 @@
 
 // models
 @property (nonatomic) FTTUniverse *universe;
+
+// misc
+@property (nonatomic) FTTUniverseDataSource *universeDataSource;
 
 // game center
 @property (nonatomic) FFGameCenterManager *gameCenterManager;
@@ -99,7 +103,8 @@
 
 - (void)restartGame {
   self.universe = [[FTTUniverse alloc] initWithWidth:FTTDeviceWidth() height:FTTDeviceHeight()];
-  self.universeView.dataSource = self.universe;
+  self.universeDataSource = [[FTTUniverseDataSource alloc] initWithUniverse:self.universe];
+  self.universeView.dataSource = self.universeDataSource;
 
   self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];
   self.frameManager.delegate = self;
