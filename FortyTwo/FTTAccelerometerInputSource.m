@@ -47,7 +47,6 @@
 - (void)startUpdatingUserInput {
   NSParameterAssert(self.motionMannager.accelerometerActive == NO);
 
-
   [self.motionMannager startAccelerometerUpdatesToQueue:self.backgroundQueue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
 
     CGFloat speed = 4;
@@ -66,7 +65,6 @@
 - (void)stopUpdatingUserInput {
   [self.motionMannager stopAccelerometerUpdates];
 }
-
 
 
 @end

@@ -22,6 +22,8 @@
 
 - (BOOL)userIsHit;
 
+- (void)resetEnemies;
+
 - (void)updateUserWithSpeedVector:(FTTSpeedVector *)speedVector;
 
 @end

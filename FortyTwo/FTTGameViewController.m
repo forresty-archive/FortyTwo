@@ -192,9 +192,9 @@
 
 - (void)detectCollision {
   if (self.universe.userIsHit) {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
       [self youAreDead];
-    }];
+    });
   }
 }
 
@@ -232,30 +232,32 @@
 
 
 - (void)frameManagerDidUpdateFrame {
-  // record time
-//  [self updateTimestampsWithTimeInterval:accelerometerData.timestamp];
-
   // bomb
-  //  if (weakSelf.bombDeployed) {
-  //    [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.BluePill"];
-  //
-  //    weakSelf.cumulatedBombCooldownTime = weakSelf.cumulatedCurrentGamePlayTime;
-  //    [weakSelf.universeView deployBomb];
-  //    [weakSelf resetEnemies];
-  //  }
+  if (self.bombDeployed) {
+    [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.BluePill"];
 
+    self.cumulatedBombCooldownTime = self.cumulatedCurrentGamePlayTime;
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self.universeView deployBomb];
+    });
+
+    [self.universe resetEnemies];
+  }
+
+  // record time
   [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
 
   [self.universe updateUserWithSpeedVector:self.accelerometerInputSource.userSpeedVector];
   [self.universe tick];
 
   // draw universe
-  [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+  dispatch_async(dispatch_get_main_queue(), ^{
     [self updateUniverse];
-  }];
+  });
 
   // detect collision
   [self detectCollision];
 }
+
 
 @end

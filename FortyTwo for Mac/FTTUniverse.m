@@ -39,14 +39,7 @@
     self.height = height;
 
     self.userObject = [[FTTUserObject alloc] init];
-
-    self.enemies = [NSMutableArray arrayWithCapacity:42];
-
-    for (int i = 0; i < 42; i++) {
-      FTTEnemyObject *enemy = [[FTTEnemyObject alloc] initWithTargetUserObject:self.userObject];
-
-      [self.enemies addObject:enemy];
-    }
+    [self resetEnemies];
   }
 
   return self;
@@ -61,6 +54,15 @@
   [self moveEnemies];
 }
 
+- (void)resetEnemies {
+  self.enemies = [NSMutableArray arrayWithCapacity:42];
+
+  for (int i = 0; i < 42; i++) {
+    FTTEnemyObject *enemy = [[FTTEnemyObject alloc] initWithTargetUserObject:self.userObject];
+
+    [self.enemies addObject:enemy];
+  }
+}
 
 - (BOOL)userIsHit {
   for (int i = 0; i < 42; i++) {
