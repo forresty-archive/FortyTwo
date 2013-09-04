@@ -15,7 +15,7 @@
 #import "FTTUniverse.h"
 
 // keyboard control
-#import "FTTKeyboardInputSource.h"
+#import "FTTMKeyboardInputSource.h"
 
 
 @interface FTTMGameViewController ()
@@ -28,7 +28,7 @@
 
 // game play
 @property (nonatomic) FTTFrameManager *frameManager;
-@property (nonatomic) FTTKeyboardInputSource *keyboardInputSource;
+@property (nonatomic) FTTMKeyboardInputSource *keyboardInputSource;
 
 @property (nonatomic) BOOL gamePlaying;
 
@@ -56,7 +56,7 @@
 
 
 - (void)restartGame {
-  self.keyboardInputSource = [[FTTKeyboardInputSource alloc] init];
+  self.keyboardInputSource = [[FTTMKeyboardInputSource alloc] init];
   self.nextResponder = self.keyboardInputSource;
 
   self.universeView = [[FTTMUniverseView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];

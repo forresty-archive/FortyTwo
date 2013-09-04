@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Forrest Ye. All rights reserved.
 //
 
-#import "FTTKeyboardInputSource.h"
+#import "FTTMKeyboardInputSource.h"
 
 #import "FTTSpeedVector.h"
 
@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
 
 
 
-@interface FTTKeyboardInputSource ()
+@interface FTTMKeyboardInputSource ()
 
 // user control
 @property (nonatomic) FTTMUserObjectVerticalHeading userObjectVerticalHeading;
@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
 static CGFloat FTTMUserObjectSpeed = 0.5;
 
 
-@implementation FTTKeyboardInputSource
+@implementation FTTMKeyboardInputSource
 
 
 - (FTTSpeedVector *)userSpeedVector {

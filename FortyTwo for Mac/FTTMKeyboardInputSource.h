@@ -1,5 +1,5 @@
 //
-//  FTTInputSource.h
+//  FTTKeyboardInputSource.h
 //  FortyTwo
 //
 //  Created by Forrest Ye on 9/4/13.
@@ -12,7 +12,7 @@
 @class FTTSpeedVector;
 
 
-@interface FTTInputSource : NSResponder
+@interface FTTMKeyboardInputSource : NSResponder
 
 @property (nonatomic, readonly) FTTSpeedVector *userSpeedVector;
 
