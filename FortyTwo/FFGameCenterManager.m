@@ -77,4 +77,12 @@
 }
 
 
+# pragma mark - achievement reporting
+
+
+- (void)reportAchievementWithIdentifier:(NSString *)identifier {
+
+}
+
+
 @end

@@ -17,4 +17,6 @@
 
 - (void)reportScore:(int64_t)score forLeaderBoardIdentifier:(NSString *)identifier;
 
+- (void)reportAchievementWithIdentifier:(NSString *)identifier;
+
 @end

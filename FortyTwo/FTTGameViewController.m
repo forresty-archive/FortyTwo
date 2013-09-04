@@ -292,7 +292,7 @@
   self.cumulatedCurrentGamePlayTime = timestamp - self.resumedTimestamp;
 
   if (self.cumulatedCurrentGamePlayTime >= 42) {
-    [self reportAchievementWithIdentifier:@"FortyTwo.FortyTwo"];
+    [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.FortyTwo"];
   }
 }
 
@@ -350,14 +350,6 @@
   }
 
   return positions;
-}
-
-
-# pragma mark - achievement reporting
-
-
-- (void)reportAchievementWithIdentifier:(NSString *)identifier {
-
 }
 
 
