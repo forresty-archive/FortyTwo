@@ -20,4 +20,6 @@
 
 @property (nonatomic) NSTimeInterval timeElapsed;
 
+- (void)deployBomb;
+
 @end

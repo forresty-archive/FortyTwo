@@ -16,9 +16,6 @@
 #import "FTTUserObject.h"
 #import "FTTEnemyObject.h"
 
-// keyboard control
-#import "FTTMKeyboardInputSource.h"
-
 // FFToolkit
 #import "FFStopWatch.h"
 
@@ -92,9 +89,9 @@
 
 - (void)detectCollision {
   if (self.universe.userIsHit) {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
       [self youAreDead];
-    }];
+    });
   }
 }
 
@@ -123,11 +120,21 @@
   [self.universe updateUserWithSpeedVector:self.keyboardInputSource.userSpeedVector];
   [self.universe tick];
 
-  [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+  dispatch_async(dispatch_get_main_queue(), ^{
     [self updateUniverse];
-  }];
+  });
 
   [self detectCollision];
+}
+
+
+# pragma mark - FFTMKeyboardInputSourceDelegate
+
+
+- (void)keyboardInputSourceDidDeployedBomb {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self.universeView deployBomb];
+  });
 }
 
 

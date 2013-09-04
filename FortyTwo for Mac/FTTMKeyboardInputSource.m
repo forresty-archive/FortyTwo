@@ -51,6 +51,11 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
 
 
 - (void)keyDown:(NSEvent *)theEvent {
+  if (theEvent.keyCode == 49) {
+    // spacebar hit, deploy bomb
+    [self.delegate keyboardInputSourceDidDeployedBomb];
+  }
+
   // Arrow keys are associated with the numeric keypad
   if ([theEvent modifierFlags] & NSNumericPadKeyMask) {
     [self interpretKeyEvents:[NSArray arrayWithObject:theEvent]];

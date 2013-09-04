@@ -9,6 +9,13 @@
 #import "FTTMUniverseView.h"
 
 
+@interface FTTMUniverseView ()
+
+@property (nonatomic) BOOL bombDeployed;
+
+@end
+
+
 static inline CGFloat FTTObjectWidth() {
   return 5;
 }
@@ -17,6 +24,10 @@ static NSUInteger FTTBombCooldownTime = 42;
 
 
 @implementation FTTMUniverseView
+
+- (void)deployBomb {
+  self.bombDeployed = YES;
+}
 
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -45,6 +56,11 @@ static NSUInteger FTTBombCooldownTime = 42;
   CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 120, CGRectGetMaxY(self.bounds) - 20,
                                      MIN(100, 100 * self.timeElapsed / FTTBombCooldownTime), 10);
   [[NSBezierPath bezierPathWithRect:timePlayedRect] fill];
+
+  // bomb
+  if (self.bombDeployed) {
+    // TODO
+  }
 }
 
 
