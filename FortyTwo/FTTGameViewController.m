@@ -13,8 +13,6 @@
 #import <CoreMotion/CoreMotion.h>
 // -- vibration
 #import <AVFoundation/AVFoundation.h>
-// -- game center
-#import <GameKit/GameKit.h>
 
 // views
 #import "FTTUniverseView.h"
@@ -24,6 +22,9 @@
 #import "FTTEnemyObject.h"
 
 #import "FTTDefines.h"
+
+// FFToolkit
+#import "FFGameCenterManager.h"
 
 
 @interface FTTGameViewController ()
@@ -43,10 +44,12 @@
 @property (nonatomic) FTTUserObject *userObject;
 @property (nonatomic) NSMutableArray *enemies;
 
+// game center
+@property (nonatomic) FFGameCenterManager *gameCenterManager;
+
 // game play
 @property (nonatomic) BOOL gamePlaying;
 @property (nonatomic) BOOL gameStarted;
-@property (nonatomic) BOOL gameCenterEnabled;
 
 @property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
@@ -90,6 +93,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  self.gameCenterManager = [FFGameCenterManager sharedManager];
+
   [self setupPlane];
   [self setupEnemies];
   self.shoutDetector = [[FTTShoutDetector alloc] init];
@@ -100,7 +105,6 @@
   self.universeView.dataSource = self;
   [self.view addSubview:self.universeView];
 
-  [self setupGameCenter];
   [self restartGame];
 }
 
@@ -152,7 +156,7 @@
       // Vibrate
       AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 
-      if (self.gameCenterEnabled) {
+      if (self.gameCenterManager.gameCenterEnabled) {
         [self reportScore];
       }
 
@@ -162,12 +166,8 @@
 }
 
 - (void)reportScore {
-  NSParameterAssert(self.gameCenterEnabled);
-  GKScore *scoreReporter = [[GKScore alloc] initWithCategory:@"com.forresty.FortyTwo.timeLasted"];
-  scoreReporter.value = self.cumulatedCurrentGamePlayTime * 100;
-  scoreReporter.context = 0;
-
-  [scoreReporter reportScoreWithCompletionHandler:nil];
+  [self.gameCenterManager reportScore:self.cumulatedCurrentGamePlayTime * 100
+             forLeaderBoardIdentifier:@"com.forresty.FortyTwo.timeLasted"];
 }
 
 - (void)showGameOverAlert {
@@ -221,20 +221,6 @@
   }
 }
 
-- (void)setupGameCenter {
-  __weak GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
-
-  localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
-    if (viewController) {
-      // don't present this view controller for now
-      self.gameCenterEnabled = NO;
-    } else if (localPlayer.isAuthenticated) {
-      self.gameCenterEnabled = YES;
-    } else {
-      self.gameCenterEnabled = NO;
-    }
-  };
-}
 
 # pragma mark - position update
 
