@@ -11,6 +11,8 @@
 #import "FTTUserObject.h"
 #import "FTTEnemyObject.h"
 
+#import "FTTSpeedVector.h"
+
 
 @interface FTTUniverse ()
 
@@ -18,9 +20,9 @@
 @property (nonatomic) FTTUserObject *userObject;
 @property (nonatomic) NSMutableArray *enemies;
 
-@end
+@property (nonatomic) FTTSpeedVector *userSpeedVector;
 
-static CGFloat FTTMUserObjectSpeed = 0.5;
+@end
 
 
 @implementation FTTUniverse
@@ -68,6 +70,10 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
   return NO;
 }
 
+- (void)updateUserWithSpeedVector:(FTTSpeedVector *)speedVector {
+  self.userSpeedVector = speedVector;
+}
+
 
 - (CGPoint)updatedPlanePositionWithSpeedX:(CGFloat)speedX speedY:(CGFloat)speedY {
   CGFloat speed = 4;
@@ -85,31 +91,7 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
 }
 
 - (void)moveUserObject {
-  switch (self.userObjectVerticalHeading) {
-    case FTTMUserObjectVerticalHeadingUp: {
-      self.userObject.position = [self updatedPlanePositionWithSpeedX:0 speedY:-FTTMUserObjectSpeed];
-      break;
-    }
-    case FTTMUserObjectVerticalHeadingDown: {
-      self.userObject.position = [self updatedPlanePositionWithSpeedX:0 speedY:FTTMUserObjectSpeed];
-      break;
-    }
-    default:
-      break;
-  }
-
-  switch (self.userObjectHorizontalHeading) {
-    case FTTMUserObjectHorizontalHeadingLeft: {
-      self.userObject.position = [self updatedPlanePositionWithSpeedX:-FTTMUserObjectSpeed speedY:0];
-      break;
-    }
-    case FTTMUserObjectHorizontalHeadingRight: {
-      self.userObject.position = [self updatedPlanePositionWithSpeedX:FTTMUserObjectSpeed speedY:0];
-      break;
-    }
-    default:
-      break;
-  }
+  self.userObject.position = [self updatedPlanePositionWithSpeedX:self.userSpeedVector.x speedY:self.userSpeedVector.y];
 }
 
 - (void)moveEnemies {
@@ -136,8 +118,6 @@ static CGFloat FTTMUserObjectSpeed = 0.5;
 
   return positions;
 }
-
-
 
 
 @end

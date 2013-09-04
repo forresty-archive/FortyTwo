@@ -8,21 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-
 #import "FTTMUniverseView.h"
 
 
-typedef NS_ENUM(NSUInteger, FTTMUserObjectVerticalHeading) {
-  FTTMUserObjectVerticalHeadingNone,
-  FTTMUserObjectVerticalHeadingUp,
-  FTTMUserObjectVerticalHeadingDown,
-};
-
-typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
-  FTTMUserObjectHorizontalHeadingNone,
-  FTTMUserObjectHorizontalHeadingLeft,
-  FTTMUserObjectHorizontalHeadingRight,
-};
+@class FTTSpeedVector;
 
 
 @interface FTTUniverse : NSObject <FTTMUniverseViewDataSource>
@@ -31,8 +20,6 @@ typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
 
 - (BOOL)userIsHit;
 
-// user control
-@property (nonatomic) FTTMUserObjectVerticalHeading userObjectVerticalHeading;
-@property (nonatomic) FTTMUserObjectHorizontalHeading userObjectHorizontalHeading;
+- (void)updateUserWithSpeedVector:(FTTSpeedVector *)speedVector;
 
 @end

@@ -11,7 +11,7 @@
 
 @interface FTTSpeedVector : NSObject
 
-@property (nonatomic) CGFloat speedX;
-@property (nonatomic) CGFloat speedY;
+@property (nonatomic) CGFloat x;
+@property (nonatomic) CGFloat y;
 
 @end

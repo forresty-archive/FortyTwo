@@ -15,6 +15,22 @@
 #import "FTTUniverse.h"
 
 
+// keyboard control
+#import "FTTSpeedVector.h"
+
+typedef NS_ENUM(NSUInteger, FTTMUserObjectVerticalHeading) {
+  FTTMUserObjectVerticalHeadingNone,
+  FTTMUserObjectVerticalHeadingUp,
+  FTTMUserObjectVerticalHeadingDown,
+};
+
+typedef NS_ENUM(NSUInteger, FTTMUserObjectHorizontalHeading) {
+  FTTMUserObjectHorizontalHeadingNone,
+  FTTMUserObjectHorizontalHeadingLeft,
+  FTTMUserObjectHorizontalHeadingRight,
+};
+
+
 @interface FTTMGameViewController ()
 
 // views
@@ -31,7 +47,15 @@
 @property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
 
+// user control
+@property (nonatomic) FTTMUserObjectVerticalHeading userObjectVerticalHeading;
+@property (nonatomic) FTTMUserObjectHorizontalHeading userObjectHorizontalHeading;
+@property (nonatomic) FTTSpeedVector *userSpeedVector;
+
 @end
+
+
+static CGFloat FTTMUserObjectSpeed = 0.5;
 
 
 @implementation FTTMGameViewController
@@ -52,6 +76,7 @@
 
 
 - (void)restartGame {
+  self.userSpeedVector = [[FTTSpeedVector alloc] init];
   self.universeView = [[FTTMUniverseView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];
   self.view = self.universeView;
 
@@ -124,27 +149,27 @@
   [super keyUp:theEvent];
   if (theEvent.keyCode == 126 || theEvent.keyCode == 125) {
     // up or down
-    self.universe.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingNone;
+    self.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingNone;
   } else if (theEvent.keyCode == 123 || theEvent.keyCode == 124) {
     // left or right
-    self.universe.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingNone;
+    self.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingNone;
   }
 }
 
 - (void)moveUp:(id)sender {
-  self.universe.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingUp;
+  self.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingUp;
 }
 
 - (void)moveDown:(id)sender {
-  self.universe.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingDown;
+  self.userObjectVerticalHeading = FTTMUserObjectVerticalHeadingDown;
 }
 
 - (void)moveLeft:(id)sender {
-  self.universe.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingLeft;
+  self.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingLeft;
 }
 
 - (void)moveRight:(id)sender {
-  self.universe.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingRight;
+  self.userObjectHorizontalHeading = FTTMUserObjectHorizontalHeadingRight;
 }
 
 
@@ -154,6 +179,37 @@
 - (void)frameManagerDidUpdateFrame {
   [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
 
+  switch (self.userObjectVerticalHeading) {
+    case FTTMUserObjectVerticalHeadingUp: {
+      self.userSpeedVector.y = -FTTMUserObjectSpeed;
+      break;
+    }
+    case FTTMUserObjectVerticalHeadingDown: {
+      self.userSpeedVector.y = FTTMUserObjectSpeed;
+      break;
+    }
+    default: {
+      self.userSpeedVector.y = 0;
+      break;
+    }
+  }
+
+  switch (self.userObjectHorizontalHeading) {
+    case FTTMUserObjectHorizontalHeadingLeft: {
+      self.userSpeedVector.x = -FTTMUserObjectSpeed;
+      break;
+    }
+    case FTTMUserObjectHorizontalHeadingRight: {
+      self.userSpeedVector.x = FTTMUserObjectSpeed;
+      break;
+    }
+    default: {
+      self.userSpeedVector.x = 0;
+      break;
+    }
+  }
+
+  [self.universe updateUserWithSpeedVector:self.userSpeedVector];
   [self.universe tick];
 
   [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -162,6 +218,5 @@
 
   [self detectCollision];
 }
-
 
 @end
