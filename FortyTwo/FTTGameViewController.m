@@ -56,6 +56,7 @@
 
 @implementation FTTGameViewController
 
+
 + (void)initialize {
   [FTTObject registerDefaultObjectWidth:FTTObjectWidth()];
   [FTTUserObject registerDefaultSpawnPosition:CGPointMake(DeviceWidth() / 2, DeviceHeight() / 2)];
@@ -79,7 +80,6 @@
 
   return _instance;
 }
-
 
 - (instancetype)init {
   self = [super init];
@@ -134,7 +134,6 @@
   [self startReceivingAccelerationData];
 }
 
-
 // used in simulator && dev env only
 - (void)simulateFrame {
   [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
@@ -151,7 +150,6 @@
   // detect collision
   [self detectCollision];
 }
-
 
 - (void)youAreDead {
   @synchronized(self) {
@@ -173,7 +171,6 @@
   }
 }
 
-
 - (void)reportScore {
   NSParameterAssert(self.gameCenterEnabled);
   GKScore *scoreReporter = [[GKScore alloc] initWithCategory:@"com.forresty.FortyTwo.timeLasted"];
@@ -182,7 +179,6 @@
 
   [scoreReporter reportScoreWithCompletionHandler:nil];
 }
-
 
 - (void)showGameOverAlert {
   NSString *messageFormat = NSLocalizedString(@"You lasted %.1f seconds.", nil);
@@ -194,7 +190,6 @@
 
   [alert show];
 }
-
 
 - (void)pauseGame {
   @synchronized(self) {
@@ -213,7 +208,6 @@
     }
   }
 }
-
 
 - (void)resumeGame {
   [self startReceivingAccelerationData];
@@ -265,7 +259,6 @@
   }
 }
 
-
 // http://stackoverflow.com/questions/10622721/audio-level-detect
 - (void)levelTimerCallback:(NSTimer *)timer {
   [self.recorder updateMeters];
@@ -289,7 +282,6 @@
   self.userObject = [[FTTUserObject alloc] init];
 }
 
-
 - (void)setupEnemies {
   self.enemies = [NSMutableArray arrayWithCapacity:42];
 
@@ -299,7 +291,6 @@
     [self.enemies addObject:enemy];
   }
 }
-
 
 - (void)setupGameCenter {
   __weak GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
@@ -316,9 +307,7 @@
   };
 }
 
-
 # pragma mark - position update
-
 
 - (void)resetEnemies {
   for (int i = 0; i < 42; i++) {
@@ -328,7 +317,6 @@
     [enemy resetSpeed];
   }
 }
-
 
 - (CGPoint)updatedPlanePositionWithSpeedX:(CGFloat)speedX speedY:(CGFloat)speedY {
   CGFloat speed = 4;
@@ -348,7 +336,6 @@
 
   return newCenterForPlane;
 }
-
 
 - (void)startReceivingAccelerationData {
   NSParameterAssert(self.motionMannager.accelerometerActive == NO);
@@ -370,7 +357,6 @@
     // move plane
     weakSelf.userObject.position = [weakSelf updatedPlanePositionWithSpeedX:accelerometerData.acceleration.x
                                                                      speedY:accelerometerData.acceleration.y];
-
     // move enemies
     [weakSelf moveEnemies];
 
@@ -384,14 +370,16 @@
   }];
 }
 
-
 - (void)updateTimestampsWithTimeInterval:(NSTimeInterval)timestamp {
   if (self.resumedTimestamp == 0) {
     self.resumedTimestamp = timestamp;
   }
   self.cumulatedCurrentGamePlayTime = timestamp - self.resumedTimestamp;
-}
 
+  if (self.cumulatedCurrentGamePlayTime >= 42) {
+    [self reportAchievementWithIdentifier:@"FortyTwo.FortyTwo"];
+  }
+}
 
 - (void)moveEnemies {
   for (int i = 0; i < 42; i++) {
@@ -401,12 +389,10 @@
   }
 }
 
-
 - (void)updateUniverse {
   self.universeView.bombCooldownTime = self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime;
   [self.universeView setNeedsDisplay];
 }
-
 
 - (void)detectCollision {
   for (int i = 0; i < 42; i++) {
@@ -449,6 +435,14 @@
   }
 
   return positions;
+}
+
+
+# pragma mark - achievement reporting
+
+
+- (void)reportAchievementWithIdentifier:(NSString *)identifier {
+
 }
 
 
