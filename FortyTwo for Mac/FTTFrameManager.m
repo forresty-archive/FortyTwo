@@ -30,7 +30,11 @@
 }
 
 - (void)start {
-  self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/self.frameRate target:self.delegate selector:@selector(frameManagerDidUpdateFrame) userInfo:nil repeats:YES];
+  self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/self.frameRate
+                                                target:self.delegate
+                                              selector:@selector(frameManagerDidUpdateFrame)
+                                              userInfo:nil
+                                               repeats:YES];
 }
 
 - (void)pause {
