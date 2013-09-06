@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #import "FTTUniverseViewDataSource.h"
-#import "FTTMKeyboardInputSourceDelegate.h"
 
 
 @class FTTUniverse;
 
 
-@interface FTTUniverseDataSource : NSObject <FTTUniverseViewDataSource, FTTMKeyboardInputSourceDelegate>
+@interface FTTUniverseDataSource : NSObject <FTTUniverseViewDataSource>
 
 - (instancetype)initWithUniverse:(FTTUniverse *)universe;
 

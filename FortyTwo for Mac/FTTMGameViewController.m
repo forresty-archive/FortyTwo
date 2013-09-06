@@ -82,7 +82,7 @@
   self.universe = [[FTTUniverse alloc] initWithWidth:480 height:360];
   self.universeDataSource = [[FTTUniverseDataSource alloc] initWithUniverse:self.universe];
   self.universeView.dataSource = self.universeDataSource;
-  self.keyboardInputSource.delegate = self.universeDataSource;
+  self.keyboardInputSource.delegate = self.self;
 
   self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];
   self.frameManager.delegate = self;
@@ -136,6 +136,15 @@
   });
 
   [self detectCollision];
+}
+
+
+# pragma mark - FFTMKeyboardInputSourceDelegate
+
+
+- (void)keyboardInputSourceDidDeployedBomb {
+  // hmm what to do?
+  NSLog(@"bomb deployed");
 }
 
 

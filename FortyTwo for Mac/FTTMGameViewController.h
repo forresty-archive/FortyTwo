@@ -11,8 +11,10 @@
 // frame control
 #import "FTTFrameManager.h"
 
+#import "FTTMKeyboardInputSourceDelegate.h"
 
-@interface FTTMGameViewController : NSViewController <FTTFrameManagerDelegate>
+
+@interface FTTMGameViewController : NSViewController <FTTFrameManagerDelegate, FTTMKeyboardInputSourceDelegate>
 
 - (void) stopGame;
 

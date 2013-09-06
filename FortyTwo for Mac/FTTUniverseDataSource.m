@@ -35,11 +35,10 @@
 }
 
 
-# pragma mark
 # pragma mark - FTTMUniverseViewDataSource
 
-
 # pragma mark - position of objects
+
 
 - (CGPoint)positionOfUserObject {
   return self.universe.userObject.position;
@@ -69,15 +68,6 @@
 
 - (BOOL)bombDeployed {
   return NO;
-}
-
-
-# pragma mark - FFTMKeyboardInputSourceDelegate
-
-
-- (void)keyboardInputSourceDidDeployedBomb {
-  // hmm what to do?
-  NSLog(@"bomb deployed");
 }
 
 
