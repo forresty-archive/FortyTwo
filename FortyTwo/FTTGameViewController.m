@@ -28,6 +28,7 @@
 
 // FFToolkit
 #import "FFGameCenterManager.h"
+#import "FFStopWatch.h"
 
 
 @interface FTTGameViewController ()
@@ -55,10 +56,7 @@
 @property (nonatomic) BOOL gamePlaying;
 @property (nonatomic) BOOL gameStarted;
 
-@property (nonatomic) NSTimeInterval cumulatedCurrentGamePlayTime;
-@property (nonatomic) NSTimeInterval resumedTimestamp;
-
-@property (nonatomic) NSTimeInterval cumulatedBombCooldownTime;
+@property (nonatomic) FFStopWatch *stopWatch;
 
 @end
 
@@ -110,16 +108,15 @@
   self.gamePlaying = YES;
   self.gameStarted = YES;
 
-  self.cumulatedCurrentGamePlayTime = 0;
-  self.cumulatedBombCooldownTime = 0;
-  self.resumedTimestamp = 0;
-
+  self.stopWatch = [[FFStopWatch alloc] init];
+  [self.stopWatch start];
   [self.accelerometerInputSource startUpdatingUserInput];
 }
 
 - (void)youAreDead {
   @synchronized(self) {
     [self.frameManager pause];
+    [self.stopWatch pause];
     [self.accelerometerInputSource stopUpdatingUserInput];
 
     if (self.gamePlaying) {
@@ -129,7 +126,7 @@
       // Vibrate
       AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 
-      [self.gameCenterManager reportScore:self.cumulatedCurrentGamePlayTime * 100
+      [self.gameCenterManager reportScore:self.stopWatch.totalTimeElapsed * 100
                  forLeaderBoardIdentifier:@"com.forresty.FortyTwo.timeLasted"];
 
       [self showGameOverAlert];
@@ -140,7 +137,7 @@
 - (void)showGameOverAlert {
   NSString *messageFormat = NSLocalizedString(@"You lasted %.1f seconds.", nil);
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You are dead.", nil)
-                                                  message:[NSString stringWithFormat:messageFormat, self.cumulatedCurrentGamePlayTime]
+                                                  message:[NSString stringWithFormat:messageFormat, self.stopWatch.totalTimeElapsed]
                                                  delegate:self
                                         cancelButtonTitle:NSLocalizedString(@"Retry", nil)
                                         otherButtonTitles: nil];
@@ -151,7 +148,7 @@
 - (void)pauseGame {
   @synchronized(self) {
     if (self.gamePlaying) {
-      self.resumedTimestamp = 0;
+      [self.stopWatch pause];
 
       [self.frameManager pause];
       [self.accelerometerInputSource stopUpdatingUserInput];
@@ -169,6 +166,7 @@
 
 - (void)resumeGame {
   [self.frameManager start];
+  [self.stopWatch resume];
   [self.accelerometerInputSource startUpdatingUserInput];
 }
 
@@ -176,19 +174,8 @@
 # pragma mark - position update
 
 
-- (void)updateTimestampsWithTimeInterval:(NSTimeInterval)timestamp {
-  if (self.resumedTimestamp == 0) {
-    self.resumedTimestamp = timestamp;
-  }
-  self.cumulatedCurrentGamePlayTime = timestamp - self.resumedTimestamp;
-
-  if (self.cumulatedCurrentGamePlayTime >= 42) {
-    [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.FortyTwo"];
-  }
-}
-
 - (void)updateUniverse {
-  self.universeView.bombCooldownTime = self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime;
+  self.universeView.bombCooldownTime = self.stopWatch.timeElapsed;
   [self.universeView setNeedsDisplay];
 }
 
@@ -217,9 +204,9 @@
 
 
 - (void)shoutDetectorDidDetectShout {
-  if (self.cumulatedCurrentGamePlayTime - self.cumulatedBombCooldownTime >= FTTBombCooldownTime) {
+  if (self.stopWatch.timeElapsed >= FTTBombCooldownTime) {
 
-    self.cumulatedBombCooldownTime = self.cumulatedCurrentGamePlayTime;
+    [self.stopWatch lap];
 
     self.bombDeployed = YES;
   }
@@ -238,7 +225,6 @@
   if (self.bombDeployed) {
     [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.BluePill"];
 
-    self.cumulatedBombCooldownTime = self.cumulatedCurrentGamePlayTime;
     dispatch_async(dispatch_get_main_queue(), ^{
       [self.universeView deployBomb];
     });
@@ -246,8 +232,9 @@
     [self.universe resetEnemies];
   }
 
-  // record time
-  [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
+  if (self.stopWatch.totalTimeElapsed >= 42) {
+    [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.FortyTwo"];
+  }
 
   [self.universe updateUserWithSpeedVector:self.accelerometerInputSource.userSpeedVector];
   [self.universe tick];

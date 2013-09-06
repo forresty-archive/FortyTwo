@@ -94,11 +94,6 @@
 		68E12D4317B604B400CCCA01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68E12D4117B604B400CCCA01 /* InfoPlist.strings */; };
 		68E12D4517B604B400CCCA01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E12D4417B604B400CCCA01 /* main.m */; };
 		68E12D4917B604B400CCCA01 /* FTTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E12D4817B604B400CCCA01 /* FTTAppDelegate.m */; };
-		68E12D5717B604B400CCCA01 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D5617B604B400CCCA01 /* SenTestingKit.framework */; };
-		68E12D5817B604B400CCCA01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D3817B604B400CCCA01 /* UIKit.framework */; };
-		68E12D5917B604B400CCCA01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D3A17B604B400CCCA01 /* Foundation.framework */; };
-		68E12D6117B604B400CCCA01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68E12D5F17B604B400CCCA01 /* InfoPlist.strings */; };
-		68E12D6417B604B400CCCA01 /* FortyTwoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E12D6317B604B400CCCA01 /* FortyTwoTests.m */; };
 		68E12D6F17B6167C00CCCA01 /* FTTGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E12D6E17B6167C00CCCA01 /* FTTGameViewController.m */; };
 		68E12D7117B618B600CCCA01 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E12D7017B618B600CCCA01 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
@@ -110,13 +105,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 684F4F6F17CD05F200C1E066;
 			remoteInfo = "FortyTwo for Mac";
-		};
-		68E12D5A17B604B400CCCA01 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 68E12D2D17B604B400CCCA01 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 68E12D3417B604B400CCCA01;
-			remoteInfo = FortyTwo;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -140,8 +128,8 @@
 		680EDD5B17D711E100EEACE8 /* FTTAccelerometerInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTAccelerometerInputSource.m; sourceTree = "<group>"; };
 		6836A4A217D72AB6004C8824 /* FFStopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FFStopWatch.h; path = "FortyTwo for Mac/FFStopWatch.h"; sourceTree = SOURCE_ROOT; };
 		6836A4A317D72AB6004C8824 /* FFStopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FFStopWatch.m; path = "FortyTwo for Mac/FFStopWatch.m"; sourceTree = SOURCE_ROOT; };
-		6836A4A717D7495D004C8824 /* FTTUniverseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTUniverseDataSource.h; sourceTree = "<group>"; };
-		6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTUniverseDataSource.m; sourceTree = "<group>"; };
+		6836A4A717D7495D004C8824 /* FTTUniverseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTTUniverseDataSource.h; path = "FortyTwo for Mac/FTTUniverseDataSource.h"; sourceTree = SOURCE_ROOT; };
+		6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTTUniverseDataSource.m; path = "FortyTwo for Mac/FTTUniverseDataSource.m"; sourceTree = SOURCE_ROOT; };
 		6836A4AC17D74BCA004C8824 /* FTTMKeyboardInputSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTMKeyboardInputSourceDelegate.h; sourceTree = "<group>"; };
 		6842988817D9763400907AE1 /* FTTUniverseView+CustomDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTTUniverseView+CustomDrawing.h"; sourceTree = "<group>"; };
 		6842988917D9763400907AE1 /* FTTUniverseView+CustomDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FTTUniverseView+CustomDrawing.m"; sourceTree = "<group>"; };
@@ -200,12 +188,7 @@
 		68E12D4617B604B400CCCA01 /* FortyTwo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FortyTwo-Prefix.pch"; sourceTree = "<group>"; };
 		68E12D4717B604B400CCCA01 /* FTTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTAppDelegate.h; sourceTree = "<group>"; };
 		68E12D4817B604B400CCCA01 /* FTTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTTAppDelegate.m; sourceTree = "<group>"; };
-		68E12D5517B604B400CCCA01 /* FortyTwoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FortyTwoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68E12D5617B604B400CCCA01 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		68E12D5E17B604B400CCCA01 /* FortyTwoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FortyTwoTests-Info.plist"; sourceTree = "<group>"; };
-		68E12D6017B604B400CCCA01 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		68E12D6217B604B400CCCA01 /* FortyTwoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FortyTwoTests.h; sourceTree = "<group>"; };
-		68E12D6317B604B400CCCA01 /* FortyTwoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FortyTwoTests.m; sourceTree = "<group>"; };
 		68E12D6D17B6167C00CCCA01 /* FTTGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTGameViewController.h; sourceTree = "<group>"; };
 		68E12D6E17B6167C00CCCA01 /* FTTGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTGameViewController.m; sourceTree = "<group>"; };
 		68E12D7017B618B600CCCA01 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -261,16 +244,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		68E12D5117B604B400CCCA01 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				68E12D5717B604B400CCCA01 /* SenTestingKit.framework in Frameworks */,
-				68E12D5817B604B400CCCA01 /* UIKit.framework in Frameworks */,
-				68E12D5917B604B400CCCA01 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -279,6 +252,8 @@
 			children = (
 				684F4FAA17CD6B7F00C1E066 /* FTTDefines.h */,
 				680EDD4E17D6F3D800EEACE8 /* FTTUniverseViewDataSource.h */,
+				6836A4A717D7495D004C8824 /* FTTUniverseDataSource.h */,
+				6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */,
 				680EDD4617D6EB5C00EEACE8 /* FTTFrameManager.h */,
 				680EDD4717D6EB5C00EEACE8 /* FTTFrameManager.m */,
 				680EDD4F17D6FFAD00EEACE8 /* FTTSpeedVector.h */,
@@ -358,8 +333,6 @@
 				680EDD5717D7040500EEACE8 /* FTTMKeyboardInputSource.h */,
 				680EDD5817D7040500EEACE8 /* FTTMKeyboardInputSource.m */,
 				6836A4AC17D74BCA004C8824 /* FTTMKeyboardInputSourceDelegate.h */,
-				6836A4A717D7495D004C8824 /* FTTUniverseDataSource.h */,
-				6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */,
 			);
 			path = "FortyTwo for Mac";
 			sourceTree = "<group>";
@@ -435,7 +408,6 @@
 			children = (
 				6800F02917CF277700337E27 /* FortyTwoKit */,
 				68E12D3E17B604B400CCCA01 /* FortyTwo */,
-				68E12D5C17B604B400CCCA01 /* FortyTwoTests */,
 				684F4F7717CD05F200C1E066 /* FortyTwo for Mac */,
 				684F4F9317CD05F300C1E066 /* FortyTwo for MacTests */,
 				680EDD0417D6DF0E00EEACE8 /* FortyTwoBeta */,
@@ -449,7 +421,6 @@
 			isa = PBXGroup;
 			children = (
 				68E12D3517B604B400CCCA01 /* FortyTwo.app */,
-				68E12D5517B604B400CCCA01 /* FortyTwoTests.octest */,
 				684F4F7017CD05F200C1E066 /* FortyTwo for Mac.app */,
 				684F4F8E17CD05F300C1E066 /* FortyTwo for MacTests.octest */,
 				680EDD0017D6DF0E00EEACE8 /* FortyTwoBeta.app */,
@@ -508,25 +479,6 @@
 				6851F51B17C4D566002593AB /* Icon-72.png */,
 				68CFF06417B9060C00BD9DE1 /* Icon@2x.png */,
 				68CFF06217B9060900BD9DE1 /* Icon.png */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		68E12D5C17B604B400CCCA01 /* FortyTwoTests */ = {
-			isa = PBXGroup;
-			children = (
-				68E12D6217B604B400CCCA01 /* FortyTwoTests.h */,
-				68E12D6317B604B400CCCA01 /* FortyTwoTests.m */,
-				68E12D5D17B604B400CCCA01 /* Supporting Files */,
-			);
-			path = FortyTwoTests;
-			sourceTree = "<group>";
-		};
-		68E12D5D17B604B400CCCA01 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				68E12D5E17B604B400CCCA01 /* FortyTwoTests-Info.plist */,
-				68E12D5F17B604B400CCCA01 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -608,25 +560,6 @@
 			productReference = 68E12D3517B604B400CCCA01 /* FortyTwo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		68E12D5417B604B400CCCA01 /* FortyTwoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 68E12D6A17B604B400CCCA01 /* Build configuration list for PBXNativeTarget "FortyTwoTests" */;
-			buildPhases = (
-				68E12D5017B604B400CCCA01 /* Sources */,
-				68E12D5117B604B400CCCA01 /* Frameworks */,
-				68E12D5217B604B400CCCA01 /* Resources */,
-				68E12D5317B604B400CCCA01 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				68E12D5B17B604B400CCCA01 /* PBXTargetDependency */,
-			);
-			name = FortyTwoTests;
-			productName = FortyTwoTests;
-			productReference = 68E12D5517B604B400CCCA01 /* FortyTwoTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -651,7 +584,6 @@
 			targets = (
 				68E12D3417B604B400CCCA01 /* FortyTwo */,
 				680EDCFF17D6DF0E00EEACE8 /* FortyTwoBeta */,
-				68E12D5417B604B400CCCA01 /* FortyTwoTests */,
 				684F4F6F17CD05F200C1E066 /* FortyTwo for Mac */,
 				684F4F8D17CD05F300C1E066 /* FortyTwo for MacTests */,
 			);
@@ -710,14 +642,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		68E12D5217B604B400CCCA01 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				68E12D6117B604B400CCCA01 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -763,19 +687,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
-		};
-		68E12D5317B604B400CCCA01 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		6DC7E2A46D784DD291F04690 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -885,14 +796,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		68E12D5017B604B400CCCA01 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				68E12D6417B604B400CCCA01 /* FortyTwoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -900,11 +803,6 @@
 			isa = PBXTargetDependency;
 			target = 684F4F6F17CD05F200C1E066 /* FortyTwo for Mac */;
 			targetProxy = 684F4F9117CD05F300C1E066 /* PBXContainerItemProxy */;
-		};
-		68E12D5B17B604B400CCCA01 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 68E12D3417B604B400CCCA01 /* FortyTwo */;
-			targetProxy = 68E12D5A17B604B400CCCA01 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -945,14 +843,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				68E12D4217B604B400CCCA01 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		68E12D5F17B604B400CCCA01 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				68E12D6017B604B400CCCA01 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1158,40 +1048,6 @@
 			};
 			name = Release;
 		};
-		68E12D6B17B604B400CCCA01 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FortyTwo.app/FortyTwo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FortyTwo/FortyTwo-Prefix.pch";
-				INFOPLIST_FILE = "FortyTwoTests/FortyTwoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		68E12D6C17B604B400CCCA01 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FortyTwo.app/FortyTwo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FortyTwo/FortyTwo-Prefix.pch";
-				INFOPLIST_FILE = "FortyTwoTests/FortyTwoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1236,15 +1092,6 @@
 			buildConfigurations = (
 				68E12D6817B604B400CCCA01 /* Debug */,
 				68E12D6917B604B400CCCA01 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		68E12D6A17B604B400CCCA01 /* Build configuration list for PBXNativeTarget "FortyTwoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				68E12D6B17B604B400CCCA01 /* Debug */,
-				68E12D6C17B604B400CCCA01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

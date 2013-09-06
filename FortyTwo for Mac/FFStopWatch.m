@@ -12,7 +12,7 @@
 @interface FFStopWatch ()
 
 @property (nonatomic) BOOL running;
-@property (nonatomic) NSTimeInterval cumulatedElapsedTime;
+@property (nonatomic) NSTimeInterval cumulatedTimeWhenLastPaused;
 @property (nonatomic) NSTimeInterval resumedTimestamp;
 @property (nonatomic) NSMutableArray *laps;
 
@@ -24,11 +24,13 @@
 
 - (NSTimeInterval)timeElapsed {
   @synchronized(self) {
+    NSTimeInterval timeElapsed = self.cumulatedTimeWhenLastPaused;
+
     if (self.running) {
-      [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
+      timeElapsed += [NSDate timeIntervalSinceReferenceDate] - self.resumedTimestamp;
     }
 
-    return self.cumulatedElapsedTime;
+    return timeElapsed;
   }
 }
 
@@ -44,36 +46,44 @@
   return totalTimeElapsed;
 }
 
+
+# pragma mark - stop watch control
+
+
 - (void)start {
+  NSParameterAssert(self.running == NO);
+
   [self reset];
+  [self resume];
+}
+
+- (void)resume {
+  NSParameterAssert(self.running == NO);
+
+  self.resumedTimestamp = [NSDate timeIntervalSinceReferenceDate];
   self.running = YES;
 }
 
 - (void)lap {
-  NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
-  [self updateTimestampsWithTimeInterval:currentTime];
-  [self.laps addObject:@(currentTime)];
-  self.resumedTimestamp = currentTime;
-  self.cumulatedElapsedTime = 0;
+  NSParameterAssert(self.running == YES);
+
+  [self.laps addObject:@(self.timeElapsed)];
+  self.resumedTimestamp = [NSDate timeIntervalSinceReferenceDate];
+  self.cumulatedTimeWhenLastPaused = 0;
 }
 
 - (void)pause {
-  [self updateTimestampsWithTimeInterval:[NSDate timeIntervalSinceReferenceDate]];
+  NSParameterAssert(self.running == YES);
+
+  self.cumulatedTimeWhenLastPaused += [NSDate timeIntervalSinceReferenceDate] - self.resumedTimestamp;
   self.running = NO;
 }
 
 - (void)reset {
   self.laps = [NSMutableArray array];
   self.resumedTimestamp = [NSDate timeIntervalSinceReferenceDate];
-  self.cumulatedElapsedTime = 0;
+  self.cumulatedTimeWhenLastPaused = 0;
   self.running = NO;
-}
-
-- (void)updateTimestampsWithTimeInterval:(NSTimeInterval)timestamp {
-  if (self.resumedTimestamp == 0) {
-    self.resumedTimestamp = timestamp;
-  }
-  self.cumulatedElapsedTime = timestamp - self.resumedTimestamp;
 }
 
 

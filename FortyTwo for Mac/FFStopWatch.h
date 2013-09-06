@@ -17,6 +17,8 @@
 
 - (void)start;
 
+- (void)resume;
+
 - (void)lap;
 
 - (void)pause;
