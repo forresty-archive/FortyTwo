@@ -31,10 +31,6 @@
 
 @interface FTTGameViewController ()
 
-// shout detection
-@property (nonatomic) FTTShoutDetector *shoutDetector;
-@property (nonatomic) BOOL bombDeployed;
-
 // views
 @property (nonatomic) FTTUniverseView *universeView;
 
@@ -47,15 +43,14 @@
 // game play
 @property (nonatomic) FTTFrameManager *frameManager;
 @property (nonatomic) FTTAccelerometerInputSource *accelerometerInputSource;
-
 @property (nonatomic) FTTAlertViewManager *alertViewManager;
-
 @property (nonatomic) FTTGameCenterManager *gameCenterManager;
+@property (nonatomic) FFStopWatch *stopWatch;
+@property (nonatomic) FTTShoutDetector *shoutDetector;
+@property (nonatomic) BOOL bombDeployed;
 
 @property (nonatomic) BOOL gamePlaying;
 @property (nonatomic) BOOL gameStarted;
-
-@property (nonatomic) FFStopWatch *stopWatch;
 
 @end
 
