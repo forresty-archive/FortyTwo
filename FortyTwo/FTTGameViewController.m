@@ -25,6 +25,7 @@
 #import "FTTUniverseDataSource.h"
 #import "FTTFrameManager.h"
 #import "FTTAccelerometerInputSource.h"
+#import "FTTAlertViewManager.h"
 
 // FFToolkit
 #import "FFGameCenterManager.h"
@@ -52,6 +53,8 @@
 // game play
 @property (nonatomic) FTTFrameManager *frameManager;
 @property (nonatomic) FTTAccelerometerInputSource *accelerometerInputSource;
+
+@property (nonatomic) FTTAlertViewManager *alertViewManager;
 
 @property (nonatomic) BOOL gamePlaying;
 @property (nonatomic) BOOL gameStarted;
@@ -84,6 +87,9 @@
 
   self.shoutDetector = [[FTTShoutDetector alloc] init];
   self.shoutDetector.delegate = self;
+
+  self.alertViewManager = [FTTAlertViewManager defaultManager];
+  self.alertViewManager.alertViewDelegate = self;
 
   self.universeView = [[FTTUniverseView alloc] initWithFrame:self.view.bounds];
 
@@ -129,21 +135,11 @@
       [self.gameCenterManager reportScore:self.stopWatch.totalTimeElapsed * 100
                  forLeaderBoardIdentifier:@"com.forresty.FortyTwo.timeLasted"];
 
-      [self showGameOverAlert];
+      [self.alertViewManager showGameOverAlertWithTimeLasted:self.stopWatch.totalTimeElapsed];
     }
   }
 }
 
-- (void)showGameOverAlert {
-  NSString *messageFormat = NSLocalizedString(@"You lasted %.1f seconds.", nil);
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You are dead.", nil)
-                                                  message:[NSString stringWithFormat:messageFormat, self.stopWatch.totalTimeElapsed]
-                                                 delegate:self
-                                        cancelButtonTitle:NSLocalizedString(@"Retry", nil)
-                                        otherButtonTitles: nil];
-
-  [alert show];
-}
 
 - (void)pauseGame {
   @synchronized(self) {
@@ -153,13 +149,7 @@
       [self.frameManager pause];
       [self.accelerometerInputSource stopUpdatingUserInput];
 
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Game Paused", nil)
-                                                      message:nil
-                                                     delegate:self
-                                            cancelButtonTitle:NSLocalizedString(@"Resume", nil)
-                                            otherButtonTitles:nil];
-
-      [alert show];
+      [self.alertViewManager showGamePausedAlert];
     }
   }
 }
