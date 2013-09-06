@@ -20,6 +20,9 @@ static const NSUInteger FTTBombCooldownTime = 42;
 @property (nonatomic) NSTimeInterval bombCooldownTime;
 @property (nonatomic, readonly) BOOL bombAvailable;
 
+// temp
+@property (nonatomic) BOOL bombDeployed;
+
 - (void)deployBomb;
 
 @end
