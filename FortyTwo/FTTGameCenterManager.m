@@ -57,15 +57,15 @@
 }
 
 - (void)dodgedABullet {
-
+  // TODO: bullet count could be fast, FFSimpleKeyValueStore will not be good enough for now
 }
 
 - (void)diedOnce {
-
+  // FFSimpleKeyValueStore will be fine
 }
 
 - (void)launchedGameToday {
-
+  // encode day format as 20130906 ?
 }
 
 @end

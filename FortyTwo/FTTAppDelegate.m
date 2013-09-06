@@ -10,6 +10,8 @@
 
 #import "FTTGameViewController.h"
 
+#import "FTTGameCenterManager.h"
+
 // 3-party
 #import "Flurry.h"
 #import "TestFlight.h"
@@ -21,6 +23,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [Flurry startSession:@"7K3SWS7SVPTPMFDGVWZC"];
   [TestFlight takeOff:@"14cef1d7-e6ac-4951-90d7-267deefd0a84"];
+
+  [[FTTGameCenterManager defaultManager] launchedGameToday];
 
   [UIApplication sharedApplication].idleTimerDisabled = YES;
 
