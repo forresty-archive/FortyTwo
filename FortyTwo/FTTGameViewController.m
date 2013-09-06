@@ -26,9 +26,9 @@
 #import "FTTFrameManager.h"
 #import "FTTAccelerometerInputSource.h"
 #import "FTTAlertViewManager.h"
+#import "FTTGameCenterManager.h"
 
 // FFToolkit
-#import "FFGameCenterManager.h"
 #import "FFStopWatch.h"
 
 
@@ -47,14 +47,13 @@
 // misc
 @property (nonatomic) FTTUniverseDataSource *universeDataSource;
 
-// game center
-@property (nonatomic) FFGameCenterManager *gameCenterManager;
-
 // game play
 @property (nonatomic) FTTFrameManager *frameManager;
 @property (nonatomic) FTTAccelerometerInputSource *accelerometerInputSource;
 
 @property (nonatomic) FTTAlertViewManager *alertViewManager;
+
+@property (nonatomic) FTTGameCenterManager *gameCenterManager;
 
 @property (nonatomic) BOOL gamePlaying;
 @property (nonatomic) BOOL gameStarted;
@@ -79,8 +78,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.gameCenterManager = [FTTGameCenterManager defaultManager];
 
-  self.gameCenterManager = [FFGameCenterManager sharedManager];
   self.accelerometerInputSource = [[FTTAccelerometerInputSource alloc] init];
 
   self.view.backgroundColor = [UIColor blackColor];
@@ -132,9 +131,8 @@
       // Vibrate
       AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 
-      [self.gameCenterManager reportScore:self.stopWatch.totalTimeElapsed * 100
-                 forLeaderBoardIdentifier:@"com.forresty.FortyTwo.timeLasted"];
-
+      [self.gameCenterManager reportTimeLasted:self.stopWatch.totalTimeElapsed];
+      [self.gameCenterManager diedOnce];
       [self.alertViewManager showGameOverAlertWithTimeLasted:self.stopWatch.totalTimeElapsed];
     }
   }
@@ -213,7 +211,7 @@
 - (void)frameManagerDidUpdateFrame {
   // bomb
   if (self.bombDeployed) {
-    [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.BluePill"];
+    [self.gameCenterManager usedABluePill];
 
     dispatch_async(dispatch_get_main_queue(), ^{
       [self.universeView deployBomb];
@@ -223,7 +221,7 @@
   }
 
   if (self.stopWatch.totalTimeElapsed >= 42) {
-    [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.FortyTwo"];
+    [self.gameCenterManager lasted42Seconds];
   }
 
   [self.universe updateUserWithSpeedVector:self.accelerometerInputSource.userSpeedVector];

@@ -117,7 +117,7 @@
                            position.y - FTTObjectWidth() / 2,
                            FTTObjectWidth(),
                            FTTObjectWidth());
-  
+
   return rect;
 }
 
