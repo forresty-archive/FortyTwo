@@ -8,10 +8,6 @@
 
 #import "FTTGameViewController.h"
 
-// frameworks
-// -- vibration
-#import <AVFoundation/AVFoundation.h>
-
 // views
 #import "FTTUniverseView.h"
 
@@ -27,6 +23,7 @@
 
 // FFToolkit
 #import "FFStopWatch.h"
+#import "FFAudioManager.h"
 
 
 @interface FTTGameViewController ()
@@ -120,8 +117,7 @@
       self.gamePlaying = NO;
 
       // TODO: this seems not working
-      // Vibrate
-      AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+      [[FFAudioManager defaultManager] vibrate];
 
       [self.gameCenterManager reportTimeLasted:self.stopWatch.totalTimeElapsed];
       [self.gameCenterManager diedOnce];
