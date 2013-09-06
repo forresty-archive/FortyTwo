@@ -54,6 +54,9 @@
 		6836A4A917D7495D004C8824 /* FTTUniverseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */; };
 		6836A4AA17D7495D004C8824 /* FTTUniverseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */; };
 		6836A4AB17D7495D004C8824 /* FTTUniverseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */; };
+		6842988A17D9763400907AE1 /* FTTUniverseView+CustomDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6842988917D9763400907AE1 /* FTTUniverseView+CustomDrawing.m */; };
+		6842988B17D9763400907AE1 /* FTTUniverseView+CustomDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6842988917D9763400907AE1 /* FTTUniverseView+CustomDrawing.m */; };
+		6842988E17D9767100907AE1 /* FTTMUniverseView+CustomDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6842988D17D9767100907AE1 /* FTTMUniverseView+CustomDrawing.m */; };
 		684F4F7217CD05F200C1E066 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684F4F7117CD05F200C1E066 /* Cocoa.framework */; };
 		684F4F7C17CD05F200C1E066 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 684F4F7A17CD05F200C1E066 /* InfoPlist.strings */; };
 		684F4F7E17CD05F200C1E066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 684F4F7D17CD05F200C1E066 /* main.m */; };
@@ -140,6 +143,10 @@
 		6836A4A717D7495D004C8824 /* FTTUniverseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTUniverseDataSource.h; sourceTree = "<group>"; };
 		6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTUniverseDataSource.m; sourceTree = "<group>"; };
 		6836A4AC17D74BCA004C8824 /* FTTMKeyboardInputSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTMKeyboardInputSourceDelegate.h; sourceTree = "<group>"; };
+		6842988817D9763400907AE1 /* FTTUniverseView+CustomDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTTUniverseView+CustomDrawing.h"; sourceTree = "<group>"; };
+		6842988917D9763400907AE1 /* FTTUniverseView+CustomDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FTTUniverseView+CustomDrawing.m"; sourceTree = "<group>"; };
+		6842988C17D9767100907AE1 /* FTTMUniverseView+CustomDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTTMUniverseView+CustomDrawing.h"; sourceTree = "<group>"; };
+		6842988D17D9767100907AE1 /* FTTMUniverseView+CustomDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FTTMUniverseView+CustomDrawing.m"; sourceTree = "<group>"; };
 		684F4F7017CD05F200C1E066 /* FortyTwo for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FortyTwo for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		684F4F7117CD05F200C1E066 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		684F4F7417CD05F200C1E066 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -296,6 +303,8 @@
 			children = (
 				684F4FA517CD08A200C1E066 /* FTTMUniverseView.h */,
 				684F4FA617CD08A200C1E066 /* FTTMUniverseView.m */,
+				6842988C17D9767100907AE1 /* FTTMUniverseView+CustomDrawing.h */,
+				6842988D17D9767100907AE1 /* FTTMUniverseView+CustomDrawing.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -415,6 +424,8 @@
 			children = (
 				68CFF05417B793EB00BD9DE1 /* FTTUniverseView.h */,
 				68CFF05517B793EB00BD9DE1 /* FTTUniverseView.m */,
+				6842988817D9763400907AE1 /* FTTUniverseView+CustomDrawing.h */,
+				6842988917D9763400907AE1 /* FTTUniverseView+CustomDrawing.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -639,10 +650,10 @@
 			projectRoot = "";
 			targets = (
 				68E12D3417B604B400CCCA01 /* FortyTwo */,
+				680EDCFF17D6DF0E00EEACE8 /* FortyTwoBeta */,
 				68E12D5417B604B400CCCA01 /* FortyTwoTests */,
 				684F4F6F17CD05F200C1E066 /* FortyTwo for Mac */,
 				684F4F8D17CD05F300C1E066 /* FortyTwo for MacTests */,
-				680EDCFF17D6DF0E00EEACE8 /* FortyTwoBeta */,
 			);
 		};
 /* End PBXProject section */
@@ -818,6 +829,7 @@
 				680EDD4517D6E28800EEACE8 /* FFGameCenterManager.m in Sources */,
 				6836A4A617D72AB6004C8824 /* FFStopWatch.m in Sources */,
 				6836A4AB17D7495D004C8824 /* FTTUniverseDataSource.m in Sources */,
+				6842988B17D9763400907AE1 /* FTTUniverseView+CustomDrawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +850,7 @@
 				680EDD5917D7040500EEACE8 /* FTTMKeyboardInputSource.m in Sources */,
 				6836A4A517D72AB6004C8824 /* FFStopWatch.m in Sources */,
 				6836A4AA17D7495D004C8824 /* FTTUniverseDataSource.m in Sources */,
+				6842988E17D9767100907AE1 /* FTTMUniverseView+CustomDrawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,6 +881,7 @@
 				680EDD5C17D711E100EEACE8 /* FTTAccelerometerInputSource.m in Sources */,
 				6836A4A417D72AB6004C8824 /* FFStopWatch.m in Sources */,
 				6836A4A917D7495D004C8824 /* FTTUniverseDataSource.m in Sources */,
+				6842988A17D9763400907AE1 /* FTTUniverseView+CustomDrawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

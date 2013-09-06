@@ -11,14 +11,9 @@
 #import "FTTUniverseViewDataSource.h"
 
 
-@class FTTUserObject;
-
-
 @interface FTTMUniverseView : NSView
 
 @property (nonatomic) id<FTTUniverseViewDataSource> dataSource;
-
-//@property (nonatomic) NSTimeInterval timeElapsed;
 
 //- (void)deployBomb;
 
