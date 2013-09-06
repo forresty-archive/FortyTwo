@@ -8,8 +8,6 @@
 
 #import "FTTUniverseView+CustomDrawing.h"
 
-#import "FTTDefines.h"
-
 
 @implementation FTTUniverseView (CustomDrawing)
 

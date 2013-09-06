@@ -19,9 +19,6 @@
 #import "FTTUniverse.h"
 #import "FTTEnemyObject.h"
 
-// misc
-#import "FTTDefines.h"
-
 #import "FTTUniverseDataSource.h"
 #import "FTTFrameManager.h"
 #import "FTTAccelerometerInputSource.h"
