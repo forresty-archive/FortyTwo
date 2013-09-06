@@ -27,16 +27,13 @@
   return self;
 }
 
-
 - (BOOL)bombAvailable {
   return self.bombCooldownTime >= FTTBombCooldownTime;
 }
 
-
 - (void)deployBomb {
   self.bombDeployed = YES;
 }
-
 
 
 @end

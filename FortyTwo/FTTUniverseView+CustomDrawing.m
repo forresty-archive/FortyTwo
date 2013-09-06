@@ -44,7 +44,7 @@
   [[UIBezierPath bezierPathWithRect:timePlayedRect] fill];
 
   // draw bomb indicator
-  if (self.bombAvailable) {
+  if (self.dataSource.bombAvailable) {
     NSUInteger xOffset = CGRectGetMaxX(self.bounds) - 120 - 12;
     NSUInteger yOffset = 20;
 
@@ -105,7 +105,7 @@
 
 - (UIColor *)currentProgressBarColor {
   // change color every 0.5 seconds
-  if (self.bombAvailable && (self.bombCooldownTime - (NSUInteger)self.bombCooldownTime) < 0.5) {
+  if (self.dataSource.bombAvailable && (self.bombCooldownTime - (NSUInteger)self.bombCooldownTime) < 0.5) {
     return [UIColor blueColor];
   }
 
