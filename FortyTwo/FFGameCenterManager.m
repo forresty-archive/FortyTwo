@@ -9,7 +9,6 @@
 #import "FFGameCenterManager.h"
 
 // frameworks
-// -- game center
 #import <GameKit/GameKit.h>
 
 

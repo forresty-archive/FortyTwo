@@ -32,6 +32,18 @@
   }
 }
 
+- (NSTimeInterval)totalTimeElapsed {
+  __block NSTimeInterval totalTimeElapsed = 0;
+
+  [self.laps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    totalTimeElapsed += [obj doubleValue];
+  }];
+
+  totalTimeElapsed += self.timeElapsed;
+
+  return totalTimeElapsed;
+}
+
 - (void)start {
   [self reset];
   self.running = YES;

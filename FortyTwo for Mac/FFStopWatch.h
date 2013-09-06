@@ -13,7 +13,7 @@
 
 @property (nonatomic, readonly) NSTimeInterval timeElapsed;
 
-@property (nonatomic, readonly) NSMutableArray *laps;
+@property (nonatomic, readonly) NSTimeInterval totalTimeElapsed;
 
 - (void)start;
 

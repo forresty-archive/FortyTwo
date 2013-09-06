@@ -135,8 +135,8 @@
 		680EDD5817D7040500EEACE8 /* FTTMKeyboardInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTMKeyboardInputSource.m; sourceTree = "<group>"; };
 		680EDD5A17D711E100EEACE8 /* FTTAccelerometerInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTAccelerometerInputSource.h; sourceTree = "<group>"; };
 		680EDD5B17D711E100EEACE8 /* FTTAccelerometerInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTAccelerometerInputSource.m; sourceTree = "<group>"; };
-		6836A4A217D72AB6004C8824 /* FFStopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFStopWatch.h; sourceTree = "<group>"; };
-		6836A4A317D72AB6004C8824 /* FFStopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFStopWatch.m; sourceTree = "<group>"; };
+		6836A4A217D72AB6004C8824 /* FFStopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FFStopWatch.h; path = "FortyTwo for Mac/FFStopWatch.h"; sourceTree = SOURCE_ROOT; };
+		6836A4A317D72AB6004C8824 /* FFStopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FFStopWatch.m; path = "FortyTwo for Mac/FFStopWatch.m"; sourceTree = SOURCE_ROOT; };
 		6836A4A717D7495D004C8824 /* FTTUniverseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTUniverseDataSource.h; sourceTree = "<group>"; };
 		6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTUniverseDataSource.m; sourceTree = "<group>"; };
 		6836A4AC17D74BCA004C8824 /* FTTMKeyboardInputSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTMKeyboardInputSourceDelegate.h; sourceTree = "<group>"; };
@@ -316,6 +316,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6842988717D96A6400907AE1 /* FFToolkit */ = {
+			isa = PBXGroup;
+			children = (
+				680EDCF917D6D12F00EEACE8 /* FFGameCenterManager.h */,
+				680EDCFA17D6D12F00EEACE8 /* FFGameCenterManager.m */,
+				6836A4A217D72AB6004C8824 /* FFStopWatch.h */,
+				6836A4A317D72AB6004C8824 /* FFStopWatch.m */,
+			);
+			name = FFToolkit;
+			sourceTree = "<group>";
+		};
 		684F4F7317CD05F200C1E066 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,8 +349,6 @@
 				680EDD5717D7040500EEACE8 /* FTTMKeyboardInputSource.h */,
 				680EDD5817D7040500EEACE8 /* FTTMKeyboardInputSource.m */,
 				6836A4AC17D74BCA004C8824 /* FTTMKeyboardInputSourceDelegate.h */,
-				6836A4A217D72AB6004C8824 /* FFStopWatch.h */,
-				6836A4A317D72AB6004C8824 /* FFStopWatch.m */,
 				6836A4A717D7495D004C8824 /* FTTUniverseDataSource.h */,
 				6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */,
 			);
@@ -460,13 +469,12 @@
 			children = (
 				68E12D4717B604B400CCCA01 /* FTTAppDelegate.h */,
 				68E12D4817B604B400CCCA01 /* FTTAppDelegate.m */,
+				6842988717D96A6400907AE1 /* FFToolkit */,
 				68E12D3F17B604B400CCCA01 /* Supporting Files */,
 				68CFF05B17B7947200BD9DE1 /* Controllers */,
 				68CFF06C17B9247400BD9DE1 /* Views */,
 				680EDCF617D6CC2600EEACE8 /* FTTShoutDetector.h */,
 				680EDCF717D6CC2600EEACE8 /* FTTShoutDetector.m */,
-				680EDCF917D6D12F00EEACE8 /* FFGameCenterManager.h */,
-				680EDCFA17D6D12F00EEACE8 /* FFGameCenterManager.m */,
 				680EDD5A17D711E100EEACE8 /* FTTAccelerometerInputSource.h */,
 				680EDD5B17D711E100EEACE8 /* FTTAccelerometerInputSource.m */,
 			);
