@@ -11,8 +11,6 @@
 
 @interface FTTAlertViewManager ()
 
-@property (nonatomic, weak) id<UIAlertViewDelegate> alertViewDelegate;
-
 @end
 
 
@@ -53,8 +51,5 @@
   [alert show];
 }
 
-- (void)setAlertViewDelegate:(id<UIAlertViewDelegate>)alertViewDelegate {
-  self.alertViewDelegate = alertViewDelegate;
-}
 
 @end

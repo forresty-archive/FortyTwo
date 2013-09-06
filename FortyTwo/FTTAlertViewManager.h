@@ -11,6 +11,8 @@
 
 @interface FTTAlertViewManager : NSObject
 
+@property (nonatomic, weak) id<UIAlertViewDelegate> alertViewDelegate;
+
 + (instancetype)defaultManager;
 
 - (void)showGameOverAlertWithTimeLasted:(NSTimeInterval)timeLasted;
