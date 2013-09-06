@@ -16,7 +16,6 @@
 
 // models
 #import "FTTUniverse.h"
-#import "FTTUserObject.h"
 #import "FTTEnemyObject.h"
 
 // misc
@@ -51,8 +50,6 @@
 
 + (void)initialize {
   [FTTObject registerDefaultObjectWidth:5];
-  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(240, 180)];
-  [FTTEnemyObject registerUniverseSize:CGSizeMake(480, 360)];
   [FTTEnemyObject registerTimeToUserParam:90];
 }
 

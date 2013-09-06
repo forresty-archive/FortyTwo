@@ -17,7 +17,6 @@
 
 // models
 #import "FTTUniverse.h"
-#import "FTTUserObject.h"
 #import "FTTEnemyObject.h"
 
 // misc
@@ -69,8 +68,6 @@
 
 + (void)initialize {
   [FTTObject registerDefaultObjectWidth:FTTObjectWidth()];
-  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(FTTDeviceWidth() / 2, FTTDeviceHeight() / 2)];
-  [FTTEnemyObject registerUniverseSize:CGSizeMake(FTTDeviceWidth(), FTTDeviceHeight())];
 
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
     [FTTEnemyObject registerTimeToUserParam:60];

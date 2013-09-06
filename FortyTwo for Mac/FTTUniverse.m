@@ -32,6 +32,9 @@
 
 
 - (instancetype)initWithWidth:(NSUInteger)width height:(NSUInteger)height {
+  [FTTUserObject registerDefaultSpawnPosition:CGPointMake(width/2, height/2)];
+  [FTTEnemyObject registerUniverseSize:CGSizeMake(width, height)];
+
   self = [super init];
 
   if (self) {
