@@ -10,6 +10,8 @@
 
 #import "FTTUserObject.h"
 
+#import "FTTGameCenterManager.h"
+
 
 typedef NS_ENUM(NSUInteger, FTTEnemySpawnLocation) {
   FTTEnemySpawnLocationTop,
@@ -94,6 +96,7 @@ static NSUInteger FTTTimeToUserParam;
   CGFloat newY = self.position.y + self.speedY;
 
   if (newX <= 0 || newX >= FTTUniverseSize.width || newY <= 0 || newY >= FTTUniverseSize.height) {
+    [[FTTGameCenterManager defaultManager] dodgedABullet];
     [self resetPosition];
     [self resetSpeed];
   } else {
