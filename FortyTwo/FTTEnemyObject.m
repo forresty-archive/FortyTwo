@@ -84,7 +84,7 @@ static NSUInteger FTTTimeToUserParam;
 
 
 - (void)resetSpeed {
-  CGFloat timeToUser = rand() % FTTTimeToUserParam + FTTTimeToUserParam; // fps is 42, so this better be 90 ~ 180?
+  CGFloat timeToUser = rand() % FTTTimeToUserParam + FTTTimeToUserParam;
 
   self.speedX = (self.userObject.position.x - self.position.x) / timeToUser;
   self.speedY = (self.userObject.position.y - self.position.y) / timeToUser;

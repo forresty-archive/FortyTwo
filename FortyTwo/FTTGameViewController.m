@@ -59,7 +59,7 @@
   [FTTObject registerDefaultObjectWidth:FTTObjectWidth()];
 
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    [FTTEnemyObject registerTimeToUserParam:60];
+    [FTTEnemyObject registerTimeToUserParam:90];
   } else {
     [FTTEnemyObject registerTimeToUserParam:90];
   }

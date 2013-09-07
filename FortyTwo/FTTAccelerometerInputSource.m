@@ -52,7 +52,7 @@
     CGFloat speed = 4;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-      speed = 12;
+      speed = 8;
     }
 
     @synchronized(self) {
