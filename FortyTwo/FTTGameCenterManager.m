@@ -22,8 +22,13 @@
 
 @end
 
+
+
 @implementation FTTGameCenterManager
 
+static NSString *numberOfTimesDodgedABullet = @"FortyTwo.numberOfTimesDodgedABullet";
+static NSString *numberOfDeathsKey = @"FortyTwo.numberOfDeaths";
+static NSString *numberOfTimesUsedABluePill = @"FortyTwo.numberOfTimesUsedABluePill";
 
 + (instancetype)defaultManager {
   static FTTGameCenterManager *_instance = nil;
@@ -62,8 +67,6 @@
 - (void)usedABluePill {
   [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.BluePill"];
 
-  NSString *numberOfTimesUsedABluePill = @"FortyTwo.numberOfTimesUsedABluePill";
-
   [self.keyValueStore increaseNSUIntegerValueForKey:numberOfTimesUsedABluePill];
 
   double percentComplete = [self.keyValueStore getNSUIntegerValueWithKey:numberOfTimesUsedABluePill] * 100.0 / 42.0;
@@ -73,18 +76,24 @@
 }
 
 - (void)dodgedABullet {
-  // TODO: bullet count could be fast, FFSimpleKeyValueStore will not be good enough for now
+  [self.keyValueStore increaseNSUIntegerValueForKey:numberOfTimesDodgedABullet persistImmediately:NO];
 }
 
 - (void)diedOnce {
-  NSString *numberOfDeathsKey = @"FortyTwo.numberOfDeaths";
-
   [self.keyValueStore increaseNSUIntegerValueForKey:numberOfDeathsKey];
 
   double percentComplete = [self.keyValueStore getNSUIntegerValueWithKey:numberOfDeathsKey] * 100.0 / 42.0;
 
   [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.MeaningOfLife"
                                           percentComplete:percentComplete];
+
+  // also report bullet dodging result
+  {
+    double percentComplete = [self.keyValueStore getNSUIntegerValueWithKey:numberOfTimesDodgedABullet] * 100.0 / 4200.0;
+
+    [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.TheOne"
+                                            percentComplete:percentComplete];
+  }
 }
 
 - (void)launchedGameToday {
