@@ -61,7 +61,16 @@ static NSString *numberOfTimesUsedABluePill = @"FortyTwo.numberOfTimesUsedABlueP
 }
 
 - (void)lasted42Seconds {
-  [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.FortyTwo"];
+  static BOOL reported = NO;
+
+  if (!reported) {
+    [self.gameCenterManager reportAchievementWithIdentifier:@"FortyTwo.FortyTwo"];
+  }
+
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    reported = YES;
+  });
 }
 
 - (void)usedABluePill {
