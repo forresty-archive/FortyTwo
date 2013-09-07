@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../FFToolkit
 
 SPEC CHECKSUMS:
-  FFToolkit: 5b2f047b7cbb1ed64c98c2e0ee12900d56befa0f
+  FFToolkit: 80dfe60604723be3d5c9d1460646e11fc5447689
   FlurrySDK: 20b3fd669eeafd005ca8ff65a1406d1befbc8031
   TestFlightSDK: 940906d4b2550cf397c6f2d2fcc4ebfdcd8ae858
 
