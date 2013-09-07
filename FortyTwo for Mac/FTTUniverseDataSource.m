@@ -23,6 +23,8 @@
 
 @implementation FTTUniverseDataSource
 
+@synthesize bombDeployed = _bombDeployed;
+@synthesize percentCompleteOfBombRecharge = _percentCompleteOfBombRecharge;
 
 - (instancetype)initWithUniverse:(FTTUniverse *)universe {
   self = [self init];
@@ -58,16 +60,8 @@
 # pragma mark - bomb
 
 
-- (CGFloat)percentCompleteOfBombRecharge {
-  return 42;
-}
-
 - (BOOL)bombAvailable {
-  return NO;
-}
-
-- (BOOL)bombDeployed {
-  return NO;
+  return self.percentCompleteOfBombRecharge > 99;
 }
 
 

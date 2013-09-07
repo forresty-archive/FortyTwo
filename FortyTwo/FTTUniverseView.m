@@ -27,13 +27,13 @@
   return self;
 }
 
-- (BOOL)bombAvailable {
-  return self.bombCooldownTime >= FTTBombCooldownTime;
-}
+//- (BOOL)bombAvailable {
+//  return self.bombCooldownTime >= FTTBombCooldownTime;
+//}
 
-- (void)deployBomb {
-  self.bombDeployed = YES;
-}
+//- (void)deployBomb {
+//  self.bombDeployed = YES;
+//}
 
 
 @end

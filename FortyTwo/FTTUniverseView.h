@@ -17,11 +17,11 @@ static const NSUInteger FTTBombCooldownTime = 42;
 
 @property (nonatomic) id<FTTUniverseViewDataSource> dataSource;
 
-@property (nonatomic) NSTimeInterval bombCooldownTime;
+//@property (nonatomic) NSTimeInterval bombCooldownTime;
 
 // temp
-@property (nonatomic) BOOL bombDeployed;
+//@property (nonatomic) BOOL bombDeployed;
 
-- (void)deployBomb;
+//- (void)deployBomb;
 
 @end

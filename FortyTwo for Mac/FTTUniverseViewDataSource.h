@@ -16,8 +16,10 @@
 - (NSArray *)positionsOfEnemyObjects;
 
 // bomb
-- (CGFloat)percentCompleteOfBombRecharge;
 - (BOOL)bombAvailable;
-- (BOOL)bombDeployed;
+
+// TODO: this seems not elegant
+@property (nonatomic) BOOL bombDeployed;
+@property (nonatomic) CGFloat percentCompleteOfBombRecharge;
 
 @end

@@ -38,7 +38,7 @@
 
   [progressBarColor setFill];
   CGRect timePlayedRect = CGRectMake(CGRectGetMaxX(self.bounds) - 120, 20,
-                                     MIN(100, 100 * self.bombCooldownTime / FTTBombCooldownTime), 10);
+                                     [self.dataSource percentCompleteOfBombRecharge], 10);
   [[UIBezierPath bezierPathWithRect:timePlayedRect] fill];
 
   // draw bomb indicator
@@ -82,7 +82,7 @@
   static NSUInteger bombEffectFramesDrawn = 0;
 
   // bomb
-  if (self.bombDeployed) {
+  if (self.dataSource.bombDeployed) {
     // draw bomb effect
     [[UIColor whiteColor] setFill];
     [[UIBezierPath bezierPathWithRect:rect] fill];
@@ -92,7 +92,7 @@
     // only draw 5 frames
     if (bombEffectFramesDrawn > 5) {
       bombEffectFramesDrawn = 0;
-      self.bombDeployed = NO;
+      self.dataSource.bombDeployed = NO;
     }
   }
 }
@@ -103,7 +103,7 @@
 
 - (UIColor *)currentProgressBarColor {
   // change color every 0.5 seconds
-  if (self.dataSource.bombAvailable && (self.bombCooldownTime - (NSUInteger)self.bombCooldownTime) < 0.5) {
+  if (self.dataSource.bombAvailable && ([NSDate timeIntervalSinceReferenceDate] - (NSUInteger)[NSDate timeIntervalSinceReferenceDate]) < 0.5) {
     return [UIColor blueColor];
   }
 
