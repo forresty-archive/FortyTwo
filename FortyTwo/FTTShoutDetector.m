@@ -85,9 +85,11 @@
 
   if (self.shouting == NO && self.lowPassResults >= 0.5) {
     self.shouting = YES;
+    NSLog(@"started shouting...");
     [self.delegate shoutDetectorDidDetectShout];
   } else if (self.shouting == YES && self.lowPassResults < 0.5) {
     self.shouting = NO;
+    NSLog(@"shout ends");
     [self.delegate shoutDetectorShoutDidEnd];
   }
 }

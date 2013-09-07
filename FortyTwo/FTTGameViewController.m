@@ -152,7 +152,7 @@
 
 
 - (void)updateUniverse {
-  self.universeDataSource.percentCompleteOfBombRecharge = MIN(100, self.stopWatch.timeElapsed * 100 / 42.0);
+  self.universeDataSource.percentCompleteOfBombRecharge = MIN(100, self.stopWatch.timeElapsed * 100 / FTTBombCooldownTime);
   [self.universeView setNeedsDisplay];
 }
 
@@ -202,6 +202,7 @@
   if (self.bombDeployed) {
     [self.gameCenterManager usedABluePill];
 
+    self.bombDeployed = NO;
     self.universeDataSource.bombDeployed = YES;
 
     [self.universe resetEnemies];

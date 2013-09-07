@@ -10,18 +10,11 @@
 
 #import "FTTUniverseViewDataSource.h"
 
-static const NSUInteger FTTBombCooldownTime = 42;
+static const CGFloat FTTBombCooldownTime = 42.0;
 
 
 @interface FTTUniverseView : UIView
 
 @property (nonatomic) id<FTTUniverseViewDataSource> dataSource;
-
-//@property (nonatomic) NSTimeInterval bombCooldownTime;
-
-// temp
-//@property (nonatomic) BOOL bombDeployed;
-
-//- (void)deployBomb;
 
 @end
