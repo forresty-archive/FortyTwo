@@ -121,6 +121,7 @@
 
       [self.gameCenterManager reportTimeLasted:self.stopWatch.totalTimeElapsed];
       [self.gameCenterManager diedOnce];
+      [self.gameCenterManager launchedGameToday];
       [self.alertViewManager showGameOverAlertWithTimeLasted:self.stopWatch.totalTimeElapsed];
     }
   }
