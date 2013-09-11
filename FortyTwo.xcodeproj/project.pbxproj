@@ -46,8 +46,6 @@
 		680EDD6017D7170000EEACE8 /* FTTSpeedVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 680EDD5017D6FFAD00EEACE8 /* FTTSpeedVector.m */; };
 		68125A6C17D9DABF001D22EC /* FTTGameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68125A6B17D9DABF001D22EC /* FTTGameCenterManager.m */; };
 		68125A6D17D9DABF001D22EC /* FTTGameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68125A6B17D9DABF001D22EC /* FTTGameCenterManager.m */; };
-		68125A7017D9DF9B001D22EC /* FFAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68125A6F17D9DF9B001D22EC /* FFAudioManager.m */; };
-		68125A7117D9DF9B001D22EC /* FFAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68125A6F17D9DF9B001D22EC /* FFAudioManager.m */; };
 		6836A4A917D7495D004C8824 /* FTTUniverseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */; };
 		6836A4AA17D7495D004C8824 /* FTTUniverseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */; };
 		6836A4AB17D7495D004C8824 /* FTTUniverseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */; };
@@ -125,8 +123,6 @@
 		680EDD5B17D711E100EEACE8 /* FTTAccelerometerInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTAccelerometerInputSource.m; sourceTree = "<group>"; };
 		68125A6A17D9DABF001D22EC /* FTTGameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTGameCenterManager.h; sourceTree = "<group>"; };
 		68125A6B17D9DABF001D22EC /* FTTGameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTTGameCenterManager.m; sourceTree = "<group>"; };
-		68125A6E17D9DF9B001D22EC /* FFAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFAudioManager.h; sourceTree = "<group>"; };
-		68125A6F17D9DF9B001D22EC /* FFAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFAudioManager.m; sourceTree = "<group>"; };
 		6836A4A717D7495D004C8824 /* FTTUniverseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTTUniverseDataSource.h; path = "FortyTwo for Mac/FTTUniverseDataSource.h"; sourceTree = SOURCE_ROOT; };
 		6836A4A817D7495D004C8824 /* FTTUniverseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTTUniverseDataSource.m; path = "FortyTwo for Mac/FTTUniverseDataSource.m"; sourceTree = SOURCE_ROOT; };
 		6836A4AC17D74BCA004C8824 /* FTTMKeyboardInputSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTTMKeyboardInputSourceDelegate.h; sourceTree = "<group>"; };
@@ -457,8 +453,6 @@
 				680EDD5B17D711E100EEACE8 /* FTTAccelerometerInputSource.m */,
 				68125A6A17D9DABF001D22EC /* FTTGameCenterManager.h */,
 				68125A6B17D9DABF001D22EC /* FTTGameCenterManager.m */,
-				68125A6E17D9DF9B001D22EC /* FFAudioManager.h */,
-				68125A6F17D9DF9B001D22EC /* FFAudioManager.m */,
 			);
 			path = FortyTwo;
 			sourceTree = "<group>";
@@ -772,7 +766,6 @@
 				6842988B17D9763400907AE1 /* FTTUniverseView+CustomDrawing.m in Sources */,
 				6842989217D99B4900907AE1 /* FTTAlertViewManager.m in Sources */,
 				68125A6D17D9DABF001D22EC /* FTTGameCenterManager.m in Sources */,
-				68125A7117D9DF9B001D22EC /* FFAudioManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,7 +815,6 @@
 				6842988A17D9763400907AE1 /* FTTUniverseView+CustomDrawing.m in Sources */,
 				6842989117D99B4900907AE1 /* FTTAlertViewManager.m in Sources */,
 				68125A6C17D9DABF001D22EC /* FTTGameCenterManager.m in Sources */,
-				68125A7017D9DF9B001D22EC /* FFAudioManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

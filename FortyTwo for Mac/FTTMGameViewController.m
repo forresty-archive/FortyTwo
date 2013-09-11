@@ -41,8 +41,6 @@
 @property (nonatomic) FTTMKeyboardInputSource *keyboardInputSource;
 @property (nonatomic) FFStopWatch *stopWatch;
 
-@property (nonatomic) BOOL gamePlaying;
-
 @end
 
 

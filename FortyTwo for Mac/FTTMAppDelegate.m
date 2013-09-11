@@ -19,7 +19,9 @@
 
 - (void)restartGame {
   if (self.gameViewController) {
-    [self.gameViewController stopGame];
+    if (self.gameViewController.gamePlaying) {
+      [self.gameViewController stopGame];
+    }
     [self.gameViewController.view removeFromSuperview];
   }
 

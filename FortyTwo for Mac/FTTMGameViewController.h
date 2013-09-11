@@ -14,7 +14,9 @@
 #import "FTTMKeyboardInputSourceDelegate.h"
 
 
-@interface FTTMGameViewController : NSViewController <FTTFrameManagerDelegate, FTTMKeyboardInputSourceDelegate>
+@interface FTTMGameViewController : NSViewController <FFFrameManagerDelegate, FTTMKeyboardInputSourceDelegate>
+
+@property (nonatomic) BOOL gamePlaying;
 
 - (void) stopGame;
 

@@ -1,5 +1,5 @@
 PODS:
-  - FFToolkit (0.0.1)
+  - FFToolkit (0.0.2)
   - FlurrySDK (4.2.3)
   - TestFlightSDK (2.0)
 
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../FFToolkit
 
 SPEC CHECKSUMS:
-  FFToolkit: 80dfe60604723be3d5c9d1460646e11fc5447689
+  FFToolkit: 8ae53fa96a7d0c6ba1522559e3b59e5983795a1d
   FlurrySDK: 20b3fd669eeafd005ca8ff65a1406d1befbc8031
   TestFlightSDK: 940906d4b2550cf397c6f2d2fcc4ebfdcd8ae858
 
