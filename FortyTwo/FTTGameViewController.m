@@ -92,6 +92,10 @@
 
 - (void)restartGame {
   self.universe = [[FTTUniverse alloc] initWithWidth:FTTDeviceWidth() height:FTTDeviceHeight()];
+  for (FTTEnemyObject *enemyObject in self.universe.enemies) {
+    enemyObject.delegate = self;
+  }
+
   self.universeDataSource = [[FTTUniverseDataSource alloc] initWithUniverse:self.universe];
   self.universeView.dataSource = self.universeDataSource;
 
@@ -152,7 +156,8 @@
 
 
 - (void)updateUniverse {
-  self.universeDataSource.percentCompleteOfBombRecharge = MIN(100, self.stopWatch.timeElapsed * 100 / FTTBombCooldownTime);
+  self.universeDataSource.percentCompleteOfBombRecharge = MIN(100,
+                                                              self.stopWatch.timeElapsed * 100 / FTTBombCooldownTime);
   [self.universeView setNeedsDisplay];
 }
 
@@ -222,6 +227,14 @@
 
   // detect collision
   [self detectCollision];
+}
+
+
+# pragma mark - FTTEnemyObjectDelegate
+
+
+- (void)enemyObject:(FTTEnemyObject *)enemyObject didMissTarget:(FTTUserObject *)userObject {
+  [[FTTGameCenterManager defaultManager] dodgedABullet];
 }
 
 

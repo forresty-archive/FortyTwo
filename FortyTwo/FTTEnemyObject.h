@@ -11,13 +11,21 @@
 #import "FTTObject.h"
 
 
-@class FTTUserObject;
+@class FTTEnemyObject, FTTUserObject;
+
+
+@protocol FTTEnemyObjectDelegate <NSObject>
+
+- (void)enemyObject:(FTTEnemyObject *)enemyObject didMissTarget:(FTTUserObject *)userObject;
+
+@end
 
 
 @interface FTTEnemyObject : FTTObject
 
 @property (nonatomic) CGFloat speedX;
 @property (nonatomic) CGFloat speedY;
+@property (nonatomic, weak) id<FTTEnemyObjectDelegate> delegate;
 
 - (instancetype)initWithTargetUserObject:(FTTUserObject *)userObject;
 
