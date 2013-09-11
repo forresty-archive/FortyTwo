@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 // frame control
-#import "FTTFrameManager.h"
+#import "FFFrameManager.h"
 
 #import "FTTMKeyboardInputSourceDelegate.h"
 

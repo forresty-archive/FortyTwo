@@ -37,7 +37,7 @@
 @property (nonatomic) FTTUniverseDataSource *universeDataSource;
 
 // game play
-@property (nonatomic) FTTFrameManager *frameManager;
+@property (nonatomic) FFFrameManager *frameManager;
 @property (nonatomic) FTTMKeyboardInputSource *keyboardInputSource;
 @property (nonatomic) FFStopWatch *stopWatch;
 
@@ -81,7 +81,7 @@
   self.universeView.dataSource = self.universeDataSource;
   self.keyboardInputSource.delegate = self.self;
 
-  self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];
+  self.frameManager = [[FFFrameManager alloc] initWithFrameRate:42];
   self.frameManager.delegate = self;
   [self.frameManager start];
 

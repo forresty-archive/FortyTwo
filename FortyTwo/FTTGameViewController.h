@@ -10,7 +10,7 @@
 
 #import "FTTShoutDetector.h"
 
-#import "FTTFrameManager.h"
+#import "FFFrameManager.h"
 
 #import "FTTEnemyObject.h"
 

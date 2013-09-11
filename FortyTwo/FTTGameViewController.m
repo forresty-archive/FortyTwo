@@ -16,7 +16,7 @@
 #import "FTTEnemyObject.h"
 
 #import "FTTUniverseDataSource.h"
-#import "FTTFrameManager.h"
+#import "FFFrameManager.h"
 #import "FTTAccelerometerInputSource.h"
 #import "FTTAlertViewManager.h"
 #import "FTTGameCenterManager.h"
@@ -38,7 +38,7 @@
 @property (nonatomic) FTTUniverseDataSource *universeDataSource;
 
 // game play
-@property (nonatomic) FTTFrameManager *frameManager;
+@property (nonatomic) FFFrameManager *frameManager;
 @property (nonatomic) FTTAccelerometerInputSource *accelerometerInputSource;
 @property (nonatomic) FTTAlertViewManager *alertViewManager;
 @property (nonatomic) FTTGameCenterManager *gameCenterManager;
@@ -99,7 +99,7 @@
   self.universeDataSource = [[FTTUniverseDataSource alloc] initWithUniverse:self.universe];
   self.universeView.dataSource = self.universeDataSource;
 
-  self.frameManager = [[FTTFrameManager alloc] initWithFrameRate:42];
+  self.frameManager = [[FFFrameManager alloc] initWithFrameRate:42];
   self.frameManager.delegate = self;
   [self.frameManager start];
 
