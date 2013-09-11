@@ -20,6 +20,8 @@
 
 @interface FTTShoutDetector : NSObject
 
+- (instancetype)initWithDelegate:(id<FTTShoutDetectorDelegate>)delegate;
+
 @property (nonatomic, weak) id<FTTShoutDetectorDelegate> delegate;
 
 @end

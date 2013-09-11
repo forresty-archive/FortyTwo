@@ -17,15 +17,14 @@
 @implementation FTTAlertViewManager
 
 
-+ (instancetype)defaultManager {
-  static FTTAlertViewManager *_instance = nil;
+- (instancetype)initWithAlertViewDelegate:(id<UIAlertViewDelegate>)alertViewDelegate {
+  self = [super init];
 
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    _instance = [[FTTAlertViewManager alloc] init];
-  });
+  if (self) {
+    self.alertViewDelegate = alertViewDelegate;
+  }
 
-  return _instance;
+  return self;
 }
 
 

@@ -73,11 +73,8 @@
 
   self.view.backgroundColor = [UIColor blackColor];
 
-  self.shoutDetector = [[FTTShoutDetector alloc] init];
-  self.shoutDetector.delegate = self;
-
-  self.alertViewManager = [FTTAlertViewManager defaultManager];
-  self.alertViewManager.alertViewDelegate = self;
+  self.shoutDetector = [[FTTShoutDetector alloc] initWithDelegate:self];
+  self.alertViewManager = [[FTTAlertViewManager alloc] initWithAlertViewDelegate:self];
 
   self.universeView = [[FTTUniverseView alloc] initWithFrame:self.view.bounds];
 

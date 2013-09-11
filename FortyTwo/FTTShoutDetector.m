@@ -29,6 +29,18 @@
 @implementation FTTShoutDetector
 
 
+- (instancetype)initWithDelegate:(id<FTTShoutDetectorDelegate>)delegate {
+  // call designated initializer
+  self = [self init];
+
+  if (self) {
+    self.delegate = delegate;
+  }
+
+  return self;
+}
+
+// designated initializer
 - (id)init {
   self = [super init];
 

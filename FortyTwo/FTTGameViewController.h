@@ -14,7 +14,7 @@
 
 #import "FTTEnemyObject.h"
 
-@interface FTTGameViewController : UIViewController <UIAlertViewDelegate, FTTShoutDetectorDelegate, FTTFrameManagerDelegate, FTTEnemyObjectDelegate>
+@interface FTTGameViewController : UIViewController <UIAlertViewDelegate, FTTShoutDetectorDelegate, FFFrameManagerDelegate, FTTEnemyObjectDelegate>
 
 - (void)pauseGame;
 

@@ -13,7 +13,7 @@
 
 @property (nonatomic, weak) id<UIAlertViewDelegate> alertViewDelegate;
 
-+ (instancetype)defaultManager;
+- (instancetype)initWithAlertViewDelegate:(id<UIAlertViewDelegate>)alertViewDelegate;
 
 - (void)showGameOverAlertWithTimeLasted:(NSTimeInterval)timeLasted;
 
