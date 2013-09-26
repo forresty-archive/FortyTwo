@@ -563,7 +563,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = FTT;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Forrest Ye";
 			};
 			buildConfigurationList = 68E12D3017B604B400CCCA01 /* Build configuration list for PBXProject "FortyTwo" */;
@@ -906,7 +906,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA04D3F296E247FFBC2E725B /* Pods-osx.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -928,7 +927,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA04D3F296E247FFBC2E725B /* Pods-osx.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -950,7 +948,6 @@
 		684F4F9E17CD05F300C1E066 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FortyTwo for Mac.app/Contents/MacOS/FortyTwo for Mac";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
@@ -970,7 +967,6 @@
 		684F4F9F17CD05F300C1E066 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FortyTwo for Mac.app/Contents/MacOS/FortyTwo for Mac";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
