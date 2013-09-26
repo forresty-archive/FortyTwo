@@ -13,8 +13,8 @@ EXTERNAL SOURCES:
     :path: ../FFToolkit
 
 SPEC CHECKSUMS:
-  FFToolkit: 8ae53fa96a7d0c6ba1522559e3b59e5983795a1d
+  FFToolkit: 3416cc81e07d6db6decb89a8440d8f4110e932ce
   FlurrySDK: 20b3fd669eeafd005ca8ff65a1406d1befbc8031
   TestFlightSDK: 940906d4b2550cf397c6f2d2fcc4ebfdcd8ae858
 
-COCOAPODS: 0.24.0
+COCOAPODS: 0.25.0
