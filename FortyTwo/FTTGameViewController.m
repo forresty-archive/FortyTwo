@@ -73,7 +73,10 @@
 
   self.view.backgroundColor = [UIColor blackColor];
 
-  self.shoutDetector = [[FTTShoutDetector alloc] initWithDelegate:self];
+  if (!TARGET_IPHONE_SIMULATOR) {
+    self.shoutDetector = [[FTTShoutDetector alloc] initWithDelegate:self];
+  }
+
   self.alertViewManager = [[FTTAlertViewManager alloc] initWithAlertViewDelegate:self];
 
   self.universeView = [[FTTUniverseView alloc] initWithFrame:self.view.bounds];
